@@ -157,6 +157,14 @@ def summarize(output):
             f"| Fast winding calls, summed | {timings['fast_winding_seconds']:.6f} |",
             f"| Per-point output compression/writing, summed | {timings['point_output_seconds']:.6f} |",
             f"| Benchmark wall time with dataset cached | {summary['run_wall_seconds']:.6f} |",
+            *(
+                [
+                    f"| Append-only checkpoints | {summary['checkpoint_seconds']:.6f} |",
+                    f"| Final CSV export | {summary['csv_export_seconds']:.6f} |",
+                ]
+                if "checkpoint_seconds" in summary
+                else []
+            ),
             f"\nEnvironment: Python {environment['python']}, libigl {environment['packages']['libigl']}, "
             f"NumPy {environment['packages']['numpy']}, {environment['cpu_model']}; "
             f"`IGL_NUM_THREADS={environment['igl_num_threads']}`, cgroup CPU limit "

@@ -268,11 +268,27 @@ def summarize(output, baseline, cache_dir):
             f"| {row['file_id']} | {row['point_index']} | {row['igl_d_original']:.10g} | "
             f"{row['igl_d_on_float32_inputs']:.10g} | {row['warp_d_p']:.10g} |"
         )
-    report.append(
-        "\nThe two largest discrepancies persist with identical rounded inputs, so input "
-        "rounding alone does not explain them. The returned nearest triangles differ. "
-        "A root cause in the distance query has not been established.\n"
-    )
+    if diagnostics:
+        largest = diagnostics[:2]
+        persist = all(
+            abs(row["igl_d_on_float32_inputs"] - row["warp_d_p"])
+            > 0.9 * abs(row["igl_d_original"] - row["warp_d_p"])
+            for row in largest
+        )
+        different_faces = sum(
+            row["igl_face_on_float32_inputs"] != row["warp_face_p"] for row in largest
+        )
+        note = (
+            "The largest discrepancies shown above persist with identical rounded inputs, "
+            "so input rounding alone does not explain them. "
+            if persist
+            else "The table separates input rounding from query differences. "
+        )
+        report.append(
+            f"\n{note}The returned nearest triangles differ in {different_faces} of "
+            f"these {len(largest)} cases. A root cause in the distance query has not been "
+            "established.\n"
+        )
     report.extend(
         [
             "## Timings\n",
@@ -287,6 +303,11 @@ def summarize(output, baseline, cache_dir):
     )
     for key, value in summary["summed_timings_seconds"].items():
         report.append(f"| {key.removesuffix('_seconds').replace('_', ' ')} | {value:.6f} |")
+    for key in ("checkpoint_seconds", "csv_export_seconds"):
+        if key in summary:
+            report.append(
+                f"| {key.removesuffix('_seconds').replace('_', ' ')} | {summary[key]:.6f} |"
+            )
     report.extend(
         [
             f"| Module loading (before queries) | {config['module_load_seconds']:.6f} |",
