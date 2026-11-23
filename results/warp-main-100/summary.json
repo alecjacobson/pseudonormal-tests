@@ -1,0 +1,85 @@
+{
+  "completed_at_utc": "2026-11-23T20:34:07.679007+00:00",
+  "models_completed": 100,
+  "models_failed": 0,
+  "num_points": 1000000,
+  "num_away": 966656,
+  "methods": {
+    "igl_p": {
+      "disagreements": 7,
+      "percent_all": 0.0007,
+      "percent_away": 0.0007241459216101695,
+      "models_with_disagreements": 4,
+      "raw_disagreements": 7,
+      "false_inside": 7,
+      "false_outside": 0
+    },
+    "warp_p": {
+      "disagreements": 291,
+      "percent_all": 0.0291,
+      "percent_away": 0.030103780455508475,
+      "models_with_disagreements": 48,
+      "raw_disagreements": 295,
+      "false_inside": 86,
+      "false_outside": 205
+    },
+    "warp_w": {
+      "disagreements": 0,
+      "percent_all": 0.0,
+      "percent_away": 0.0,
+      "models_with_disagreements": 0,
+      "raw_disagreements": 0,
+      "false_inside": 0,
+      "false_outside": 0
+    },
+    "warp_parity": {
+      "disagreements": 0,
+      "percent_all": 0.0,
+      "percent_away": 0.0,
+      "models_with_disagreements": 0,
+      "raw_disagreements": 0,
+      "false_inside": 0,
+      "false_outside": 0
+    }
+  },
+  "distance_errors": {
+    "p": {
+      "max_over_bbd": 0.0003557290240312099,
+      "mean_over_bbd": 8.456843478088245e-08,
+      "rms_over_bbd": 2.400516347983964e-06,
+      "p99_over_bbd": 2.226657195166476e-07,
+      "count_over_1e_minus6_bbd": 4607,
+      "count_over_1e_minus5_bbd": 1467
+    },
+    "w": {
+      "max_over_bbd": 0.0003557290240312099,
+      "mean_over_bbd": 8.456866753938231e-08,
+      "rms_over_bbd": 2.4005163581706424e-06,
+      "p99_over_bbd": 2.2267143108011706e-07,
+      "count_over_1e_minus6_bbd": 4607,
+      "count_over_1e_minus5_bbd": 1467
+    },
+    "parity": {
+      "max_over_bbd": 0.0003557290240312099,
+      "mean_over_bbd": 8.456866753938231e-08,
+      "rms_over_bbd": 2.4005163581706424e-06,
+      "p99_over_bbd": 2.2267143108011706e-07,
+      "count_over_1e_minus6_bbd": 4607,
+      "count_over_1e_minus5_bbd": 1467
+    }
+  },
+  "wall_seconds": 4.730490119080059,
+  "summed_timings_seconds": {
+    "reference_load_seconds": 0.18161601130850613,
+    "mesh_load_seconds": 0.04449847375508398,
+    "input_conversion_upload_seconds": 0.076858292799443,
+    "mesh_build_seconds": 0.05117266543675214,
+    "output_allocation_seconds": 0.008115308359265327,
+    "pseudonormal_query_seconds": 0.061536083929240704,
+    "winding_query_seconds": 0.3512428904650733,
+    "parity_query_seconds": 0.06039546220563352,
+    "result_download_seconds": 0.06565606710501015,
+    "point_output_seconds": 2.7833388305734843,
+    "model_total_seconds": 3.912490681745112
+  }
+}

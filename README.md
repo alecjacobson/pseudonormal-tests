@@ -1,13 +1,27 @@
 # Pseudonormal tests
 
-Compare libigl's pseudonormal distance sign with its fast winding number sign on
-Thingi10K. The initial experiment selects 100 models and samples 10,000 points
-uniformly in each model's axis-aligned bounding box.
+Compare libigl and Warp mesh distances and signs on Thingi10K. The experiment
+selects 100 models and samples 10,000 points uniformly in each model's axis-aligned
+bounding box. Warp reuses the exact saved libigl samples.
 
 The [initial findings](results/initial-100/FINDINGS.md) contain **7 disagreements
 beyond the distance cutoff across 4 models**, or **0.0007% of all 1,000,000 samples**.
 All four analytic tests passed, and the full run reused the cache with
 `HF_HUB_OFFLINE=1`.
+
+The [Warp main comparison](results/warp-main-100/FINDINGS.md) uses libigl winding
+as the reference and the same original distance cutoff:
+
+| Method | Disagreements | % of all samples | Models affected |
+| --- | ---: | ---: | ---: |
+| libigl pseudonormal | 7 | 0.0007% | 4 |
+| Warp pseudonormal | 291 | 0.0291% | 48 |
+| Warp winding | 0 | 0% | 0 |
+| Warp parity (native default: 1 ray) | 0 | 0% | 0 |
+
+For Warp distances, the 99th percentile absolute difference is about
+`2.23e-7 * bbd`; the maximum is `3.56e-4 * bbd`. Saved outlier diagnostics show
+that input rounding alone does not explain the largest discrepancies.
 
 ## Run
 
@@ -121,5 +135,87 @@ repository does not redistribute those meshes.
 closest features), inside-positive signs, a solid with a cavity represented by two
 boundary components, the strict cutoff and both denominators, and deterministic
 sampling with the intended filter.
+
+## Warp from GitHub main
+
+The comparison pins the main commit fetched on 2026-11-23,
+[`915c3d4f56432e557339752eb619a7930c813d66`](https://github.com/NVIDIA/warp/commit/915c3d4f56432e557339752eb619a7930c813d66),
+version `1.21.0.dev0`, in [warp_source.json](warp_source.json). Reuse an existing
+clean Warp checkout when available. On another machine, clone
+`https://github.com/NVIDIA/warp.git` only if needed, check out that revision, and
+build its native libraries according to Warp's source-build requirements:
+
+```sh
+# From the Warp checkout; use an installed CUDA toolkit supported by your GPU.
+git checkout 915c3d4f56432e557339752eb619a7930c813d66
+uv sync --extra dev --no-install-project
+uv run --no-sync build_lib.py --quick --cuda-path /path/to/cuda --jobs 4
+```
+
+The recorded build used CUDA 12.9.1 and driver 13.2. `--quick` requires a driver
+new enough for the toolkit. Then, from this benchmark repository:
+
+```sh
+uv sync --locked
+uv pip install --python .venv/bin/python --no-deps --editable /path/to/warp
+uv run --no-sync python -m unittest -v
+
+# Regenerate the seeded baseline if its ignored points/ files are absent.
+uv run --no-sync python benchmark.py --output results/libigl-reproduced
+uv run --no-sync python warp_benchmark.py \
+  --baseline results/libigl-reproduced --output results/warp-reproduced
+uv run --no-sync python summarize_warp.py results/warp-reproduced
+```
+
+On the original machine, the baseline point files are already retained, so run
+`warp_benchmark.py --output results/another-warp-run` directly. Set
+`HF_HUB_OFFLINE=1` to verify that a run uses the existing dataset cache.
+
+Warp's source build is pinned separately from the PyPI dependencies in `uv.lock`.
+Use **`uv run --no-sync` after installing it**; environment synchronization can
+remove the separately installed package. The comparison checks the imported
+checkout's Git revision, clean tracked Warp source, and version, and records
+native library SHA-256 hashes. Update the pin and rebuild matching native
+libraries deliberately when testing another main revision.
+
+`warp_queries.py` calls these APIs independently on `cuda:0` by default:
+
+- `mesh_query_point_sign_normal`: epsilon `0.001`.
+- `mesh_query_point_sign_winding_number`: accuracy `2.0`, threshold `0.5`;
+  `Mesh(support_winding_number=True)` prevents a ray-vote fallback.
+- `mesh_query_point_sign_parity`: native default `n_sample=1`, perturbation
+  scale `0.1`. This uses one ray through the voting API. Pass `--parity-rays 3`
+  for majority voting with three rays. Warp initializes its internal RNG with
+  fixed seed 42, so ray directions are deterministic.
+
+Use `--device cpu` for CPU queries. The wrapper converts all native signs to
+inside `+1`, outside `-1`, and derives each method's distance from its returned
+closest point. The same float64 samples are cast to float32 for Warp without
+normalization. Every comparison uses **the saved libigl distance mask**, so Warp
+distance differences cannot change which points are counted. Invalid queries
+are reported as errors. Libigl winding is the chosen reference, not independently
+verified ground truth.
+
+Warp results have a separate `per_model.csv`, `summary.json`, and `config.json`.
+The CSV joins to the original metadata on `file_id` and includes all three Warp
+sign comparisons, distance errors, and separate loading, mesh construction,
+upload, query, download, and output timings. Queries are timed with device
+synchronization; module loading is timed outside the query batches. Libigl's
+original CPU calls include their internal setup, so their timings have a
+different scope from Warp's GPU queries.
+
+`summarize_warp.py` audits the retained arrays and generates `FINDINGS.md` and
+`validation.json`. `disagreements.csv` exports every counted case with all signs,
+distances, and coordinates. `distance_outliers.csv` records every point whose
+absolute distance difference exceeds `1e-5 * bbd`; `distance_diagnostics.csv`
+recomputes the worst case per affected model in libigl using float32-rounded
+inputs. Full Warp arrays, including closest points, faces and validity flags,
+remain in ignored local `points/<file_id>.npz` files.
+
+The combined suite has seven passing tests and one expected failure at the
+pinned revision. CPU and CUDA integration tests verify cube distances, cavity
+signs and cutoff handling. The expected failure records Warp pseudonormal's
+inside prediction at the exact center of a symmetric empty cube cavity; the
+analytic expectation is outside. It is separate from the random benchmark.
 
 The scripts and experiment documentation were prepared with OpenAI Codex.

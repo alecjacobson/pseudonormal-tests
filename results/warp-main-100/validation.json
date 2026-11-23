@@ -1,0 +1,18 @@
+{
+  "result": "passed",
+  "models_checked": 100,
+  "points_checked": 1000000,
+  "disagreement_rows_checked": 298,
+  "distance_outlier_rows_checked": 1467,
+  "checks": [
+    "baseline config, per-model CSV, and retained point hashes",
+    "same unique model IDs, mesh hashes, and bounding-box diagonals",
+    "identical samples after float32 conversion",
+    "all query validity flags, finite distances, binary signs and valid face indices",
+    "distance agrees with returned closest point",
+    "shared original distance cutoff, per-model counts and rates",
+    "aggregate counts, rates, and distance quantiles",
+    "exported disagreement and distance outlier IDs"
+  ],
+  "distance_diagnostic": "worst distance outlier per affected model recomputed with libigl on float32-rounded inputs"
+}

@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/NVIDIA/warp.git",
+  "branch_at_fetch": "main",
+  "revision": "915c3d4f56432e557339752eb619a7930c813d66",
+  "version": "1.21.0.dev0",
+  "build_command": "uv run --no-sync build_lib.py --quick --cuda-path /home/horde/cuda/12.9.1 --jobs 4"
+}
