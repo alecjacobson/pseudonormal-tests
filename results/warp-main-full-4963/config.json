@@ -1,0 +1,51 @@
+{
+  "started_at_utc": "2026-11-23T21:06:04.089671+00:00",
+  "baseline": "/home/horde/projects/pseudonormal-tests/results/full-4963",
+  "baseline_config_sha256": "c2415b8c22cdd63fa21c83cfaa14d3ec6439e1aad724d58b8ae3bfc615c3d559",
+  "baseline_per_model_sha256": "90bc7a67dc60abbd0e454b0f7001468fdf40ccedc1bd67e1c81b9b9576491dd1",
+  "warp_source": {
+    "repository": "https://github.com/NVIDIA/warp.git",
+    "branch_at_fetch": "main",
+    "revision": "915c3d4f56432e557339752eb619a7930c813d66",
+    "version": "1.21.0.dev0",
+    "build_command": "uv run --no-sync build_lib.py --quick --cuda-path /home/horde/cuda/12.9.1 --jobs 4",
+    "checkout": "/home/horde/Repos/warp",
+    "native_library_sha256": {
+      "warp.so": "77e75213d1d324249d7278a47c5677e574ff2b9bb7d536b4b991bfc71a686ad5",
+      "warp-clang.so": "442e5921cdb10f9b511f770c8577500d163cf66d7a7306027df7255586c143da"
+    }
+  },
+  "device": "cuda:0",
+  "device_name": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 2g.48gb",
+  "device_arch": 120,
+  "numpy_version": "2.5.5",
+  "source_sha256": {
+    "warp_benchmark.py": "1388db206c4de32ad8d937bd256ac170f46e4a94d3c5fccbcbf2aaa4d20e5cb9",
+    "warp_queries.py": "6ea128f39f07ad01a3cc1fe10355e3f404a6e923141e16ff5c5fbde444265994",
+    "benchmark.py": "c13351e89b06ecd7e204a708487ea0ad0d76ed0e96fdd1378286749c70df8f48"
+  },
+  "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+  "models": 4963,
+  "points_per_model": 10000,
+  "reference": "saved igl_sign_w is treated as ground truth for this experiment",
+  "distance_mask": "original igl_d > baseline relative_cutoff * original bbd",
+  "relative_cutoff": 0.001,
+  "coordinates": "same saved float64 samples, converted to float32 for Warp; no normalization",
+  "distance": "length(query_point - mesh_eval_position(query.face, query.u, query.v))",
+  "warp_sign": "+1 if native query.sign < 0, else -1",
+  "pseudonormal_epsilon": 0.001,
+  "winding_accuracy": 2.0,
+  "parity_rays": 1,
+  "parity_perturbation": 0.1,
+  "parity_randomness": "Warp uses a fixed internal seed for deterministic ray directions",
+  "winding_threshold": 0.5,
+  "support_winding_number": true,
+  "max_distance": "2 * original bbd",
+  "bvh_constructor": "lbvh",
+  "timing": "one call per method per model, no warmup; synchronous wall time; mesh build, uploads, compilation and downloads separate",
+  "checkpoint": "append and flush per_model.jsonl after each model; export CSV once at completion",
+  "progress_every": 50,
+  "provenance_seconds": 0.2229741009650752,
+  "initialization_seconds": 0.20795136597007513,
+  "module_load_seconds": 0.10054671892430633
+}

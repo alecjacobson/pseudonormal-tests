@@ -1,0 +1,27 @@
+{
+  "result": "passed",
+  "eligible_models": 4963,
+  "models_in_each_full_run": 4963,
+  "checkpoint_rows_checked": 9926,
+  "initial_models_compared": 100,
+  "initial_points_compared": 1000000,
+  "exactly_reproduced_arrays": {
+    "libigl": [
+      "points",
+      "d",
+      "sign_p",
+      "winding",
+      "sign_w"
+    ],
+    "warp": [
+      "warp_points",
+      "warp_d_p",
+      "warp_d_w",
+      "warp_d_parity",
+      "warp_sign_p",
+      "warp_sign_w",
+      "warp_sign_parity"
+    ]
+  },
+  "seed": 20261123
+}

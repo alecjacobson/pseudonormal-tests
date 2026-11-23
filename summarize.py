@@ -100,7 +100,10 @@ def summarize(output):
             "result": "passed",
         },
     )
-    affected = [row for row in rows if int(row["num_counted_disagreements"])]
+    affected = sorted(
+        (row for row in rows if int(row["num_counted_disagreements"])),
+        key=lambda row: (-int(row["num_counted_disagreements"]), int(row["file_id"])),
+    )
     environment = config["environment"]
     report = [
         "# Benchmark findings\n",
@@ -119,12 +122,17 @@ def summarize(output):
         "| file_id | Faces | Components | Points beyond cutoff | Disagreements | % of all points | % beyond cutoff |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
-    for row in affected:
+    for row in affected[:20]:
         report.append(
             f"| {row['file_id']} | {int(row['num_faces']):,} | {row['num_connected_components']} | "
             f"{int(row['num_away']):,} | {row['num_counted_disagreements']} | "
             f"{float(row['disagreement_percent_all']):.4g} | "
             f"{float(row['disagreement_percent_away']):.7g} |"
+        )
+    if len(affected) > 20:
+        report.append(
+            f"\nShowing the 20 largest counts among {len(affected)} affected models. "
+            "All affected models are retained in per_model.csv."
         )
     report.extend(
         [

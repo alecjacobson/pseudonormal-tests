@@ -1,0 +1,28 @@
+{
+  "completed_at_utc": "2026-11-23T21:05:37.099038+00:00",
+  "models_requested": 4963,
+  "models_completed": 4963,
+  "models_failed": 0,
+  "models_with_nonbinary_winding": 0,
+  "models_with_counted_disagreement": 177,
+  "num_points": 49630000,
+  "num_away": 48001158,
+  "num_counted_disagreements": 1271,
+  "disagreement_percent_all": 0.0025609510376788233,
+  "disagreement_percent_away": 0.002647852787218175,
+  "max_model_disagreement_percent_all": 2.77,
+  "summed_timings_seconds": {
+    "mesh_load_seconds": 2.264397292630747,
+    "mesh_hash_seconds": 1.5833278393838555,
+    "sampling_seconds": 3.9875609799055383,
+    "pseudonormal_seconds": 178.8396636705147,
+    "fast_winding_seconds": 174.1090687456308,
+    "point_output_seconds": 129.0826240052702,
+    "model_total_seconds": 491.03692635230254
+  },
+  "cache_access_seconds": 0.0009114999556913972,
+  "checkpoint_seconds": 0.36184836260508746,
+  "csv_export_seconds": 0.062431411002762616,
+  "run_wall_seconds": 491.58003183593974,
+  "timing_note": "Download/extraction acquisition timings are in download.json; this run's cache access is in cache_access.json."
+}

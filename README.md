@@ -1,27 +1,38 @@
 # Pseudonormal tests
 
-Compare libigl and Warp mesh distances and signs on Thingi10K. The experiment
-selects 100 models and samples 10,000 points uniformly in each model's axis-aligned
-bounding box. Warp reuses the exact saved libigl samples.
+Compare libigl and Warp mesh distances and signs on Thingi10K. Both the initial
+100-model subset and the full set of 4,963 eligible models use 10,000 points
+sampled uniformly in each model's axis-aligned bounding box. Warp reuses the exact
+saved libigl samples.
 
-The [initial findings](results/initial-100/FINDINGS.md) contain **7 disagreements
-beyond the distance cutoff across 4 models**, or **0.0007% of all 1,000,000 samples**.
-All four analytic tests passed, and the full run reused the cache with
-`HF_HUB_OFFLINE=1`.
-
-The [Warp main comparison](results/warp-main-100/FINDINGS.md) uses libigl winding
-as the reference and the same original distance cutoff:
+The [full-set comparison](results/warp-main-full-4963/FINDINGS.md) covers
+**49,630,000 points**, including 48,001,158 with `igl_d > 0.001 * bbd`. It uses
+libigl winding as the reference and that same original distance mask for every
+method. Percentages below use all sampled points as the denominator:
 
 | Method | Disagreements | % of all samples | Models affected |
 | --- | ---: | ---: | ---: |
-| libigl pseudonormal | 7 | 0.0007% | 4 |
-| Warp pseudonormal | 291 | 0.0291% | 48 |
+| libigl pseudonormal | 1,271 | 0.00256095% | 177 |
+| Warp pseudonormal | 11,817 | 0.0238102% | 2,346 |
 | Warp winding | 0 | 0% | 0 |
 | Warp parity (native default: 1 ray) | 0 | 0% | 0 |
 
-For Warp distances, the 99th percentile absolute difference is about
-`2.23e-7 * bbd`; the maximum is `3.56e-4 * bbd`. Saved outlier diagnostics show
-that input rounding alone does not explain the largest discrepancies.
+Warp winding and parity have 8 and 10 disagreements respectively before the
+distance cutoff; all are excluded by the cutoff. For Warp distances, the 99th
+percentile absolute difference is about `3.65e-7 * bbd`; the maximum is
+`7.63e-4 * bbd`.
+
+Both passes completed without failures, reusing the dataset cache offline.
+The libigl pass took **491.58 seconds**, and all three Warp methods plus their
+loading and output took **192.23 seconds**: **11 minutes 24 seconds combined**,
+excluding the subsequent audits. Appending checkpoints and exporting both final
+CSVs cost **1.04 seconds total**. The libigl-only details are in
+[full baseline findings](results/full-4963/FINDINGS.md).
+
+The original [libigl subset findings](results/initial-100/FINDINGS.md) and
+[Warp subset comparison](results/warp-main-100/FINDINGS.md) remain available.
+The full run reproduced all original 100 models' samples, distances and signs
+exactly; see [full-set validation](results/warp-main-full-4963/full_set_validation.json).
 
 ## Run
 
