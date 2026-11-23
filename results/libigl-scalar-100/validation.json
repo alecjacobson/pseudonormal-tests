@@ -1,0 +1,68 @@
+{
+  "cpp_tests": {
+    "cases": 10,
+    "assertions": 258,
+    "passed": true,
+    "source": "libigl tests/include/igl/{signed_distance,pseudonormal_test,point_simplex_squared_distance}.cpp"
+  },
+  "address_sanitizer": {
+    "passed": true,
+    "cases": 10,
+    "assertions": 258,
+    "detect_leaks": true
+  },
+  "undefined_behavior_sanitizer": {
+    "passed": true,
+    "halt_on_error": true
+  },
+  "float_promotion_audit": {
+    "passed": true,
+    "flags": "-std=c++17 -Werror=double-promotion -fsyntax-only",
+    "source": "native_precision/audit_float.cpp"
+  },
+  "regression_before_patch": {
+    "test": "point_simplex_squared_distance: float barycentric arithmetic",
+    "failed_as_expected": true,
+    "original_header_commit": "b41f1944a703653ae0da81e6588650ba14c270ea",
+    "point": [
+      0.0038910505836575876,
+      0.42412451361867703,
+      1
+    ]
+  },
+  "python_tests": {
+    "passed": 27,
+    "new_precision_tests": 26,
+    "existing_smoke_test": "test_normals_and_distances",
+    "extension": "actual full pyigl_core build",
+    "optional_modules": "Unchanged installed wheel modules loaded for test_all collection; smoke test exercises newly built core"
+  },
+  "python_stubs": {
+    "generated": true,
+    "float32_overload": true,
+    "float64_overload": true
+  },
+  "benchmark_contract_tests": {
+    "passed": 5,
+    "command": "uv run --no-sync python -m unittest test_benchmark -q"
+  },
+  "baseline_release": {
+    "wheel_version": "2.6.3",
+    "libigl_pin_in_binding_release_tag": "f68f01c23ac82351e2543ce8c529b6d4c89fdf16",
+    "note": "The source-built main baseline is independently compared bytewise with the saved wheel results."
+  },
+  "build": {
+    "compiler": "GCC 13.3.0",
+    "eigen": "3.4.0",
+    "nanobind": "2.7.0",
+    "cpp_standard": 17,
+    "contract": "off in benchmark extension",
+    "nanobind_size_optimization": true,
+    "optional_libigl_modules": "disabled for full core binding build"
+  },
+  "limitations": [
+    "One float query returns a nonfinite normal; retained and explicitly flagged.",
+    "Fast-winding signs are the fixed benchmark reference, not independently verified ground truth.",
+    "Feature-classification logic and numerical tolerance values were not retuned."
+  ]
+}

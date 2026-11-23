@@ -282,3 +282,87 @@ and exact reproduction of the initial 100 models' saved samples, distances and
 signs. It requires the locally retained point arrays from both initial runs.
 
 The scripts and experiment documentation were prepared with OpenAI Codex.
+
+## Libigl scalar precision experiment
+
+[The 100-model scalar comparison](results/libigl-scalar-100/FINDINGS.md) reuses the
+original 1,000,000 points, mesh coordinates, winding signs, and distance cutoff.
+The patched double implementation is bitwise identical to the original source
+build and the installed wheel for all retained outputs. Single precision returns
+762 counted disagreements (0.0762%), compared with 7 (0.0007%) in double. One
+single-precision query has a nonfinite normal and is explicitly flagged; 761
+counted disagreements have finite outputs. Rounding the inputs to float32 and
+then computing in double gives 9 disagreements (0.0009%).
+
+The upstream changes preserve the existing tolerance values and classifier.
+`native_precision/` builds the actual Python `signed_distance.cpp` wrapper from
+specified libigl and Python-binding checkouts. The patched wrapper dispatches
+float32 geometry and query arrays to a float C++ instantiation. Dataset downloads
+and the original point sampling are not repeated.
+
+To reproduce, use clean source checkouts at the commits recorded in the run's
+`config.json`. Build the original extension before applying or checking out the
+patches, or use isolated Git worktrees. Keep each build directory associated with
+its source revisions; rebuilding the original directory against patched sources
+would replace the baseline binary. All build and result directories must be fresh.
+
+```bash
+# Set these paths to checkouts at the desired original or patched revisions.
+# For the original build, use b41f1944 (libigl) and 6893d1b1 (bindings).
+cmake -S native_precision -B .cache/precision/original -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/path/to/original/libigl \
+  -DBINDINGS_SOURCE_DIR=/path/to/original/libigl-python-bindings \
+  -DPRECISION_MODULE=_precision_original
+cmake --build .cache/precision/original -j 4
+uv run --no-sync python precision_benchmark.py \
+  --variant original_double \
+  --module .cache/precision/original/_precision_original*.so \
+  --libigl-source /path/to/original/libigl \
+  --bindings-source /path/to/original/libigl-python-bindings \
+  --output results/libigl-original-double-100
+
+# Use the patched commits from results/libigl-scalar-100/summary.json.
+cmake -S native_precision -B .cache/precision/patched -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/path/to/patched/libigl \
+  -DBINDINGS_SOURCE_DIR=/path/to/patched/libigl-python-bindings \
+  -DPRECISION_MODULE=_precision_patched \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src"
+cmake --build .cache/precision/patched -j 4
+uv run --no-sync python precision_benchmark.py \
+  --variant patched_double \
+  --module .cache/precision/patched/_precision_patched*.so \
+  --libigl-source /path/to/patched/libigl \
+  --bindings-source /path/to/patched/libigl-python-bindings \
+  --output results/libigl-scalar-double-100
+```
+
+Repeat the last command with `--variant patched_single` and output
+`results/libigl-scalar-single-100`, then with `--variant quantized_double` and
+output `results/libigl-quantized-double-100`. Generate the comparison with
+`uv run --no-sync python summarize_precision.py`. Individual run directories hold
+per-model measurements, cache timings, configuration, and locally retained point
+outputs. The comparison directory holds a complete output audit and a diagnostic
+CSV keyed by `(file_id, sample_index)`.
+
+The patched C++ tests can be built using
+`cmake -S native_precision -B .cache/precision/patched -DPRECISION_BUILD_TESTS=ON`,
+then `cmake --build .cache/precision/patched --target test_precision -j 4` and
+`.cache/precision/patched/test_precision`. The compiler audit for the float query
+helpers is:
+
+```bash
+c++ -std=c++17 -Werror=double-promotion \
+  -I/path/to/patched/libigl/include \
+  -isystem .cache/precision/original/_deps/eigen-src \
+  -fsyntax-only native_precision/audit_float.cpp
+```
+
+See [validation.json](results/libigl-scalar-100/validation.json) for the C++ tests,
+sanitizer results, Python binding tests, and the regression check against the
+original implementation. Classification improvements are tracked separately in
+[issue 2](https://github.com/alecjacobson/pseudonormal-tests/issues/2).

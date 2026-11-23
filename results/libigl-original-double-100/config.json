@@ -1,0 +1,71 @@
+{
+  "started_at_utc": "2026-11-23T21:47:47.608074+00:00",
+  "variant": "original_double",
+  "dtype": "float64",
+  "quantize_inputs_to_float32_first": false,
+  "reference": "results/initial-100",
+  "reference_config": {
+    "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+    "dataset_repository": "Thingi10K/Thingi10K",
+    "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+    "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+    "metadata_rows": 9997,
+    "eligible_models": 4963,
+    "filter": {
+      "solid": 1,
+      "vertex_manifold": 1,
+      "edge_manifold": 1
+    },
+    "models": 100,
+    "points_per_model": 10000,
+    "seed": 20261123,
+    "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+    "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+    "relative_cutoff": 0.001,
+    "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+    "sign_p": "+1 if libigl signed_distance < 0, else -1",
+    "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+    "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+    "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+    "metadata_load_seconds": 0.053365965955890715,
+    "environment": {
+      "python": "3.12.3",
+      "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+      "cpu_model": "AMD EPYC 9B45",
+      "logical_cpus": 192,
+      "cpu_affinity_count": 192,
+      "cgroup_cpu_max": "400000 100000",
+      "igl_num_threads": "4",
+      "packages": {
+        "libigl": "2.6.3",
+        "numpy": "2.5.5",
+        "scipy": "1.18.1",
+        "huggingface-hub": "1.33.0"
+      },
+      "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+      "source_sha256": {
+        "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+        "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+        "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+      }
+    }
+  },
+  "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/original/_precision_original.cpython-312-x86_64-linux-gnu.so",
+  "module_sha256": "12e738c85687267c0cbad0c6fc287bcdeacf665d23da1d1a901649dee6f5d401",
+  "libigl": {
+    "commit": "b41f1944a703653ae0da81e6588650ba14c270ea",
+    "diff": ""
+  },
+  "bindings": {
+    "commit": "6893d1b18f7fa4f5abf374f54d5e6b0c53c7d716",
+    "diff": ""
+  },
+  "threads": 4,
+  "module_load_seconds": 0.00030073896050453186,
+  "metadata_load_seconds": 0.00046047999057918787,
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "numpy": "2.5.5",
+  "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "query_timing": "One full batch per model, including internal AABB and normal setup",
+  "mask": "saved original double d > 0.001 * original bbd"
+}

@@ -1,0 +1,18 @@
+{
+  "variant": "patched_single",
+  "models": 100,
+  "failed_models": 0,
+  "models_with_nonfinite_outputs": 1,
+  "invalid_queries": 1,
+  "invalid_queries_away": 1,
+  "num_valid_counted_disagreements": 761,
+  "metric_caveat": "Counts use returned signs; consult invalid-query counts before interpreting as valid pseudonormal classifications",
+  "intended_points": 1000000,
+  "intended_away_points": 966656,
+  "num_counted_disagreements": 762,
+  "disagreement_percent_all": 0.0762,
+  "disagreement_percent_away": 0.0788284560381356,
+  "affected_models": 45,
+  "query_seconds": 21.398206668440253,
+  "wall_seconds": 22.799000167055055
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "original_double",
+  "models": 100,
+  "failed_models": 0,
+  "intended_points": 1000000,
+  "intended_away_points": 966656,
+  "num_counted_disagreements": 7,
+  "disagreement_percent_all": 0.0007,
+  "disagreement_percent_away": 0.0007241459216101695,
+  "affected_models": 4,
+  "query_seconds": 21.446028626756743,
+  "wall_seconds": 23.182073915959336
+}

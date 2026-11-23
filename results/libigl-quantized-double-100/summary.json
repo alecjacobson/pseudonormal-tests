@@ -1,0 +1,18 @@
+{
+  "variant": "quantized_double",
+  "models": 100,
+  "failed_models": 0,
+  "models_with_nonfinite_outputs": 0,
+  "invalid_queries": 0,
+  "invalid_queries_away": 0,
+  "num_valid_counted_disagreements": 9,
+  "metric_caveat": "Counts use returned signs; consult invalid-query counts before interpreting as valid pseudonormal classifications",
+  "intended_points": 1000000,
+  "intended_away_points": 966656,
+  "num_counted_disagreements": 9,
+  "disagreement_percent_all": 0.0009,
+  "disagreement_percent_away": 0.0009310447563559322,
+  "affected_models": 5,
+  "query_seconds": 21.169612898491323,
+  "wall_seconds": 23.304981476045214
+}
