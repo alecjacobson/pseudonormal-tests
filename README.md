@@ -294,7 +294,9 @@ single-precision query has a nonfinite normal and is explicitly flagged; 761
 counted disagreements have finite outputs. Rounding the inputs to float32 and
 then computing in double gives 9 disagreements (0.0009%).
 
-The upstream changes preserve the existing tolerance values and classifier.
+The upstream changes are [libigl PR #2583](https://github.com/libigl/libigl/pull/2583)
+and [Python bindings PR #321](https://github.com/libigl/libigl-python-bindings/pull/321).
+They preserve the existing tolerance values and classifier.
 `native_precision/` builds the actual Python `signed_distance.cpp` wrapper from
 specified libigl and Python-binding checkouts. The patched wrapper dispatches
 float32 geometry and query arrays to a float C++ instantiation. Dataset downloads
@@ -366,3 +368,19 @@ See [validation.json](results/libigl-scalar-100/validation.json) for the C++ tes
 sanitizer results, Python binding tests, and the regression check against the
 original implementation. Classification improvements are tracked separately in
 [issue 2](https://github.com/alecjacobson/pseudonormal-tests/issues/2).
+
+The follow-up libigl commit `8e59c1897bb33a03d06a79b23c803e299cf890b0` adds
+the static-library instantiations required by the new float intermediates,
+extends test coverage, and adjusts formatting. It does not change the arithmetic
+measured above. A separate static-link smoke test passed against an archive of
+the 36 required libigl translation units, with function-section garbage
+collection. This was a targeted static build, not a full-library build. To run
+the same queries against a libigl static archive:
+
+```bash
+c++ -std=c++17 -DIGL_STATIC_LIBRARY \
+  -I/path/to/patched/libigl/include -isystem /path/to/eigen \
+  native_precision/static_query.cpp /path/to/libigl.a \
+  -Wl,--gc-sections -pthread -o /path/to/test_static_query
+/path/to/test_static_query
+```

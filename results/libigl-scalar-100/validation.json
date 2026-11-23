@@ -1,19 +1,22 @@
 {
   "cpp_tests": {
-    "cases": 10,
-    "assertions": 258,
+    "cases": 11,
+    "assertions": 264,
     "passed": true,
-    "source": "libigl tests/include/igl/{signed_distance,pseudonormal_test,point_simplex_squared_distance}.cpp"
+    "source": "libigl tests/include/igl/{signed_distance,pseudonormal_test,point_simplex_squared_distance}.cpp",
+    "source_commit": "8e59c1897bb33a03d06a79b23c803e299cf890b0"
   },
   "address_sanitizer": {
     "passed": true,
-    "cases": 10,
-    "assertions": 258,
+    "cases": 11,
+    "assertions": 264,
     "detect_leaks": true
   },
   "undefined_behavior_sanitizer": {
     "passed": true,
-    "halt_on_error": true
+    "halt_on_error": true,
+    "cases": 11,
+    "assertions": 264
   },
   "float_promotion_audit": {
     "passed": true,
@@ -58,11 +61,32 @@
     "cpp_standard": 17,
     "contract": "off in benchmark extension",
     "nanobind_size_optimization": true,
-    "optional_libigl_modules": "disabled for full core binding build"
+    "optional_libigl_modules": "disabled for full core binding build",
+    "warnings": "GCC emits Eigen vectorization and FastWindingNumberForSoups warnings in float instantiations; focused ASan/UBSan tests pass."
   },
   "limitations": [
     "One float query returns a nonfinite normal; retained and explicitly flagged.",
     "Fast-winding signs are the fixed benchmark reference, not independently verified ground truth.",
     "Feature-classification logic and numerical tolerance values were not retuned."
-  ]
+  ],
+  "static_library": {
+    "passed": true,
+    "source_commit": "8e59c1897bb33a03d06a79b23c803e299cf890b0",
+    "source": "native_precision/static_query.cpp",
+    "build": "Targeted archive of 36 libigl translation units; not a full-library build",
+    "compile_flags": "-std=c++17 -O1 -DNDEBUG -DIGL_STATIC_LIBRARY -ffunction-sections -fdata-sections",
+    "link_flags": "-Wl,--gc-sections -pthread",
+    "coverage": "Precompiled float signed_distance signature, face/edge/vertex queries at scales 1 and 1/1024"
+  },
+  "revision_note": "Benchmark outputs retain their measured arithmetic commits in summary.json. The later core commit adds static instantiations, test coverage and formatting; it does not change the measured runtime arithmetic.",
+  "pull_requests": {
+    "libigl": {
+      "url": "https://github.com/libigl/libigl/pull/2583",
+      "head": "8e59c1897bb33a03d06a79b23c803e299cf890b0"
+    },
+    "python_bindings": {
+      "url": "https://github.com/libigl/libigl-python-bindings/pull/321",
+      "head": "51d6dee06139682c08163012b00b5945095c38f1"
+    }
+  }
 }
