@@ -14,7 +14,7 @@ import numpy as np
 import warp as wp
 
 import warp_queries
-from benchmark import load_mesh, write_csv
+from benchmark import append_result, load_mesh, write_csv
 from dataset_cache import DEFAULT_CACHE, prepare_dataset, write_json
 from warp_queries import WARP_METHODS, query_warp
 
@@ -143,6 +143,8 @@ def run(args):
         raise ValueError("Use a positive, odd parity ray count.")
     if args.parity_perturbation < 0 or not np.isfinite(args.parity_perturbation):
         raise ValueError("Parity perturbation must be finite and nonnegative.")
+    if args.progress_every <= 0:
+        raise ValueError("Progress interval must be positive.")
     baseline_config = json.loads((baseline / "config.json").read_text())
     with (baseline / "per_model.csv").open(newline="") as stream:
         baseline_rows = list(csv.DictReader(stream))
@@ -181,7 +183,7 @@ def run(args):
         "numpy_version": np.__version__,
         "source_sha256": {
             name: file_sha256(Path(__file__).with_name(name))
-            for name in ("warp_benchmark.py", "warp_queries.py")
+            for name in ("warp_benchmark.py", "warp_queries.py", "benchmark.py")
         },
         "dataset_revision": baseline_config["dataset_revision"],
         "models": len(baseline_rows),
@@ -202,6 +204,8 @@ def run(args):
         "max_distance": "2 * original bbd",
         "bvh_constructor": "lbvh" if device.is_cuda else "sah",
         "timing": "one call per method per model, no warmup; synchronous wall time; mesh build, uploads, compilation and downloads separate",
+        "checkpoint": "append and flush per_model.jsonl after each model; export CSV once at completion",
+        "progress_every": args.progress_every,
         "provenance_seconds": provenance_seconds,
         "initialization_seconds": initialization_seconds,
         "module_load_seconds": module_load_seconds,
@@ -209,6 +213,7 @@ def run(args):
     write_json(output / "config.json", config)
     write_json(output / "cache_access.json", cache_access)
     rows, cases, distance_cases = [], [], []
+    checkpoint_seconds = 0.0
     errors = {method: [] for method in WARP_METHODS}
     for index, baseline_row in enumerate(baseline_rows):
         model_started = perf_counter()
@@ -294,13 +299,25 @@ def run(args):
             row.update(status="error", error=f"{type(error).__name__}: {error}")
         row["model_total_seconds"] = perf_counter() - model_started
         rows.append(row)
-        write_csv(output / "per_model.csv", rows)
-        print(
-            f"[{index + 1}/{len(baseline_rows)}] {file_id} {row['status']} "
-            f"igl_p={row.get('igl_p_disagreements')} warp_p={row.get('warp_p_disagreements')} "
-            f"warp_w={row.get('warp_w_disagreements')} parity={row.get('warp_parity_disagreements')} {row['error']}",
-            flush=True,
-        )
+        step_started = perf_counter()
+        append_result(output / "per_model.jsonl", row)
+        checkpoint_seconds += perf_counter() - step_started
+        if (
+            index == 0
+            or (index + 1) % args.progress_every == 0
+            or index + 1 == len(baseline_rows)
+            or row["status"] != "ok"
+        ):
+            print(
+                f"[{index + 1}/{len(baseline_rows)}] {file_id} {row['status']} "
+                f"igl_p={row.get('igl_p_disagreements')} warp_p={row.get('warp_p_disagreements')} "
+                f"warp_w={row.get('warp_w_disagreements')} parity={row.get('warp_parity_disagreements')} "
+                f"elapsed={perf_counter() - started:.1f}s {row['error']}",
+                flush=True,
+            )
+    step_started = perf_counter()
+    write_csv(output / "per_model.csv", rows)
+    csv_export_seconds = perf_counter() - step_started
     good = [row for row in rows if row["status"] == "ok"]
     total = sum(row["num_points"] for row in good)
     away = sum(row["num_away"] for row in good)
@@ -312,7 +329,8 @@ def run(args):
         "num_away": away,
         "methods": {},
         "distance_errors": {},
-        "wall_seconds": perf_counter() - started,
+        "checkpoint_seconds": checkpoint_seconds,
+        "csv_export_seconds": csv_export_seconds,
     }
     for method in METHODS:
         count = sum(row[f"{method}_disagreements"] for row in good)
@@ -360,6 +378,7 @@ def run(args):
             write_csv(output / filename, entries)
         else:
             (output / filename).write_text("file_id,point_index\n")
+    summary["wall_seconds"] = perf_counter() - started
     write_json(output / "summary.json", summary)
     print(json.dumps(summary, indent=2))
     return 1 if summary["models_failed"] else 0
@@ -375,4 +394,5 @@ if __name__ == "__main__":
     parser.add_argument("--accuracy", type=float, default=2.0)
     parser.add_argument("--parity-rays", type=int, default=1)
     parser.add_argument("--parity-perturbation", type=float, default=0.1)
+    parser.add_argument("--progress-every", type=int, default=50)
     raise SystemExit(run(parser.parse_args()))

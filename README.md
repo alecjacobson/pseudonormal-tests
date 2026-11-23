@@ -124,10 +124,33 @@ repetitions. The triangle-soup fast winding overload uses libigl's defaults
   and the three comparison masks. These larger artifacts stay local and are
   excluded from Git. They can be regenerated from the locked environment and seeds.
 
-`per_model.csv` is checkpointed after every model. Downloaded meshes, environments,
-and per-point arrays are ignored by Git; scripts, small summary files, and findings
-are versioned. Individual mesh licenses are recorded in the source dataset; this
-repository does not redistribute those meshes.
+Each completed model is appended to `per_model.jsonl` and the file is closed to
+flush the record. `per_model.csv` is exported atomically once at completion.
+Appending avoids repeatedly rewriting all previous rows as the run grows;
+error records and fields introduced by later rows are preserved. Console progress
+prints every 50 models by default, plus the first/last model and every warning or
+error; change this with `--progress-every`. Both scripts report checkpoint and
+final CSV export times separately. This does not add automatic resumption.
+
+The journal remains readable during a run. To export completed records after an
+interruption, without rerunning any queries:
+
+```sh
+uv run --no-sync python - <<'PY'
+import json
+from pathlib import Path
+from benchmark import write_csv
+output = Path("results/my-run")
+rows = [json.loads(line) for line in (output / "per_model.jsonl").read_text().splitlines()]
+write_csv(output / "per_model.csv", rows)
+PY
+```
+
+A partial last JSON line from an interrupted write must be inspected before
+exporting; malformed records are rejected. Journals, downloaded meshes,
+environments, and per-point arrays are ignored by Git; final CSVs, scripts,
+summary files, and findings are versioned. Individual mesh licenses are recorded
+in the source dataset; this repository does not redistribute those meshes.
 
 ## Validation
 
@@ -212,10 +235,28 @@ recomputes the worst case per affected model in libigl using float32-rounded
 inputs. Full Warp arrays, including closest points, faces and validity flags,
 remain in ignored local `points/<file_id>.npz` files.
 
-The combined suite has seven passing tests and one expected failure at the
+The combined suite has eight passing tests and one expected failure at the
 pinned revision. CPU and CUDA integration tests verify cube distances, cavity
 signs and cutoff handling. The expected failure records Warp pseudonormal's
 inside prediction at the exact center of a symmetric empty cube cavity; the
 analytic expectation is outside. It is separate from the random benchmark.
+
+## Full eligible set
+
+The pinned metadata has 4,963 eligible models. With the dataset and pinned Warp
+already installed, run all 49,630,000 samples with:
+
+```sh
+HF_HUB_OFFLINE=1 uv run --no-sync python benchmark.py \
+  --models 4963 --points 10000 --seed 20261123 --output results/full-4963
+HF_HUB_OFFLINE=1 uv run --no-sync python warp_benchmark.py \
+  --baseline results/full-4963 --output results/warp-main-full-4963
+uv run --no-sync python summarize.py results/full-4963
+HF_HUB_OFFLINE=1 uv run --no-sync python summarize_warp.py results/warp-main-full-4963
+```
+
+The per-model point seed is unchanged from the initial subset, so every model
+shared between runs receives identical samples. Query algorithms and default
+parameters, including one-ray parity, are unchanged.
 
 The scripts and experiment documentation were prepared with OpenAI Codex.

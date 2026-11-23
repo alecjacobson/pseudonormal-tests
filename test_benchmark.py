@@ -1,13 +1,24 @@
 """Check geometric sign conventions and the benchmark's measurement contract."""
 
+import csv
+import json
 import os
+import tempfile
 import unittest
+from pathlib import Path
 
 os.environ["IGL_NUM_THREADS"] = "4"
 
 import numpy as np
 
-from benchmark import disagreement_statistics, query_mesh, sample_points, select_models
+from benchmark import (
+    append_result,
+    disagreement_statistics,
+    query_mesh,
+    sample_points,
+    select_models,
+    write_csv,
+)
 
 
 def cube():
@@ -46,6 +57,31 @@ def cube():
 
 
 class BenchmarkTests(unittest.TestCase):
+    def test_append_checkpoints_preserve_errors_and_new_fields(self):
+        """Retain earlier failures and later result fields without rewriting records."""
+        rows = [
+            {"file_id": "1", "status": "error", "error": "invalid mesh"},
+            {"file_id": "2", "status": "ok", "error": "", "disagreements": 3},
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            journal = Path(directory) / "per_model.jsonl"
+            append_result(journal, rows[0])
+            first_record = journal.read_bytes()
+            append_result(journal, rows[1])
+            self.assertTrue(journal.read_bytes().startswith(first_record))
+            recovered = [json.loads(line) for line in journal.read_text().splitlines()]
+            self.assertEqual(recovered, rows)
+            with self.assertRaises(ValueError):
+                append_result(journal, {"file_id": "3", "distance": float("nan")})
+            self.assertEqual(len(journal.read_text().splitlines()), 2)
+            output = Path(directory) / "per_model.csv"
+            write_csv(output, recovered)
+            with output.open(newline="") as stream:
+                exported = list(csv.DictReader(stream))
+            self.assertEqual(exported[0]["error"], "invalid mesh")
+            self.assertEqual(exported[0]["disagreements"], "")
+            self.assertEqual(exported[1]["disagreements"], "3")
+
     def test_cube_face_edge_vertex_distances_and_signs(self):
         """Verify analytic distances and inside-positive signs on a unit cube."""
         vertices, faces = cube()

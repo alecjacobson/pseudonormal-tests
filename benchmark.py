@@ -135,6 +135,13 @@ def write_csv(path, rows):
     temporary.replace(path)
 
 
+def append_result(path, row):
+    """Append and flush one model result without rewriting completed records."""
+    record = json.dumps(row, allow_nan=False, separators=(",", ":")) + "\n"
+    with path.open("a") as stream:
+        stream.write(record)
+
+
 def environment_info():
     """Record versions and CPU limits without collecting host identifiers."""
     cpu_model = (
@@ -177,8 +184,10 @@ def environment_info():
 
 def run(args):
     """Run the benchmark, checkpoint every model, and retain per-point outputs."""
-    if args.points <= 0 or args.seed < 0 or args.threads <= 0:
-        raise ValueError("Points and threads must be positive, and seed must be nonnegative.")
+    if args.points <= 0 or args.seed < 0 or args.threads <= 0 or args.progress_every <= 0:
+        raise ValueError(
+            "Points, threads and progress interval must be positive; seed must be nonnegative."
+        )
     if not np.isfinite(args.relative_cutoff) or args.relative_cutoff < 0:
         raise ValueError("The relative cutoff must be finite and nonnegative.")
     os.environ["IGL_NUM_THREADS"] = str(args.threads)
@@ -216,6 +225,8 @@ def run(args):
         "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
         "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
         "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+        "checkpoint": "append and flush per_model.jsonl after each model; export CSV once at completion",
+        "progress_every": args.progress_every,
         "metadata_load_seconds": metadata_load_seconds,
         "environment": environment_info(),
     }
@@ -223,6 +234,7 @@ def run(args):
     write_csv(output / "selected_metadata.csv", selected)
     (output / "points").mkdir(exist_ok=True)
     results = []
+    checkpoint_seconds = 0.0
     for index, metadata_row in enumerate(selected):
         file_id = metadata_row["file_id"]
         row = {"sample_index": index, "file_id": file_id, "status": "ok", "error": ""}
@@ -268,13 +280,25 @@ def run(args):
             row["error"] = f"{type(error).__name__}: {error}"
         row["model_total_seconds"] = perf_counter() - model_started
         results.append(row)
-        write_csv(output / "per_model.csv", results)
-        print(
-            f"[{index + 1}/{len(selected)}] file_id={file_id} {row['status']} "
-            f"disagreement={row.get('disagreement_percent_all', 'n/a')}% "
-            f"seconds={row['model_total_seconds']:.3f} {row['error']}",
-            flush=True,
-        )
+        step_started = perf_counter()
+        append_result(output / "per_model.jsonl", row)
+        checkpoint_seconds += perf_counter() - step_started
+        if (
+            index == 0
+            or (index + 1) % args.progress_every == 0
+            or index + 1 == len(selected)
+            or row["status"] != "ok"
+        ):
+            print(
+                f"[{index + 1}/{len(selected)}] file_id={file_id} {row['status']} "
+                f"disagreement={row.get('disagreement_percent_all', 'n/a')}% "
+                f"seconds={row['model_total_seconds']:.3f} "
+                f"elapsed={perf_counter() - started:.1f}s {row['error']}",
+                flush=True,
+            )
+    step_started = perf_counter()
+    write_csv(output / "per_model.csv", results)
+    csv_export_seconds = perf_counter() - step_started
     succeeded = [row for row in results if row["status"] != "error"]
     point_count = sum(row["num_points"] for row in succeeded)
     away_count = sum(row["num_away"] for row in succeeded)
@@ -311,6 +335,8 @@ def run(args):
             )
         },
         "cache_access_seconds": preparation["total_seconds"],
+        "checkpoint_seconds": checkpoint_seconds,
+        "csv_export_seconds": csv_export_seconds,
         "run_wall_seconds": perf_counter() - started,
         "timing_note": "Download/extraction acquisition timings are in download.json; this run's cache access is in cache_access.json.",
     }
@@ -328,5 +354,6 @@ if __name__ == "__main__":
     parser.add_argument("--points", type=int, default=10_000)
     parser.add_argument("--seed", type=int, default=20261123)
     parser.add_argument("--threads", type=int, default=4)
+    parser.add_argument("--progress-every", type=int, default=50)
     parser.add_argument("--relative-cutoff", type=float, default=0.001)
     raise SystemExit(run(parser.parse_args()))

@@ -3,6 +3,7 @@
 import argparse
 import csv
 import json
+import os
 from pathlib import Path
 
 import igl
@@ -203,7 +204,7 @@ def summarize(output, baseline, cache_dir):
         f"[main commit `{config['warp_source']['revision'][:12]}`]"
         f"(https://github.com/NVIDIA/warp/commit/{config['warp_source']['revision']}). "
         f"Device: {config['device_name']} (`{config['device']}`).\n",
-        f"Reused the initial experiment's {len(rows)} models and {point_total:,} saved samples, "
+        f"Reused the libigl baseline's {len(rows)} models and {point_total:,} saved samples, "
         f"with no resampling. {cache_note} All comparisons use saved `igl_sign_w` as the "
         f"reference and the same mask `igl_d > {config['relative_cutoff']} * bbd` "
         f"({away_total:,} points). Signs are inside +1, outside -1. The reference is a numerical "
@@ -304,7 +305,7 @@ def summarize(output, baseline, cache_dir):
             "is preserved in `test_warp_benchmark.py`; it is separate from the random benchmark.\n",
             "Join [per_model.csv](per_model.csv) to the dataset's `geometry_data.csv` on `file_id` "
             "or to `input_summary.csv` on `ID`. Original metadata is retained in "
-            "[selected_metadata.csv](../initial-100/selected_metadata.csv). "
+            f"[selected_metadata.csv]({Path(os.path.relpath(baseline / 'selected_metadata.csv', output)).as_posix()}). "
             "[disagreements.csv](disagreements.csv) contains the union of counted cases with "
             "coordinates, raw libigl winding, signs, distances and Warp closest-face indices. "
             "Full point arrays remain cached locally and are excluded from Git. "

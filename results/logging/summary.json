@@ -1,0 +1,65 @@
+{
+  "methodology": "single wall-clock measurement per case on this machine; original 100 rows repeated with numeric types restored; no geometry queries; temporary files removed",
+  "measurements": [
+    {
+      "source": "results/initial-100/per_model.csv",
+      "models": 100,
+      "method": "rewrite_csv",
+      "seconds": 0.0678812830010429
+    },
+    {
+      "source": "results/initial-100/per_model.csv",
+      "models": 100,
+      "method": "append_jsonl_then_csv",
+      "seconds": 0.0032855990575626493
+    },
+    {
+      "source": "results/initial-100/per_model.csv",
+      "models": 1000,
+      "method": "rewrite_csv",
+      "seconds": 5.840618359972723
+    },
+    {
+      "source": "results/initial-100/per_model.csv",
+      "models": 1000,
+      "method": "append_jsonl_then_csv",
+      "seconds": 0.031003982992842793
+    },
+    {
+      "source": "results/initial-100/per_model.csv",
+      "models": 4963,
+      "method": "append_jsonl_then_csv",
+      "seconds": 0.15199041308369488
+    },
+    {
+      "source": "results/warp-main-100/per_model.csv",
+      "models": 100,
+      "method": "rewrite_csv",
+      "seconds": 0.1369799270760268
+    },
+    {
+      "source": "results/warp-main-100/per_model.csv",
+      "models": 100,
+      "method": "append_jsonl_then_csv",
+      "seconds": 0.005866567953489721
+    },
+    {
+      "source": "results/warp-main-100/per_model.csv",
+      "models": 1000,
+      "method": "rewrite_csv",
+      "seconds": 12.792999738943763
+    },
+    {
+      "source": "results/warp-main-100/per_model.csv",
+      "models": 1000,
+      "method": "append_jsonl_then_csv",
+      "seconds": 0.05744005599990487
+    },
+    {
+      "source": "results/warp-main-100/per_model.csv",
+      "models": 4963,
+      "method": "append_jsonl_then_csv",
+      "seconds": 0.28166628209874034
+    }
+  ]
+}
