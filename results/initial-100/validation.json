@@ -1,0 +1,14 @@
+{
+  "models_checked": 100,
+  "points_checked": 1000000,
+  "checks": [
+    "unique model count",
+    "points in bounding boxes",
+    "distance agrees with closest point",
+    "sign conversions",
+    "strict cutoff",
+    "per-model primary rates",
+    "aggregate counts"
+  ],
+  "result": "passed"
+}

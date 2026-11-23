@@ -1,0 +1,39 @@
+{
+  "repository": "Thingi10K/Thingi10K",
+  "revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+  "started_at_utc": "2026-11-23T20:10:09.905359+00:00",
+  "cache_dir": "/home/horde/projects/pseudonormal-tests/.cache/thingi10k",
+  "files": [
+    {
+      "filename": "metadata/geometry_data.csv",
+      "cache_hit": false,
+      "seconds": 0.2613636599853635,
+      "file_bytes": 3578491
+    },
+    {
+      "filename": "metadata/input_summary.csv",
+      "cache_hit": false,
+      "seconds": 0.060731693054549396,
+      "file_bytes": 1847537
+    },
+    {
+      "filename": "metadata/contextual_data.csv",
+      "cache_hit": false,
+      "seconds": 0.05658227496314794,
+      "file_bytes": 240499
+    },
+    {
+      "filename": "Thingi10K_npz.tar.gz",
+      "cache_hit": false,
+      "seconds": 15.053452698048204,
+      "file_bytes": 4085347936
+    }
+  ],
+  "extraction": {
+    "cache_hit": false,
+    "seconds": 34.23332804092206,
+    "revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+    "npz_files": 9998
+  },
+  "total_seconds": 49.66602037707344
+}

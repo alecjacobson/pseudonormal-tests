@@ -129,7 +129,7 @@ def write_csv(path, rows):
     fields = list(dict.fromkeys(key for row in rows for key in row))
     temporary = path.with_suffix(".csv.tmp")
     with temporary.open("w", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     temporary.replace(path)
