@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-24",
+  "pull_request": "https://github.com/libigl/libigl/pull/2586",
+  "superseded_pull_request": "https://github.com/libigl/libigl/pull/2583",
+  "base_branch": "main",
+  "base_commit": "d4606b8aecb504b1b929f18ea5d3746536fc9d1c",
+  "core_commit": "e810369e42090e66fc805370f9969771e93b431f",
+  "previous_validated_commit": "4a4a31137ab5e4d8973a284e1708fa911367242c",
+  "range_diff_all_four_patches_unchanged": true,
+  "query_sources_and_tests_unchanged": true,
+  "upstream_changes": [
+    "include/igl/copyleft/cgal/points_inside_component.cpp",
+    "tests/include/igl/copyleft/cgal/points_inside_component.cpp"
+  ],
+  "cpp_tests_rerun": {
+    "cases": 19,
+    "assertions": 1166,
+    "passed": true
+  },
+  "python_precision_tests_rerun": {
+    "cases": 26,
+    "passed": true
+  },
+  "verification_note": "Reran retained C++ test executable and focused Python extension. Compared all affected source and test files before and after rebase; no changes. No rebuild or dataset replay was necessary. Original benchmark artifacts and validation.json retain their original provenance."
+}

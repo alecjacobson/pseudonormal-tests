@@ -303,9 +303,11 @@ closest-face indices match everywhere. Both float paths have the same one
 nonfinite-normal query. Thus the large difference from double was already
 present in the original C++ float path.
 
-The upstream changes are [libigl PR #2583](https://github.com/libigl/libigl/pull/2583)
-and [Python bindings PR #321](https://github.com/libigl/libigl-python-bindings/pull/321).
-They preserve the existing tolerance values and classifier.
+This initial experiment used the scalar changes from
+[libigl PR #2583](https://github.com/libigl/libigl/pull/2583), preserving the
+then-existing tolerances and classifier. The current combined core change is
+[libigl PR #2586](https://github.com/libigl/libigl/pull/2586), which supersedes
+#2583, with [Python bindings PR #321](https://github.com/libigl/libigl-python-bindings/pull/321).
 `native_precision/` builds the actual Python `signed_distance.cpp` wrapper from
 specified libigl and Python-binding checkouts. The patched wrapper dispatches
 float32 geometry and query arrays to a float C++ instantiation. Dataset downloads
@@ -631,11 +633,16 @@ libigl or its default behavior.
 
 ## Tuned defaults in the upstream PR
 
-Libigl PR [2583](https://github.com/libigl/libigl/pull/2583) now incorporates
+Libigl PR [2583](https://github.com/libigl/libigl/pull/2583) incorporated
 the validated 3D epsilons: `0.003` for float and `1e-9` for double, retaining
 area threshold `1e-4`. The 2D overload and other scalar types retain `1e-12`.
 Normalization is unchanged. The earlier reports describe their pinned
 historical source revisions, including the previous defaults.
+
+These changes are now included in standalone
+[PR #2586](https://github.com/libigl/libigl/pull/2586). Its 3D signed-distance
+path uses the closest feature directly; the tuned tolerances remain only in
+the standalone classifier that receives no barycentric coordinates.
 
 [Production validation](results/libigl-tuned-defaults-104/FINDINGS.md) on the
 original 100 models plus all invalid-output models reproduces every tuned
@@ -760,9 +767,12 @@ point. A new `pseudonormal_test` overload chooses the face, edge, or vertex
 normal from their exact zero coordinates, with no feature epsilon. Existing
 query overloads and standalone tolerance-based classification remain available.
 
-The core change lives on libigl branch `fix/pseudonormal-closest-feature`, based
-on the scalar/tolerance branch. Build against that checkout using the existing
-dependency caches:
+The core change lives on libigl branch `fix/pseudonormal-closest-feature` in
+[PR #2586](https://github.com/libigl/libigl/pull/2586), targeting `main` and
+including the scalar/tolerance changes from superseded PR #2583.
+[Rebase verification](results/libigl-closest-feature-4963/standalone_revision.json)
+records that the query sources and tests are unchanged from the validated
+revision. Build against that checkout using the existing dependency caches:
 
 ```bash
 cmake -S native_precision -B .cache/precision/closest-feature -G Ninja \

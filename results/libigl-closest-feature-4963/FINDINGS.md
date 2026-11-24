@@ -24,10 +24,15 @@ models give double **441 → 62** and float **1,058 → 149**.
 
 Core commit
 [`4a4a31137ab5e4d8973a284e1708fa911367242c`](https://github.com/libigl/libigl/commit/4a4a31137ab5e4d8973a284e1708fa911367242c)
-is on branch `fix/pseudonormal-closest-feature`, based on the scalar/tolerance
+was the validated revision on branch `fix/pseudonormal-closest-feature`, based on the scalar/tolerance
 commit `a72d3b843889289d2a8fdab6756d10c1e4714597` from PR 2583.
-The change is available as [draft PR 2586](https://github.com/libigl/libigl/pull/2586),
-stacked on PR 2583. The exact diff is also saved as [libigl.patch](libigl.patch).
+The change is available as [PR 2586](https://github.com/libigl/libigl/pull/2586),
+now targeting `main` and including all changes from superseded PR 2583.
+The standalone head is `e810369e42090e66fc805370f9969771e93b431f`;
+the rebase leaves every query source and test unchanged. The original feature
+diff is saved as [libigl.patch](libigl.patch), and
+[standalone_revision.json](standalone_revision.json) records the rebase and
+focused checks separately from the original benchmark provenance.
 
 1. New AABB query overloads return the winning closest point's barycentric
    coordinates. Traversal carries them with the face index and closest point,
@@ -43,8 +48,10 @@ stacked on PR 2583. The exact diff is also saved as [libigl.patch](libigl.patch)
 
 The core change has no Python signature change. The experiment compiles the
 actual binding source against the new core and compares it with the cached
-production module for the previous tuned implementation. The existing Python
-binding PR still pins its previous core revision.
+production module for the previous tuned implementation. The companion Python
+[binding PR 321](https://github.com/libigl/libigl-python-bindings/pull/321)
+now pins the standalone core revision. Its 26 precision tests pass using the
+cached feature-selection binding; no binding source change was needed.
 
 ## Double: the predicted 379 fixes and no regressions
 
