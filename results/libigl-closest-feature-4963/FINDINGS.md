@@ -26,7 +26,8 @@ Core commit
 [`4a4a31137ab5e4d8973a284e1708fa911367242c`](https://github.com/libigl/libigl/commit/4a4a31137ab5e4d8973a284e1708fa911367242c)
 is on branch `fix/pseudonormal-closest-feature`, based on the scalar/tolerance
 commit `a72d3b843889289d2a8fdab6756d10c1e4714597` from PR 2583.
-The exact change is also saved as [libigl.patch](libigl.patch).
+The change is available as [draft PR 2586](https://github.com/libigl/libigl/pull/2586),
+stacked on PR 2583. The exact diff is also saved as [libigl.patch](libigl.patch).
 
 1. New AABB query overloads return the winning closest point's barycentric
    coordinates. Traversal carries them with the face index and closest point,

@@ -79,5 +79,11 @@
     "signed_distance.cpp": "16ae103207dc0d3dabe09f824bbba9731104d6f0973ca4381af22c1532fb59e6",
     "point_simplex_squared_distance.cpp": "6e63c709091bf4e0b540b42ff9f82862e09605c0fe076a7169634f1dcfe4513b",
     "signed_distance.h": "56dc53fb962cdd6a8555df4fb99f494e5ec3b4569d5b8dea24fe607581424c14"
+  },
+  "pull_request": {
+    "url": "https://github.com/libigl/libigl/pull/2586",
+    "draft": true,
+    "base_branch": "fix/pseudonormal-scalar",
+    "base_pull_request": 2583
   }
 }
