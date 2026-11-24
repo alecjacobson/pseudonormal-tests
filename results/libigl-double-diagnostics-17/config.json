@@ -1,0 +1,102 @@
+{
+  "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/double-diagnostics/_double_diagnostics.cpython-312-x86_64-linux-gnu.so",
+  "module_sha256": "f0ff5cc0f4ebd77a822887d90d579028d3654172fbb49f152109f6b398d7b5da",
+  "runner_sha256": "f67580d113ab50530c889d1cc9131cf554e46b5946e3a0dc3be4ca3d0b0706b3",
+  "exact_geometry_source_sha256": "58229e23d7715a86040f2bbae10ae01832782efb6e6f72f0ffcb705ae5dcdd17",
+  "generated_sources": {
+    "pseudonormal_trace.json": {
+      "source": "/home/horde/projects/libigl/include/igl/pseudonormal_test.cpp",
+      "source_sha256": "d5f6f44a969df37483c8673fa4cdbf52993fa30db686005d34355e7c7003d072",
+      "generated_sha256": "299a8fb917a9c14f28197da9ea89d41ff0ab69c46868fdf056cfc0e1d7784e2c",
+      "replacements": {
+        "igl::pseudonormal_test(": "pseudonormal_test_with_tolerances(",
+        "Eigen::PlainObjectBase<Derivedn> & n)": "Eigen::PlainObjectBase<Derivedn> & n,\n  const Scalar minimum_double_area,\n  const Scalar epsilon)",
+        "  const Scalar MIN_DOUBLE_AREA = Scalar(1e-4);\n": "",
+        "  const Scalar epsilon = std::is_same<Scalar,float>::value ? Scalar(3e-3) :\n    (std::is_same<Scalar,double>::value ? Scalar(1e-9) : Scalar(1e-12));\n": "",
+        "if(area>MIN_DOUBLE_AREA)": "if(area>minimum_double_area)"
+      },
+      "diagnostics": true
+    },
+    "pseudonormal_runtime.json": {
+      "source": "/home/horde/projects/libigl/include/igl/pseudonormal_test.cpp",
+      "source_sha256": "d5f6f44a969df37483c8673fa4cdbf52993fa30db686005d34355e7c7003d072",
+      "generated_sha256": "f0d4bd62e091185c4dea5e0c9ea61046ccb9d0fab4741047388d904b6e6a7c6a",
+      "replacements": {
+        "igl::pseudonormal_test(": "pseudonormal_test_with_tolerances(",
+        "Eigen::PlainObjectBase<Derivedn> & n)": "Eigen::PlainObjectBase<Derivedn> & n,\n  const Scalar minimum_double_area,\n  const Scalar epsilon)",
+        "  const Scalar MIN_DOUBLE_AREA = Scalar(1e-4);\n": "",
+        "  const Scalar epsilon = std::is_same<Scalar,float>::value ? Scalar(3e-3) :\n    (std::is_same<Scalar,double>::value ? Scalar(1e-9) : Scalar(1e-12));\n": "",
+        "if(area>MIN_DOUBLE_AREA)": "if(area>minimum_double_area)"
+      },
+      "diagnostics": false
+    }
+  },
+  "selected_ids": [
+    "153100",
+    "1452672",
+    "111008",
+    "111011",
+    "111009",
+    "51807",
+    "805914",
+    "44064",
+    "1344044",
+    "110172",
+    "1063860",
+    "1652976",
+    "74730",
+    "237736",
+    "91147",
+    "251163",
+    "61585"
+  ],
+  "area_threshold": 0.0001,
+  "epsilon": 1e-09,
+  "normal_decimal_digits": 80,
+  "mpmath_version": "1.4.1",
+  "longdouble_bits": 64,
+  "reference": "results/full-4963",
+  "baseline": "results/libigl-tolerance-validation-4963",
+  "selection": "All counted disagreements in the saved tuned full-double pipeline",
+  "closest_geometry": "Exact Fraction coordinates, projections, distances and comparisons; outward-rounded bounding-box pruning",
+  "normals": "Exact rational face cross products; mpmath normalization, angle weights and sums",
+  "cache_access": {
+    "repository": "Thingi10K/Thingi10K",
+    "revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+    "started_at_utc": "2026-11-24T04:00:31.039974+00:00",
+    "cache_dir": "/home/horde/projects/pseudonormal-tests/.cache/thingi10k",
+    "files": [
+      {
+        "filename": "metadata/geometry_data.csv",
+        "cache_hit": true,
+        "seconds": 0.0001162899425253272,
+        "file_bytes": 3578491
+      },
+      {
+        "filename": "metadata/input_summary.csv",
+        "cache_hit": true,
+        "seconds": 3.644998650997877e-05,
+        "file_bytes": 1847537
+      },
+      {
+        "filename": "metadata/contextual_data.csv",
+        "cache_hit": true,
+        "seconds": 2.7369940653443336e-05,
+        "file_bytes": 240499
+      },
+      {
+        "filename": "Thingi10K_npz.tar.gz",
+        "cache_hit": true,
+        "seconds": 2.8909998945891857e-05,
+        "file_bytes": 4085347936
+      }
+    ],
+    "extraction": {
+      "cache_hit": true,
+      "seconds": 9.260023944079876e-06,
+      "revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+      "npz_files": 9998
+    },
+    "total_seconds": 0.00081572902854532
+  }
+}

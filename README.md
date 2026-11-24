@@ -700,3 +700,53 @@ faces, and coordinates; `points/` retains full per-query outputs locally.
 Normal setup, casting, classification, diagnostic work, loading, and output
 are timed separately. Distance and winding queries are reused, so these timings
 are not an end-to-end signed-distance benchmark.
+
+## Diagnosing the 17 tuned-double failure models
+
+[The double diagnostic study](results/libigl-double-diagnostics-17/FINDINGS.md)
+examines all 441 disagreements remaining with area `1e-4` and epsilon `1e-9`:
+281 select the wrong edge in the small-area fallback, 98 select a face instead
+of an edge, three select the wrong global nearest feature, and 59 persist on
+model `1452672`, whose cached coordinates have exact self-intersections.
+Higher-precision normal construction alone fixes none. All 441 winding signs
+are confirmed by direct solid-angle sums and ordinary libigl winding.
+
+The instrumented classifier reproduces all 170,000 baseline signs and normal
+bytes on these meshes. The diagnostic substitutions are evaluated on the 441
+original failures; they are not a full regression test of a replacement
+classifier. All input meshes and points remain at their original scales.
+
+Install the optional diagnostic dependency into the existing environment
+without replacing the editable Warp installation:
+
+```bash
+uv pip install --python .venv/bin/python 'mpmath>=1.3,<2'
+cmake -S native_precision -B .cache/precision/double-diagnostics -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/home/horde/projects/libigl \
+  -DBINDINGS_SOURCE_DIR=/home/horde/projects/libigl-python-bindings \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src" \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DPRECISION_BUILD_DOUBLE_DIAGNOSTICS=ON
+cmake --build .cache/precision/double-diagnostics --target _double_diagnostics -j 4
+HF_HUB_OFFLINE=1 uv run --no-sync python diagnose_double_failures.py \
+  --module .cache/precision/double-diagnostics/_double_diagnostics*.so \
+  --output results/libigl-double-diagnostics-17
+HF_HUB_OFFLINE=1 uv run --no-sync python diagnose_double_failures.py \
+  --module .cache/precision/double-diagnostics/_double_diagnostics*.so \
+  --digits 120 --output .cache/precision/double-diagnostics-check120
+HF_HUB_OFFLINE=1 uv run --no-sync python audit_double_diagnostics.py \
+  results/libigl-double-diagnostics-17 \
+  --check .cache/precision/double-diagnostics-check120
+uv run --no-sync python plot_double_diagnostics.py results/libigl-double-diagnostics-17
+uv run --no-sync python -m unittest test_exact_mesh_diagnostics -v
+```
+
+Choose fresh output paths when replaying. `--file-ids` restricts the diagnosis
+to particular models. Exact geometry uses rational representations of the
+cached binary64 inputs, with outward-rounded bounding-box pruning. Normals use
+exact face cross products followed by mpmath normalization and angle weights.
+The audit compares 80/120-digit signs and features and exports rational
+witnesses of strict crossings in `1452672`; it is not a complete intersection
+detector. Per-point evidence, per-model timings, source hashes, and a diagnosis
+figure are saved in the result directory.

@@ -1,0 +1,244 @@
+{
+  "cases": 441,
+  "precision_stability_digits": [
+    80,
+    120
+  ],
+  "all_corrected_signs_and_features_stable": true,
+  "check_cases_sha256": "161610793e065bc0ab897b5b89143871b00d0a32bbfb865160dad3d054004a02",
+  "check_config": {
+    "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/double-diagnostics/_double_diagnostics.cpython-312-x86_64-linux-gnu.so",
+    "module_sha256": "f0ff5cc0f4ebd77a822887d90d579028d3654172fbb49f152109f6b398d7b5da",
+    "runner_sha256": "f67580d113ab50530c889d1cc9131cf554e46b5946e3a0dc3be4ca3d0b0706b3",
+    "exact_geometry_source_sha256": "58229e23d7715a86040f2bbae10ae01832782efb6e6f72f0ffcb705ae5dcdd17",
+    "generated_sources": {
+      "pseudonormal_trace.json": {
+        "source": "/home/horde/projects/libigl/include/igl/pseudonormal_test.cpp",
+        "source_sha256": "d5f6f44a969df37483c8673fa4cdbf52993fa30db686005d34355e7c7003d072",
+        "generated_sha256": "299a8fb917a9c14f28197da9ea89d41ff0ab69c46868fdf056cfc0e1d7784e2c",
+        "replacements": {
+          "igl::pseudonormal_test(": "pseudonormal_test_with_tolerances(",
+          "Eigen::PlainObjectBase<Derivedn> & n)": "Eigen::PlainObjectBase<Derivedn> & n,\n  const Scalar minimum_double_area,\n  const Scalar epsilon)",
+          "  const Scalar MIN_DOUBLE_AREA = Scalar(1e-4);\n": "",
+          "  const Scalar epsilon = std::is_same<Scalar,float>::value ? Scalar(3e-3) :\n    (std::is_same<Scalar,double>::value ? Scalar(1e-9) : Scalar(1e-12));\n": "",
+          "if(area>MIN_DOUBLE_AREA)": "if(area>minimum_double_area)"
+        },
+        "diagnostics": true
+      },
+      "pseudonormal_runtime.json": {
+        "source": "/home/horde/projects/libigl/include/igl/pseudonormal_test.cpp",
+        "source_sha256": "d5f6f44a969df37483c8673fa4cdbf52993fa30db686005d34355e7c7003d072",
+        "generated_sha256": "f0d4bd62e091185c4dea5e0c9ea61046ccb9d0fab4741047388d904b6e6a7c6a",
+        "replacements": {
+          "igl::pseudonormal_test(": "pseudonormal_test_with_tolerances(",
+          "Eigen::PlainObjectBase<Derivedn> & n)": "Eigen::PlainObjectBase<Derivedn> & n,\n  const Scalar minimum_double_area,\n  const Scalar epsilon)",
+          "  const Scalar MIN_DOUBLE_AREA = Scalar(1e-4);\n": "",
+          "  const Scalar epsilon = std::is_same<Scalar,float>::value ? Scalar(3e-3) :\n    (std::is_same<Scalar,double>::value ? Scalar(1e-9) : Scalar(1e-12));\n": "",
+          "if(area>MIN_DOUBLE_AREA)": "if(area>minimum_double_area)"
+        },
+        "diagnostics": false
+      }
+    },
+    "selected_ids": [
+      "153100",
+      "1452672",
+      "111008",
+      "111011",
+      "111009",
+      "51807",
+      "805914",
+      "44064",
+      "1344044",
+      "110172",
+      "1063860",
+      "1652976",
+      "74730",
+      "237736",
+      "91147",
+      "251163",
+      "61585"
+    ],
+    "area_threshold": 0.0001,
+    "epsilon": 1e-09,
+    "normal_decimal_digits": 120,
+    "mpmath_version": "1.4.1",
+    "longdouble_bits": 64,
+    "reference": "results/full-4963",
+    "baseline": "results/libigl-tolerance-validation-4963",
+    "selection": "All counted disagreements in the saved tuned full-double pipeline",
+    "closest_geometry": "Exact Fraction coordinates, projections, distances and comparisons; outward-rounded bounding-box pruning",
+    "normals": "Exact rational face cross products; mpmath normalization, angle weights and sums",
+    "cache_access": {
+      "repository": "Thingi10K/Thingi10K",
+      "revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+      "started_at_utc": "2026-11-24T04:01:55.872246+00:00",
+      "cache_dir": "/home/horde/projects/pseudonormal-tests/.cache/thingi10k",
+      "files": [
+        {
+          "filename": "metadata/geometry_data.csv",
+          "cache_hit": true,
+          "seconds": 0.00012362003326416016,
+          "file_bytes": 3578491
+        },
+        {
+          "filename": "metadata/input_summary.csv",
+          "cache_hit": true,
+          "seconds": 3.621005453169346e-05,
+          "file_bytes": 1847537
+        },
+        {
+          "filename": "metadata/contextual_data.csv",
+          "cache_hit": true,
+          "seconds": 2.7860049158334732e-05,
+          "file_bytes": 240499
+        },
+        {
+          "filename": "Thingi10K_npz.tar.gz",
+          "cache_hit": true,
+          "seconds": 2.987007610499859e-05,
+          "file_bytes": 4085347936
+        }
+      ],
+      "extraction": {
+        "cache_hit": true,
+        "seconds": 1.100008375942707e-05,
+        "revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+        "npz_files": 9998
+      },
+      "total_seconds": 0.0008546300232410431
+    }
+  },
+  "max_direct_igl_winding_difference": 1.5194905048060748e-14,
+  "minimum_absolute_native_dot": 0.003948034675463896,
+  "maximum_normal_vector_difference": 0.001653843137794221,
+  "classifier_feature_changes": {
+    "edge_to_edge": 281,
+    "face_to_edge": 98
+  },
+  "residual_geometry": {
+    "file_id": "1452672",
+    "metadata": {
+      "file_id": "1452672",
+      "num_vertices": "153",
+      "num_faces": "302",
+      "num_geometrical_degenerated_faces": "0",
+      "num_combinatorial_degenerated_faces": "0",
+      "num_connected_components": "1",
+      "num_boundary_edges": "0",
+      "num_duplicated_faces": "0",
+      "euler_characteristic": "2",
+      "num_self_intersections": "0",
+      "num_coplanar_intersecting_faces": "0",
+      "vertex_manifold": "1",
+      "edge_manifold": "1",
+      "oriented": "1",
+      "total_area": "384.7041239",
+      "min_area": "7.33E-15",
+      "p25_area": "0.4638747183",
+      "median_area": "0.9357331803",
+      "p75_area": "1.735667549",
+      "p90_area": "2.575015775",
+      "p95_area": "3.34997944",
+      "max_area": "9.302156223",
+      "min_valance": "3",
+      "p25_valance": "5",
+      "median_valance": "6",
+      "p75_valance": "6",
+      "p90_valance": "8",
+      "p95_valance": "9",
+      "max_valance": "15",
+      "min_dihedral_angle": "0",
+      "p25_dihedral_angle": "6.44E-14",
+      "median_dihedral_angle": "0.1698660239",
+      "p75_dihedral_angle": "1.570796327",
+      "p90_dihedral_angle": "1.570796327",
+      "p95_dihedral_angle": "1.578397544",
+      "max_dihedral_angle": "3.141592654",
+      "min_aspect_ratio": "1.072920306",
+      "p25_aspect_ratio": "1.537340119",
+      "median_aspect_ratio": "3.013734502",
+      "p75_aspect_ratio": "7.089067551",
+      "p90_aspect_ratio": "26.68501872",
+      "p95_aspect_ratio": "142.0553027",
+      "max_aspect_ratio": "51592.0607",
+      "PWN": "1",
+      "solid": "1",
+      "ave_area": "1.273854715",
+      "ave_valance": "5.921568627",
+      "ave_dihedral_angle": "0.6083666691",
+      "ave_aspect_ratio": "286.4176928"
+    },
+    "orientation_or_incidence_errors": 0,
+    "strict_crossing_witnesses": [
+      {
+        "faces": [
+          45,
+          186
+        ],
+        "segment_face": 45,
+        "segment_vertices": [
+          130,
+          117
+        ],
+        "target_face": 186,
+        "segment_t_exact": "43333015072697968228730077815264939981151/43333015072698408765375333968924527987717",
+        "target_barycentrics_exact": [
+          "11805677557031972947644900643782196696634/303331105508888861357627337782471695914019",
+          "28727528865958121101521550/303331105508888861357627337782471695914019",
+          "291525427951856859682453571180568397695835/303331105508888861357627337782471695914019"
+        ],
+        "signed_plane_distances_exact": [
+          "-909993316526657332803331634120563739604171/87112285931760246646623899502532662132736",
+          "4625634775189613425674068943/43556142965880123323311949751266331066368"
+        ],
+        "point_exact": [
+          "-206705916636079912933791172808093379277354265005809904797/3049289852097572505493943034865397399543500057857753088",
+          "-240469047746778500302976563455507195986545839717475005469/3049289852097572505493943034865397399543500057857753088",
+          "294742052441835553312273738358239670086764768933795679463/12197159408390290021975772139461589598174000231431012352"
+        ],
+        "point_decimal": [
+          "-67.7882151786551929717461462122519700615543148669379401305423",
+          "-78.8606722910786989765639523865250283288856444106491490919349",
+          "24.1648110492911800662764202087573429885918877330549088298409"
+        ],
+        "nearest_vertex": 117,
+        "distance_to_nearest_vertex": 1.8898063512555887e-14
+      },
+      {
+        "faces": [
+          46,
+          186
+        ],
+        "segment_face": 46,
+        "segment_vertices": [
+          117,
+          130
+        ],
+        "target_face": 186,
+        "segment_t_exact": "440536645256153659588006566/43333015072698408765375333968924527987717",
+        "target_barycentrics_exact": [
+          "11805677557031972947644900643782196696634/303331105508888861357627337782471695914019",
+          "28727528865958121101521550/303331105508888861357627337782471695914019",
+          "291525427951856859682453571180568397695835/303331105508888861357627337782471695914019"
+        ],
+        "signed_plane_distances_exact": [
+          "4625634775189613425674068943/43556142965880123323311949751266331066368",
+          "-909993316526657332803331634120563739604171/87112285931760246646623899502532662132736"
+        ],
+        "point_exact": [
+          "-206705916636079912933791172808093379277354265005809904797/3049289852097572505493943034865397399543500057857753088",
+          "-240469047746778500302976563455507195986545839717475005469/3049289852097572505493943034865397399543500057857753088",
+          "294742052441835553312273738358239670086764768933795679463/12197159408390290021975772139461589598174000231431012352"
+        ],
+        "point_decimal": [
+          "-67.7882151786551929717461462122519700615543148669379401305423",
+          "-78.8606722910786989765639523865250283288856444106491490919349",
+          "24.1648110492911800662764202087573429885918877330549088298409"
+        ],
+        "nearest_vertex": 117,
+        "distance_to_nearest_vertex": 1.8898063512555887e-14
+      }
+    ],
+    "scope": "Reports strict noncoplanar crossings; not a complete intersection detector. Coordinates are exact values of the cached binary64 mesh, which need not match the precision used for dataset metadata."
+  }
+}

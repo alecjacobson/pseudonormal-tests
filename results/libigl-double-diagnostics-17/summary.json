@@ -1,0 +1,19 @@
+{
+  "models": 17,
+  "wall_seconds": 3.263937114039436,
+  "baseline_sign_and_normal_bytes_match": true,
+  "totals": {
+    "precise_dot_only_corrects": 0,
+    "precise_normal_only_corrects": 0,
+    "nearest_encoded_feature_corrects": 379,
+    "local_feature_stored_normal_corrects": 379,
+    "local_feature_precise_normal_corrects": 379,
+    "global_feature_stored_normal_corrects": 382,
+    "global_feature_precise_normal_corrects": 382,
+    "points": 441,
+    "small_area": 339,
+    "direct_winding_mismatches": 0,
+    "same_local_feature": 62,
+    "same_global_feature": 58
+  }
+}
