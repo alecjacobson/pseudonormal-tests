@@ -30,6 +30,11 @@ target_compile_definitions(${PRECISION_MODULE} PRIVATE
 target_include_directories(${PRECISION_MODULE} PRIVATE
   "${LIBIGL_SOURCE_DIR}/include" "${BINDINGS_SOURCE_DIR}/include")
 target_include_directories(${PRECISION_MODULE} SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
+option(PRECISION_INCLUDE_WINDING "Include the production fast-winding binding" OFF)
+if(PRECISION_INCLUDE_WINDING)
+  target_sources(${PRECISION_MODULE} PRIVATE "${BINDINGS_SOURCE_DIR}/src/fast_winding_number.cpp")
+  target_compile_definitions(${PRECISION_MODULE} PRIVATE PRECISION_INCLUDE_WINDING)
+endif()
 # Keep compiler contraction consistent between the before/after builds.
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   target_compile_options(${PRECISION_MODULE} PRIVATE -ffp-contract=off)
