@@ -4,3 +4,4 @@ __pycache__/
 .ruff_cache/
 results/*/points/
 results/*/per_model.jsonl
+results/*/timings.jsonl
