@@ -335,6 +335,14 @@ def plot_and_report(path, config, summary, comparisons):
             f"| {label} | {tuned['resolved_vs_default']:,} | {tuned['new_vs_default']:,} | "
             f"{reduction:.4g}% | {default['invalid_queries']:,} → {tuned['invalid_queries']:,} |"
         )
+    lines.append("")
+    for name, label in [("float32", "Float"), ("float64", "Double")]:
+        tuned = all_rows[f"{name}_tuned"]
+        lines.append(
+            f"{label} tuning introduces {tuned['new_invalid_queries']:,} invalid queries and resolves "
+            f"{tuned['resolved_invalid_queries']:,} previously invalid queries. "
+            f"Of its remaining invalid queries, {tuned['invalid_queries_away']:,} are beyond the distance cutoff."
+        )
     lines += [
         "",
         "Counts use the returned sign even when the output normal is nonfinite. "

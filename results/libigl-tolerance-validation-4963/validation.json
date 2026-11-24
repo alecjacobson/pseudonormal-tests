@@ -1,0 +1,42 @@
+{
+  "result": "passed",
+  "eligible_models": 4963,
+  "models_audited": 4963,
+  "points_per_variant": 49630000,
+  "variants_recounted": [
+    "float32_default",
+    "float32_tuned",
+    "float64_default",
+    "float64_tuned"
+  ],
+  "splits_recounted": [
+    "all",
+    "original_100",
+    "additional_models"
+  ],
+  "all_per_model_integer_metrics_match": true,
+  "all_aggregate_integer_metrics_match": true,
+  "validity_recomputed_from_saved_outputs": true,
+  "journal_matches_csv": true,
+  "original_models_reproduced": 100,
+  "original_points_reproduced": 1000000,
+  "original_float_geometry_and_normals_byte_identical": true,
+  "original_tuned_signs_and_validity_identical": true,
+  "default_reproduction": {
+    "float32": {
+      "models": 4963,
+      "points": 49630000,
+      "sign_changes": 0,
+      "normal_differing_bytes": 0,
+      "validity_changes": 0
+    },
+    "float64": {
+      "models": 4963,
+      "points": 49630000,
+      "sign_changes": 0,
+      "normal_differing_bytes": 0,
+      "validity_changes": 0
+    }
+  },
+  "diagnostic_cases": 1217
+}

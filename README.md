@@ -539,3 +539,55 @@ uv run --no-sync python summarize_tolerances.py results/libigl-double-tolerances
 cached scalar baseline. `--baseline` can override that path, and the existing
 `--float-baseline` option remains an alias. Tolerances are converted to the
 selected scalar type before evaluation and recorded exactly in `config.json`.
+
+## Broader validation of fixed tolerances
+
+[The full-mask validation](results/libigl-tolerance-validation-4963/FINDINGS.md)
+uses all 4,963 eligible models and the same 49,630,000 cached sample points.
+The area threshold stays at `1e-4`; epsilon is fixed at `0.003` for float and
+`1e-9` for double before this run. Results distinguish the original 100 models
+from the additional 4,863 models, which were not used in the tolerance sweeps.
+The original full baseline was already available, so this is broader regression
+validation rather than a completely uninspected holdout.
+
+| Precision | Default disagreements | Tuned disagreements | Tuned percent of all points | Invalid queries, default → tuned |
+| --- | ---: | ---: | ---: | ---: |
+| Float | 48,268 | 1,061 | 0.00213782% | 224 → 369 |
+| Double | 1,271 | 441 | 0.000888575% | 0 → 0 |
+
+Float tuning resolves 47,504 disagreements and introduces 297, for a 97.80%
+net reduction. It also introduces 145 invalid queries; only 698 of its 1,061
+remaining disagreements have finite outputs. Double tuning resolves 830 and
+introduces none, for a 65.30% reduction, with all outputs finite. The additional
+4,863 models alone give float **47,506 → 1,058** and double **1,264 → 441**.
+The original 100-model results reproduce exactly.
+
+Model `153100` retains 277 double disagreements and accounts for much of the
+remaining error. Aggregate improvement does not eliminate individual model
+regressions or establish universal tolerances. No defaults in the upstream PRs
+were changed. The run took 20 minutes 37 seconds; all 49.63 million point
+results in each of the four variants were independently recounted.
+
+`validate_tolerances.py` reuses the compiled dual-precision runtime module and
+the patched signed-distance extension. It computes float nearest points once
+per mesh and reuses cached double nearest points. In each precision, the
+default and tuned classifiers share those closest features. Every default sign
+and normal byte must reproduce its baseline, including nonfinite values.
+Per-model metrics and timings are appended to journals; CSV is exported once
+at completion. Nonfinite outputs remain visible alongside returned-sign counts.
+
+```bash
+HF_HUB_OFFLINE=1 uv run --no-sync python validate_tolerances.py \
+  --runtime-module .cache/precision/tolerances-double/_tolerance_sweep*.so \
+  --precision-module .cache/precision/patched/_precision_patched*.so \
+  --output results/libigl-tolerance-validation-4963
+uv run --no-sync python summarize_tolerance_validation.py \
+  results/libigl-tolerance-validation-4963
+```
+
+Use the cached modules whose hashes are recorded by the earlier double sweep
+and scalar-float run; the runner checks those hashes before starting. The
+optional `--runtime-study` and `--precision-study` paths select their provenance
+records. The auditor checks full-mask coverage, recounts all four variants
+from cached point arrays, verifies the original 100-model results, and exports
+per-model comparisons, remaining diagnostic cases, and a PDF/PNG figure.
