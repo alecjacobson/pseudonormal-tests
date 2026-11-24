@@ -6,8 +6,8 @@ import json
 from pathlib import Path
 
 
-def generate(source, output):
-    """Keep the upstream classifier body, replacing only its name and constants."""
+def generate(source, output, diagnostics=False):
+    """Expose runtime constants and optionally label the selected feature."""
     text = source.read_text()
     begin = text.index("template <")
     end = text.index("\ntemplate <", begin + 1)
@@ -31,28 +31,67 @@ def generate(source, output):
         if function.count(before) != 1:
             raise ValueError(f"Unexpected source: expected one occurrence of {before!r}")
         function = function.replace(before, after)
+    if diagnostics:
+        function = (
+            function.replace("pseudonormal_test_with_tolerances(", "pseudonormal_test_with_trace(")
+            .replace(
+                "  const Scalar epsilon)",
+                "  const Scalar epsilon, int & normal_kind, int & normal_index, bool & small_area)",
+            )
+            .replace(
+                "if(area>minimum_double_area)",
+                "small_area = !(area>minimum_double_area);\n  if(!small_area)",
+            )
+        )
+        for statement, kind, index, count in (
+            ("n = FN.row(f);", 0, "f", 2),
+            ("n = EN.row(EMAP(F.rows()*x+f));", 1, "EMAP(F.rows()*x+f)", 1),
+            ("n = EN.row(EMAP(F.rows()*e+f));", 1, "EMAP(F.rows()*e+f)", 1),
+            ("n = VN.row(F(f,x));", 2, "F(f,x)", 1),
+            ("n = VN.row(F(f,v));", 2, "F(f,v)", 1),
+        ):
+            if function.count(statement) != count:
+                raise ValueError(
+                    f"Unexpected source: expected {count} occurrences of {statement!r}"
+                )
+            function = function.replace(
+                statement, statement + f" normal_kind = {kind}; normal_index = int({index});"
+            )
     # Retain upstream copyright/license text when generating the local function.
-    license_text = text[:text.index('#include "pseudonormal_test.h"')]
-    generated = license_text + """#pragma once
+    license_text = text[: text.index('#include "pseudonormal_test.h"')]
+    generated = (
+        license_text
+        + """#pragma once
 #include <igl/barycentric_coordinates.h>
 #include <igl/doublearea.h>
 #include <igl/project_to_line_segment.h>
 #include <cassert>
 #include <cmath>
 namespace igl {
-""" + function + "\n}\n"
+"""
+        + function
+        + "\n}\n"
+    )
     output.write_text(generated)
-    output.with_suffix(".json").write_text(json.dumps({
-        "source": str(source.resolve()),
-        "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
-        "generated_sha256": hashlib.sha256(generated.encode()).hexdigest(),
-        "replacements": replacements,
-    }, indent=2) + "\n")
+    output.with_suffix(".json").write_text(
+        json.dumps(
+            {
+                "source": str(source.resolve()),
+                "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+                "generated_sha256": hashlib.sha256(generated.encode()).hexdigest(),
+                "replacements": replacements,
+                "diagnostics": diagnostics,
+            },
+            indent=2,
+        )
+        + "\n"
+    )
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--diagnostics", action="store_true")
     args = parser.parse_args()
-    generate(args.source, args.output)
+    generate(args.source, args.output, args.diagnostics)

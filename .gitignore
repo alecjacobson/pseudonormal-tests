@@ -5,3 +5,4 @@ __pycache__/
 results/*/points/
 results/*/per_model.jsonl
 results/*/timings.jsonl
+results/*/cases.jsonl

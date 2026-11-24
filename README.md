@@ -655,3 +655,48 @@ HF_HUB_OFFLINE=1 uv run --no-sync python validate_tuned_defaults.py \
 The runtime-classifier generator accepts both the original and new epsilon
 declarations, so future parameter experiments can continue to use a single
 compiled module. Existing baseline binaries remain cached unchanged.
+
+## Double-built normals with a float classifier
+
+[The full mixed-normal experiment](results/libigl-mixed-normals-4963/FINDINGS.md)
+changes only the construction and normalization of face, angle-weighted vertex,
+and uniform-weighted edge normals. Geometry, queries, cached closest points,
+closest-face indices, and `pseudonormal_test` stay float32, with area `1e-4` and
+epsilon `0.003`. Normal tables are built and normalized in double, then cast
+to float. Two variants distinguish double arithmetic on float-rounded vertices
+from using the original double vertices. Every model's pure-float control must
+reproduce the prior tuned signs, validity masks, and normal bytes exactly.
+
+Build and replay the cached full mask:
+
+```bash
+cmake -S native_precision -B .cache/precision/mixed-normals \
+  -DCMAKE_BUILD_TYPE=Release -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/home/horde/projects/libigl \
+  -DBINDINGS_SOURCE_DIR=/home/horde/projects/libigl-python-bindings \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src" \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DPRECISION_BUILD_MIXED_NORMALS=ON
+cmake --build .cache/precision/mixed-normals --target _mixed_normals inspect_triangle -j 4
+HF_HUB_OFFLINE=1 uv run --no-sync python benchmark_mixed_normals.py \
+  --module .cache/precision/mixed-normals/_mixed_normals*.so \
+  --output results/libigl-mixed-normals-4963
+uv run --no-sync python summarize_mixed_normals.py results/libigl-mixed-normals-4963
+HF_HUB_OFFLINE=1 uv run --no-sync python inspect_mixed_normal_cases.py \
+  results/libigl-mixed-normals-4963 \
+  --module .cache/precision/normalization/_normalization_probe*.so \
+  --triangle-tool .cache/precision/mixed-normals/inspect_triangle
+HF_HUB_OFFLINE=1 uv run --no-sync python plot_mixed_normal_case.py \
+  results/libigl-mixed-normals-4963
+```
+
+Use a fresh output directory. The examples exporter reuses the normalization
+probe built in the section above to identify matching double normal-table
+entries. The standalone triangle inspector reads triangle vertices, the float
+closest point, and the double closest point from stdin (15 numbers), and reports
+libigl's area and barycentrics in both precisions. It can also be used for other
+cached cases. `cases.csv` records selected features, normals, dots, incident
+faces, and coordinates; `points/` retains full per-query outputs locally.
+Normal setup, casting, classification, diagnostic work, loading, and output
+are timed separately. Distance and winding queries are reused, so these timings
+are not an end-to-end signed-distance benchmark.

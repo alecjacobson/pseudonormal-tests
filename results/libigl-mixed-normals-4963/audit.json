@@ -1,0 +1,333 @@
+{
+  "all_point_counts_and_diagnostic_rows_verified": true,
+  "diagnostic_rows": 3379,
+  "variants": {
+    "float": {
+      "totals": {
+        "points": 49630000,
+        "away_points": 48001158,
+        "disagreements": 1061,
+        "finite_disagreements": 698,
+        "invalid_queries": 369,
+        "invalid_queries_away": 369,
+        "zero_normals": 0,
+        "resolved": 0,
+        "introduced": 0,
+        "invalid_resolved": 0,
+        "invalid_introduced": 0,
+        "sign_changes": 0,
+        "affected_models": 147,
+        "models_with_invalid": 5,
+        "also_wrong_in_full_double": 291
+      },
+      "failure_features": {
+        "edge": 589,
+        "face": 379,
+        "vertex": 93
+      },
+      "small_area_failures": 590,
+      "same_closest_face_as_double": 899,
+      "dot_sign_changes_in_double": 0,
+      "top_models": [
+        [
+          "153100",
+          360
+        ],
+        [
+          "109130",
+          98
+        ],
+        [
+          "47687",
+          77
+        ],
+        [
+          "472179",
+          39
+        ],
+        [
+          "42040",
+          28
+        ],
+        [
+          "41360",
+          24
+        ],
+        [
+          "135218",
+          22
+        ],
+        [
+          "111009",
+          21
+        ],
+        [
+          "85770",
+          18
+        ],
+        [
+          "74730",
+          18
+        ],
+        [
+          "805914",
+          18
+        ],
+        [
+          "100894",
+          17
+        ],
+        [
+          "1452679",
+          16
+        ],
+        [
+          "472183",
+          13
+        ],
+        [
+          "442389",
+          13
+        ],
+        [
+          "62286",
+          12
+        ],
+        [
+          "472172",
+          10
+        ],
+        [
+          "1652976",
+          10
+        ],
+        [
+          "841122",
+          9
+        ],
+        [
+          "44900",
+          9
+        ]
+      ]
+    },
+    "double_normals_rounded": {
+      "totals": {
+        "points": 49630000,
+        "away_points": 48001158,
+        "disagreements": 1061,
+        "finite_disagreements": 699,
+        "invalid_queries": 368,
+        "invalid_queries_away": 368,
+        "zero_normals": 0,
+        "resolved": 1,
+        "introduced": 1,
+        "invalid_resolved": 1,
+        "invalid_introduced": 0,
+        "sign_changes": 2,
+        "affected_models": 146,
+        "models_with_invalid": 4,
+        "also_wrong_in_full_double": 291
+      },
+      "failure_features": {
+        "edge": 589,
+        "face": 379,
+        "vertex": 93
+      },
+      "small_area_failures": 590,
+      "same_closest_face_as_double": 899,
+      "dot_sign_changes_in_double": 0,
+      "top_models": [
+        [
+          "153100",
+          360
+        ],
+        [
+          "109130",
+          98
+        ],
+        [
+          "47687",
+          77
+        ],
+        [
+          "472179",
+          39
+        ],
+        [
+          "42040",
+          28
+        ],
+        [
+          "41360",
+          24
+        ],
+        [
+          "135218",
+          22
+        ],
+        [
+          "111009",
+          21
+        ],
+        [
+          "85770",
+          18
+        ],
+        [
+          "74730",
+          18
+        ],
+        [
+          "805914",
+          18
+        ],
+        [
+          "100894",
+          17
+        ],
+        [
+          "1452679",
+          16
+        ],
+        [
+          "472183",
+          13
+        ],
+        [
+          "442389",
+          13
+        ],
+        [
+          "62286",
+          12
+        ],
+        [
+          "472172",
+          10
+        ],
+        [
+          "1652976",
+          10
+        ],
+        [
+          "841122",
+          9
+        ],
+        [
+          "44900",
+          9
+        ]
+      ]
+    },
+    "double_normals_original": {
+      "totals": {
+        "points": 49630000,
+        "away_points": 48001158,
+        "disagreements": 1113,
+        "finite_disagreements": 1113,
+        "invalid_queries": 1,
+        "invalid_queries_away": 1,
+        "zero_normals": 0,
+        "resolved": 125,
+        "introduced": 177,
+        "invalid_resolved": 368,
+        "invalid_introduced": 0,
+        "sign_changes": 303,
+        "affected_models": 147,
+        "models_with_invalid": 1,
+        "also_wrong_in_full_double": 355
+      },
+      "failure_features": {
+        "edge": 643,
+        "face": 377,
+        "vertex": 93
+      },
+      "small_area_failures": 515,
+      "same_closest_face_as_double": 819,
+      "dot_sign_changes_in_double": 0,
+      "top_models": [
+        [
+          "153100",
+          369
+        ],
+        [
+          "109130",
+          98
+        ],
+        [
+          "47687",
+          77
+        ],
+        [
+          "1452672",
+          60
+        ],
+        [
+          "472179",
+          39
+        ],
+        [
+          "42040",
+          28
+        ],
+        [
+          "41360",
+          24
+        ],
+        [
+          "111009",
+          22
+        ],
+        [
+          "135218",
+          22
+        ],
+        [
+          "85770",
+          18
+        ],
+        [
+          "74730",
+          18
+        ],
+        [
+          "805914",
+          18
+        ],
+        [
+          "100894",
+          17
+        ],
+        [
+          "472183",
+          13
+        ],
+        [
+          "442389",
+          13
+        ],
+        [
+          "62286",
+          12
+        ],
+        [
+          "472172",
+          10
+        ],
+        [
+          "841122",
+          9
+        ],
+        [
+          "44900",
+          9
+        ],
+        [
+          "1652976",
+          9
+        ]
+      ]
+    }
+  }
+}

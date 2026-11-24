@@ -54,7 +54,8 @@ endif()
 
 option(PRECISION_BUILD_TOLERANCE_SWEEP "Build the runtime tolerance experiment" OFF)
 option(PRECISION_BUILD_NORMALIZATION_PROBE "Build the normal normalization experiment" OFF)
-if(PRECISION_BUILD_TOLERANCE_SWEEP OR PRECISION_BUILD_NORMALIZATION_PROBE)
+option(PRECISION_BUILD_MIXED_NORMALS "Build the double-normal float-classifier experiment" OFF)
+if(PRECISION_BUILD_TOLERANCE_SWEEP OR PRECISION_BUILD_NORMALIZATION_PROBE OR PRECISION_BUILD_MIXED_NORMALS)
   execute_process(
     COMMAND "${Python_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/make_runtime_classifier.py"
       "${LIBIGL_SOURCE_DIR}/include/igl/pseudonormal_test.cpp"
@@ -77,7 +78,19 @@ if(PRECISION_BUILD_NORMALIZATION_PROBE)
   endif()
   nanobind_add_module(_normalization_probe normalization_probe.cpp)
 endif()
-foreach(experiment_target _tolerance_sweep _normalization_probe)
+if(PRECISION_BUILD_MIXED_NORMALS)
+  execute_process(
+    COMMAND "${Python_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/make_runtime_classifier.py"
+      "${LIBIGL_SOURCE_DIR}/include/igl/pseudonormal_test.cpp"
+      "${CMAKE_CURRENT_BINARY_DIR}/pseudonormal_trace.h" --diagnostics
+    RESULT_VARIABLE trace_generation_result)
+  if(NOT trace_generation_result EQUAL 0)
+    message(FATAL_ERROR "Could not generate the classifier trace")
+  endif()
+  nanobind_add_module(_mixed_normals mixed_normals.cpp)
+  add_executable(inspect_triangle inspect_triangle.cpp)
+endif()
+foreach(experiment_target _tolerance_sweep _normalization_probe _mixed_normals inspect_triangle)
   if(NOT TARGET ${experiment_target})
     continue()
   endif()
