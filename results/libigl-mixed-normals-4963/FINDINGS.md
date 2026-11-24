@@ -40,6 +40,50 @@ finite selected normal.
 The original 100-model subset improves from **3 to 2 disagreements** with either
 double-normal variant; the full mask exposes the limitations of that result.
 
+## Why removing normalization appeared much better
+
+A direct join of the two experiments isolates **exactly the same 369 queries**
+whose tuned-float normals were nonfinite. These were 369 invalid outputs, not
+369 incorrect signs: 363 disagreed with winding and six agreed.
+
+| Treatment on these same 369 queries | Disagreements | Nonfinite normals | Exactly zero finite normals |
+|---|---:|---:|---:|
+| Float, normalized | 363 | 369 | 0 |
+| Float, omit edge normalization | 6 | 0 | 368 |
+| Double normals on rounded vertices, cast to float | 362 | 368 | 0 |
+| Double normals on original vertices, cast to float | 268 | 1 | 0 |
+| Full double pipeline | 268 | 0 | 0 |
+
+For 368 queries, removing normalization simply preserves an **exactly zero**
+float edge-normal sum. The implementation chooses outside when `dot >= 0`,
+inside otherwise. A normalized zero produces NaNs, for which `dot >= 0` is
+false, hence inside. An unnormalized zero produces dot zero, hence outside.
+Of these 368 points, winding labels 362 outside and six inside: the apparent
+improvement is almost entirely this change in tie handling, without recovery
+of a geometric direction. The remaining query has a tiny nonzero normal;
+removing normalization or constructing/normalizing in double fixes its actual
+underflow problem. Across all 369, omitting normalization fixes 363 disagreements
+and introduces six.
+
+Double normals on original vertices recover finite directions for 368 queries,
+but finite does not imply correct classification. They fix 95 of the original
+363 disagreements and leave 268. **All 268 are on model `153100`, and all also
+disagree in the fully double pipeline.** On that model's 360 originally invalid
+queries, the raw float normal is zero and chooses outside for all 360, which
+happens to match winding. Original-double normals choose outside for 92 and
+inside for 268. The almost-degenerate original triangles and feature choice
+remain relevant even after the normal becomes finite.
+
+Thus normalization is sign-invariant in exact arithmetic for a nonzero normal,
+but most of this cohort has no nonzero float normal to normalize. The apparent
+benefit of skipping it does not measure successful recovery of normal direction.
+
+[Per-query comparison](originally_invalid_cases.csv) and
+[aggregate/per-model counts](originally_invalid_comparison.json) are cached
+joins, with every hybrid-original sign verified against the fully double sign
+on this cohort. Reproduce with
+`uv run --no-sync python compare_invalid_normal_cases.py`.
+
 ## What remains
 
 The original-double-normal variant has 643 edge, 377 face, and 93 vertex

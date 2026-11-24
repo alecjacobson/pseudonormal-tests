@@ -1,0 +1,305 @@
+{
+  "selection": "Exactly the queries with nonfinite normals in the saved tuned float baseline",
+  "all_selected_queries_pass_fixed_distance_cutoff": true,
+  "double_original_and_full_double_signs_match_on_cohort": true,
+  "inputs": [
+    "results/libigl-tolerance-validation-4963",
+    "results/libigl-normalization-probe-104",
+    "results/libigl-mixed-normals-4963",
+    "results/full-4963"
+  ],
+  "totals": {
+    "normalized_float": {
+      "queries": 369,
+      "inside": 369,
+      "outside": 0,
+      "disagreements": 363,
+      "invalid": 369,
+      "zero_normals": 0
+    },
+    "raw_float": {
+      "queries": 369,
+      "inside": 0,
+      "outside": 369,
+      "disagreements": 6,
+      "invalid": 0,
+      "zero_normals": 368
+    },
+    "double_rounded": {
+      "queries": 369,
+      "inside": 368,
+      "outside": 1,
+      "disagreements": 362,
+      "invalid": 368,
+      "zero_normals": 0
+    },
+    "double_original": {
+      "queries": 369,
+      "inside": 274,
+      "outside": 95,
+      "disagreements": 268,
+      "invalid": 1,
+      "zero_normals": 0
+    },
+    "full_double": {
+      "queries": 369,
+      "inside": 274,
+      "outside": 95,
+      "disagreements": 268,
+      "invalid": 0,
+      "zero_normals": 0
+    }
+  },
+  "per_model": [
+    {
+      "file_id": "57854",
+      "variant": "normalized_float",
+      "queries": 1,
+      "inside": 1,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 1,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "57854",
+      "variant": "raw_float",
+      "queries": 1,
+      "inside": 0,
+      "outside": 1,
+      "disagreements": 1,
+      "invalid": 0,
+      "zero_normals": 1
+    },
+    {
+      "file_id": "57854",
+      "variant": "double_rounded",
+      "queries": 1,
+      "inside": 1,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 1,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "57854",
+      "variant": "double_original",
+      "queries": 1,
+      "inside": 1,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 1,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "57854",
+      "variant": "full_double",
+      "queries": 1,
+      "inside": 1,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "153100",
+      "variant": "normalized_float",
+      "queries": 360,
+      "inside": 360,
+      "outside": 0,
+      "disagreements": 360,
+      "invalid": 360,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "153100",
+      "variant": "raw_float",
+      "queries": 360,
+      "inside": 0,
+      "outside": 360,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 360
+    },
+    {
+      "file_id": "153100",
+      "variant": "double_rounded",
+      "queries": 360,
+      "inside": 360,
+      "outside": 0,
+      "disagreements": 360,
+      "invalid": 360,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "153100",
+      "variant": "double_original",
+      "queries": 360,
+      "inside": 268,
+      "outside": 92,
+      "disagreements": 268,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "153100",
+      "variant": "full_double",
+      "queries": 360,
+      "inside": 268,
+      "outside": 92,
+      "disagreements": 268,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "423825",
+      "variant": "normalized_float",
+      "queries": 5,
+      "inside": 5,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 5,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "423825",
+      "variant": "raw_float",
+      "queries": 5,
+      "inside": 0,
+      "outside": 5,
+      "disagreements": 5,
+      "invalid": 0,
+      "zero_normals": 5
+    },
+    {
+      "file_id": "423825",
+      "variant": "double_rounded",
+      "queries": 5,
+      "inside": 5,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 5,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "423825",
+      "variant": "double_original",
+      "queries": 5,
+      "inside": 5,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "423825",
+      "variant": "full_double",
+      "queries": 5,
+      "inside": 5,
+      "outside": 0,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "904476",
+      "variant": "normalized_float",
+      "queries": 2,
+      "inside": 2,
+      "outside": 0,
+      "disagreements": 2,
+      "invalid": 2,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "904476",
+      "variant": "raw_float",
+      "queries": 2,
+      "inside": 0,
+      "outside": 2,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 2
+    },
+    {
+      "file_id": "904476",
+      "variant": "double_rounded",
+      "queries": 2,
+      "inside": 2,
+      "outside": 0,
+      "disagreements": 2,
+      "invalid": 2,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "904476",
+      "variant": "double_original",
+      "queries": 2,
+      "inside": 0,
+      "outside": 2,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "904476",
+      "variant": "full_double",
+      "queries": 2,
+      "inside": 0,
+      "outside": 2,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "1233195",
+      "variant": "normalized_float",
+      "queries": 1,
+      "inside": 1,
+      "outside": 0,
+      "disagreements": 1,
+      "invalid": 1,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "1233195",
+      "variant": "raw_float",
+      "queries": 1,
+      "inside": 0,
+      "outside": 1,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "1233195",
+      "variant": "double_rounded",
+      "queries": 1,
+      "inside": 0,
+      "outside": 1,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "1233195",
+      "variant": "double_original",
+      "queries": 1,
+      "inside": 0,
+      "outside": 1,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    },
+    {
+      "file_id": "1233195",
+      "variant": "full_double",
+      "queries": 1,
+      "inside": 0,
+      "outside": 1,
+      "disagreements": 0,
+      "invalid": 0,
+      "zero_normals": 0
+    }
+  ]
+}
