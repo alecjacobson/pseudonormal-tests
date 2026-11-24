@@ -1,4 +1,4 @@
-"""Audit, plot, and summarize the runtime float pseudonormal tolerance sweep."""
+"""Audit, plot, and summarize a runtime pseudonormal tolerance sweep."""
 
 import argparse
 import csv
@@ -13,19 +13,22 @@ from dataset_cache import write_json
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.colors import LogNorm
+from matplotlib.colors import LogNorm, SymLogNorm
 
 
 def run(path, upper_path=None):
     """Verify the selected setting against cached point arrays and export plots."""
     config = json.loads((path / "config.json").read_text())
     summary = json.loads((path / "summary.json").read_text())
+    precision = config.get("precision", "float32")
+    precision_label = "Double" if precision == "float64" else "Float"
     grids = {fold: list(csv.DictReader((path / f"grid_{fold}.csv").open()))
              for fold in ["all", "tuning", "holdout"]}
     reference_path = Path(config["reference"])
     reference_rows = list(csv.DictReader((reference_path / "per_model.csv").open()))
     default_id = config["default_setting_id"]
     selected_id = summary["selected_on_tuning"]["all"]["setting_id"]
+    best_id = summary["best_overall_exploratory"]["all"]["setting_id"]
     settings = config["settings"]
     audit = {fold: np.zeros((len(settings), 3), dtype=np.int64)
              for fold in grids}
@@ -44,7 +47,8 @@ def run(path, upper_path=None):
                                   (counted & valid).sum(axis=1)))
         audit["all"] += values
         audit[fold] += values
-        diagnostic = counted[default_id] | counted[selected_id] | ~valid[selected_id]
+        diagnostic = (counted[default_id] | counted[selected_id] | ~valid[selected_id]
+                      | counted[best_id] | ~valid[best_id])
         for sample in np.flatnonzero(diagnostic):
             cases.append({
                 "file_id": file_id, "sample_index": int(sample), "split": fold,
@@ -55,8 +59,10 @@ def run(path, upper_path=None):
                 "reference_sign_w": int(reference["sign_w"][sample]),
                 "default_sign_p": int(signs[default_id, sample]),
                 "selected_sign_p": int(signs[selected_id, sample]),
+                "best_overall_sign_p": int(signs[best_id, sample]),
                 "default_valid": bool(valid[default_id, sample]),
                 "selected_valid": bool(valid[selected_id, sample]),
+                "best_overall_valid": bool(valid[best_id, sample]),
             })
     for fold, rows in grids.items():
         expected = [[int(row[key]) for key in
@@ -76,23 +82,33 @@ def run(path, upper_path=None):
     areas = list(dict.fromkeys(setting["minimum_double_area"] for setting in settings))
     epsilons = list(dict.fromkeys(setting["epsilon"] for setting in settings))
     matrix = audit["all"][:, 0].reshape(len(areas), len(epsilons))
-    fig, axis = plt.subplots(figsize=(15, 7), layout="constrained")
+    fig, axis = plt.subplots(figsize=(max(15, 0.7*len(epsilons)), 7), layout="constrained")
+    if matrix.min() == 0:
+        norm = SymLogNorm(linthresh=1, vmin=0, vmax=max(1, int(matrix.max())))
+        color_scale = "linear from 0 to 1, logarithmic above 1"
+    else:
+        norm = LogNorm(vmin=int(matrix.min()), vmax=max(int(matrix.min())+1, int(matrix.max())))
+        color_scale = "logarithmic color scale"
     shown = axis.imshow(matrix, aspect="auto", cmap="viridis_r",
-                        norm=LogNorm(vmin=max(1, int(matrix.min())), vmax=int(matrix.max())))
+                        norm=norm)
     axis.set_xticks(range(len(epsilons)), [f"{value:.0e}" if value else "0" for value in epsilons], rotation=45)
     axis.set_yticks(range(len(areas)), [f"{value:.0e}" if value else "0" for value in areas])
     axis.set_xlabel("Epsilon (original branch-dependent units)")
     axis.set_ylabel("Minimum double area (squared coordinate units)")
-    axis.set_title("Float pseudonormal tolerance sweep — 100 models, 1,000,000 cached points\n"
+    axis.set_title(f"{precision_label} pseudonormal tolerance sweep — 100 models, 1,000,000 cached points\n"
                    "Numbers count winding-sign disagreements beyond the fixed distance cutoff")
     for y, x in np.ndindex(matrix.shape):
         axis.text(x, y, str(matrix[y, x]), ha="center", va="center", fontsize=6.5,
                   color="white" if shown.norm(matrix[y, x]) > 0.55 else "black")
-    for index, label, color in [(default_id, "Default", "red"), (selected_id, "Selected on tuning half", "orange")]:
+    highlights = ([(default_id, "Default / selected on tuning half", "red")] if selected_id == default_id else
+                  [(default_id, "Default", "red"), (selected_id, "Selected on tuning half", "orange")])
+    if best_id not in [default_id, selected_id]:
+        highlights.append((best_id, "Best overall (exploratory)", "blue"))
+    for index, label, color in highlights:
         axis.scatter(index % len(epsilons), index // len(epsilons), s=380,
                      marker="s", facecolors="none", edgecolors=color, linewidths=2, label=label)
     axis.legend(loc="upper left", bbox_to_anchor=(0, -0.17), ncol=2)
-    fig.colorbar(shown, ax=axis, label="Counted disagreements (logarithmic color scale)")
+    fig.colorbar(shown, ax=axis, label=f"Counted disagreements ({color_scale})")
     fig.savefig(path / "tolerance_grid.png", dpi=170)
     fig.savefig(path / "tolerance_grid.pdf")
     plt.close(fig)
@@ -101,14 +117,14 @@ def run(path, upper_path=None):
     best = summary["best_overall_exploratory"]
     default = summary["default"]
     lines = [
-        "# Float pseudonormal tolerance sweep", "",
+        f"# {precision_label} pseudonormal tolerance sweep", "",
         "The same 100 Thingi10K models and 1,000,000 cached points were evaluated at original scale. "
         "The saved double-input winding signs and `original_d > 0.001 * original_bbd` mask remain fixed.", "",
         "A single compiled experiment exposes both tolerances as function arguments. "
         "The classifier is generated mechanically from the patched libigl source, changing only the function name "
         "and replacing its two constants with parameters. Mesh normals are computed once per model; closest faces "
-        "and points come from the cached patched-float run. No recompilation or nearest-point search occurs between settings.", "",
-        f"**All {summary['baseline_audit']['points']:,} default classifications reproduce the saved float baseline:** "
+        f"and points come from the cached patched-{precision} run. No recompilation or nearest-point search occurs between settings.", "",
+        f"**All {summary['baseline_audit']['points']:,} default classifications reproduce the saved {precision} baseline:** "
         "zero sign changes, zero differing normal bytes, and zero validity changes.", "",
         f"Swept **{len(settings)} parameter pairs**: {len(epsilons)} epsilon values × {len(areas)} area thresholds. "
         "A model-level split (seed `20261124`) assigns 50 models to tuning and 50 to holdout before evaluation. "
@@ -123,11 +139,20 @@ def run(path, upper_path=None):
                      f"{row['counted_disagreements']} | {row['percent_all']:.6g}% | {row['invalid_queries']} |")
     selected_all = selected["all"]
     reduction = 100*(1-selected_all["counted_disagreements"]/default["all"]["counted_disagreements"])
-    lines += ["", f"The tuning-selected setting reduces the full-sample count by **{reduction:.3f}%**. "
-              f"It resolves {selected_all['resolved_vs_default']} default disagreements and introduces "
+    selection_result = ("The tuning-selected setting retains the defaults. " if selected_id == default_id else
+                        f"The tuning-selected setting reduces the full-sample count by **{reduction:.3f}%**. ")
+    if selected_id == default_id and default["tuning"]["counted_disagreements"] == 0:
+        selection_result += (
+            "All default disagreements lie in the holdout half, leaving no tuning failures to optimize. "
+            "The best-overall pair uses information from the holdout and is therefore exploratory; "
+            "it needs validation on additional models. ")
+    lines += ["", selection_result +
+              f"The tuning-selected pair resolves {selected_all['resolved_vs_default']} default disagreements and introduces "
               f"{selected_all['new_vs_default']} others. It has {selected_all['valid_counted_disagreements']} "
-              f"counted disagreements with finite outputs and {selected_all['invalid_queries']} invalid queries. "
-              "The double baseline is 7 disagreements (0.0007%).", "",
+              f"counted disagreements with finite outputs and {selected_all['invalid_queries']} invalid queries.", "",
+              f"The exploratory best-overall pair resolves {best['all']['resolved_vs_default']} default disagreements "
+              f"and introduces {best['all']['new_vs_default']} others. "
+              f"It has {best['all']['invalid_queries']} invalid queries.", "",
               "![Tolerance grid](tolerance_grid.png)", "",
               "[Download PDF](tolerance_grid.pdf). Complete grids: [all](grid_all.csv), "
               "[tuning](grid_tuning.csv), [holdout](grid_holdout.csv).", "",
@@ -190,7 +215,7 @@ def run(path, upper_path=None):
               f"Classifier calls across all {len(settings)} settings: {summary['classifier_seconds']:.3f} s total. "
               f"Sweep wall time including loading, verification and compressed output: {summary['wall_seconds']:.3f} s. "
               "These classifier-only timings exclude nearest-point queries and are not comparable to the earlier full-query timings.", "",
-              "See [config.json](config.json) for exact float32 parameter values, source/module hashes and split IDs; "
+              f"See [config.json](config.json) for exact {precision} parameter values, source/module hashes and split IDs; "
               "[validation.json](validation.json) for the independent point-array recount; "
               "[per_model.csv](per_model.csv) and [selected_cases.csv](selected_cases.csv) for model/point diagnostics. "
               "All setting signs and validity flags remain cached locally by `(file_id, setting_id, sample_index)`.", "",

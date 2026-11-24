@@ -17,17 +17,17 @@ from precision_benchmark import source_state
 
 DEFAULT_EPSILONS = "0,1e-14,1e-12,1e-10,1e-9,1e-8,3e-8,1e-7,3e-7,1e-6,3e-6,1e-5,3e-5,1e-4,3e-4,1e-3,3e-3,1e-2"
 DEFAULT_AREAS = "0,1e-12,1e-8,1e-6,1e-4,1e-2,1,1e2,1e4,1e8"
-DEFAULT_AREA = np.float32(1e-4).item()
-DEFAULT_EPSILON = np.float32(1e-12).item()
+DEFAULT_AREA = 1e-4
+DEFAULT_EPSILON = 1e-12
 
 
-def parse_values(text):
-    """Round parameter values exactly as the float classifier receives them."""
-    values = [np.float32(float(value)).item() for value in text.split(",")]
+def parse_values(text, dtype):
+    """Round parameter values exactly as the selected classifier receives them."""
+    values = [dtype(float(value)).item() for value in text.split(",")]
     if any(not np.isfinite(value) or value < 0 for value in values):
         raise ValueError("All sweep values must be finite and nonnegative")
     if len(values) != len(set(values)):
-        raise ValueError("Sweep values must remain distinct after conversion to float32")
+        raise ValueError(f"Sweep values must remain distinct after conversion to {np.dtype(dtype)}")
     return values
 
 
@@ -39,15 +39,23 @@ def run(args):
         raise FileExistsError(f"Choose a fresh output directory: {args.output}")
     if args.threads < 1:
         raise ValueError("threads must be positive")
-    areas, epsilons = parse_values(args.areas), parse_values(args.epsilons)
-    if DEFAULT_AREA not in areas or DEFAULT_EPSILON not in epsilons:
+    dtype = np.dtype(args.precision).type
+    default_area, default_epsilon = dtype(DEFAULT_AREA).item(), dtype(DEFAULT_EPSILON).item()
+    baseline_path = args.baseline or Path(
+        "results/libigl-scalar-single-100" if dtype == np.float32 else "results/libigl-scalar-double-100")
+    baseline_config = json.loads((baseline_path / "config.json").read_text())
+    if (baseline_config["dtype"] != args.precision
+            or baseline_config.get("quantize_inputs_to_float32_first", False)):
+        raise ValueError("The baseline must use the requested precision with no prior quantization")
+    areas, epsilons = parse_values(args.areas, dtype), parse_values(args.epsilons, dtype)
+    if default_area not in areas or default_epsilon not in epsilons:
         raise ValueError("The grid must include the original default parameter pair")
     settings = [
         {"setting_id": i, "minimum_double_area": area, "epsilon": epsilon}
         for i, (area, epsilon) in enumerate((a, e) for a in areas for e in epsilons)
     ]
     default_id = next(s["setting_id"] for s in settings
-                      if s["minimum_double_area"] == DEFAULT_AREA and s["epsilon"] == DEFAULT_EPSILON)
+                      if s["minimum_double_area"] == default_area and s["epsilon"] == default_epsilon)
     args.output.mkdir(parents=True)
     (args.output / "points").mkdir()
     spec = importlib.util.spec_from_file_location("_tolerance_sweep", args.module.resolve())
@@ -64,7 +72,10 @@ def run(args):
         "settings": settings,
         "default_setting_id": default_id,
         "reference": str(args.reference),
-        "float_baseline": str(args.float_baseline),
+        "precision": args.precision,
+        "baseline": str(baseline_path),
+        "requested_areas": args.areas,
+        "requested_epsilons": args.epsilons,
         "threads": args.threads,
         "split_seed": args.split_seed,
         "tuning_ids": sorted(tuning_ids),
@@ -78,13 +89,13 @@ def run(args):
         "generated_classifier": json.loads((args.module.parent / "pseudonormal_runtime.json").read_text()),
         "cpp_wrapper_sha256": hashlib.sha256(Path("native_precision/tolerance_sweep.cpp").read_bytes()).hexdigest(),
         "reference_config": json.loads((args.reference / "config.json").read_text()),
-        "float_baseline_config": json.loads((args.float_baseline / "config.json").read_text()),
+        "baseline_config": baseline_config,
         "cmake_cache": (args.module.parent / "CMakeCache.txt").read_text(),
         "coordinates": "Original scale and position; parameters are absolute values with original semantics",
         "epsilon_units": "Dimensionless for barycentrics in the area branch; coordinate-distance units in the small-area branch",
         "area_units": "Twice triangle area, in squared coordinate units",
         "mask": "Saved original double d > 0.001 * original bbd",
-        "queries": "Classifier only, with original patched-float closest features and once-per-model normal construction",
+        "queries": f"Classifier only, with cached patched-{args.precision} closest features and once-per-model normal construction",
     }
     if config["libigl"]["diff"] or config["bindings"]["diff"]:
         raise ValueError("Use clean upstream source checkouts")
@@ -112,24 +123,28 @@ def run(args):
         if hashlib.sha256(mesh_path.read_bytes()).hexdigest() != source["mesh_sha256"]:
             raise ValueError(f"Mesh hash mismatch: {file_id}")
         vertices, faces = load_mesh(mesh_path)
-        vertices = vertices.astype(np.float32)
+        vertices = vertices.astype(dtype)
         with np.load(args.reference / source["points_file"], allow_pickle=False) as data:
-            points = data["points"].astype(np.float32)
+            points = data["points"].astype(dtype)
             reference_sign = data["sign_w"]
             away = data["away_from_surface"]
             np.testing.assert_array_equal(away, data["d"] > 0.001*float(source["bbd"]))
-        with np.load(args.float_baseline / "points" / f"{file_id}.npz", allow_pickle=False) as data:
+        with np.load(baseline_path / "points" / f"{file_id}.npz", allow_pickle=False) as data:
             baseline = dict(data)
+        for key in ["signed_distance", "closest_point", "pseudonormal"]:
+            if baseline[key].dtype != dtype:
+                raise ValueError(f"Unexpected {key} dtype for {file_id}: {baseline[key].dtype}")
         distance = np.abs(baseline["signed_distance"])
         baseline_counted = (baseline["sign_p"] != reference_sign) & away
         load_seconds = perf_counter() - load_started
         prepare_started = perf_counter()
-        prepared = module.PreparedMesh(vertices, faces)
+        prepared_class = module.PreparedMesh if dtype == np.float32 else module.PreparedMeshDouble
+        prepared = prepared_class(vertices, faces)
         prepare_seconds = perf_counter() - prepare_started
         default_started = perf_counter()
         default_sign, default_normals = prepared.classify(
             points, baseline["closest_face_index"], baseline["closest_point"],
-            DEFAULT_AREA, DEFAULT_EPSILON)
+            default_area, default_epsilon)
         default_seconds = perf_counter() - default_started
         default_sign = np.where(default_sign*distance < 0, 1, -1).astype(np.int8)
         default_valid = np.isfinite(default_normals).all(axis=1)
@@ -199,8 +214,8 @@ def run(args):
         write_csv(args.output / f"grid_{fold}.csv", rows)
 
     def rank(row):
-        area_offset = abs(np.log10(row["minimum_double_area"]/DEFAULT_AREA)) if row["minimum_double_area"] else 100
-        epsilon_offset = abs(np.log10(row["epsilon"]/DEFAULT_EPSILON)) if row["epsilon"] else 100
+        area_offset = abs(np.log10(row["minimum_double_area"]/default_area)) if row["minimum_double_area"] else 100
+        epsilon_offset = abs(np.log10(row["epsilon"]/default_epsilon)) if row["epsilon"] else 100
         return row["counted_disagreements"], row["invalid_queries"], area_offset, epsilon_offset
 
     selected_id = min(totals["tuning"], key=rank)["setting_id"]
@@ -229,7 +244,9 @@ if __name__ == "__main__":
     parser.add_argument("--bindings-source", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reference", type=Path, default=Path("results/initial-100"))
-    parser.add_argument("--float-baseline", type=Path, default=Path("results/libigl-scalar-single-100"))
+    parser.add_argument("--precision", choices=["float32", "float64"], default="float32")
+    parser.add_argument("--baseline", "--float-baseline", type=Path,
+                        help="Cached scalar baseline; defaults to the run matching --precision")
     parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE)
     parser.add_argument("--epsilons", default=DEFAULT_EPSILONS)
     parser.add_argument("--areas", default=DEFAULT_AREAS)

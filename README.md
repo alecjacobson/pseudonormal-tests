@@ -488,3 +488,54 @@ directories contain exact configurations, per-model grids, timings, validation,
 PDF/PNG heatmaps and the selected diagnostic cases. All point signs and validity
 flags for every setting remain cached locally. The two sweeps take approximately
 54 seconds combined on this machine, including compressed output.
+
+## Double tolerance sweep
+
+[The double sweep](results/libigl-double-tolerances-100/FINDINGS.md) evaluates the
+same 230 distinct parameter pairs in `float64`, on the same cached million points
+at original scale. With the area threshold kept at `1e-4`:
+
+| Epsilon | Double disagreements | Percent of all points |
+| --- | ---: | ---: |
+| `1e-12` (default) | 7 | 0.0007% |
+| `1e-10` | 1 | 0.0001% |
+| Every tested value from `1e-9` through `0.003` | 0 | 0% |
+| `0.01` | 2 | 0.0002% |
+| `0.03` | 10 | 0.001% |
+
+There are no nonfinite output normals anywhere in this double grid. The default
+classifier reproduces all saved double signs and normal bytes exactly. The
+smallest swept epsilon that eliminates disagreements at the default area is
+`1e-9`; the float-selected `0.003` also works on this double sample.
+
+All seven original double failures lie in the fixed holdout half. The tuning
+half has zero default failures, so the selection rule retains the defaults.
+Choosing `1e-9` from the combined results is exploratory and needs validation
+on additional models. The split is unchanged from the float study.
+
+The runtime wrapper now supports both precisions, preserving the existing float
+interface. [A compatibility check](results/libigl-double-tolerances-100/float_compatibility.json)
+reproduces all million float default signs and normal bytes, and every point's
+sign and validity at epsilon `1e-12`, `0.003`, and `0.01` against the earlier
+float module. The double sweep takes 44.3 seconds including I/O, with 23.5
+seconds in classifier calls. All 230 settings were independently recounted
+from the saved point arrays. Upstream defaults remain unchanged.
+
+To reproduce, use the same pinned source commits and configure/build commands
+above with build directory `.cache/precision/tolerances-double`, then run:
+
+```bash
+uv run --no-sync python sweep_tolerances.py \
+  --module .cache/precision/tolerances-double/_tolerance_sweep*.so \
+  --libigl-source /path/to/patched/libigl \
+  --bindings-source /path/to/patched/libigl-python-bindings \
+  --precision float64 \
+  --epsilons 0,1e-14,1e-12,1e-10,1e-9,1e-8,3e-8,1e-7,3e-7,1e-6,3e-6,1e-5,3e-5,1e-4,3e-4,1e-3,3e-3,1e-2,3e-2,1e-1,2e-1,3e-1,1 \
+  --output results/libigl-double-tolerances-100
+uv run --no-sync python summarize_tolerances.py results/libigl-double-tolerances-100
+```
+
+`--precision` defaults to `float32`; each precision selects its corresponding
+cached scalar baseline. `--baseline` can override that path, and the existing
+`--float-baseline` option remains an alias. Tolerances are converted to the
+selected scalar type before evaluation and recorded exactly in `config.json`.

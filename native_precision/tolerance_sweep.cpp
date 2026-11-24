@@ -13,18 +13,19 @@
 
 namespace nb = nanobind;
 using namespace nb::literals;
-using FloatMatrix = Eigen::Matrix<float,Eigen::Dynamic,Eigen::Dynamic,Options>;
 
+template <typename Scalar>
 struct PreparedMesh
 {
-  FloatMatrix vertices;
+  using Matrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic,Options>;
+  Matrix vertices;
   Eigen::MatrixXI faces;
-  Eigen::Matrix<float,Eigen::Dynamic,3> face_normals,vertex_normals,edge_normals;
+  Eigen::Matrix<Scalar,Eigen::Dynamic,3> face_normals,vertex_normals,edge_normals;
   Eigen::Matrix<Integer,Eigen::Dynamic,2> edges;
   Eigen::VectorXI edge_map;
 
   PreparedMesh(
-    const nb::DRef<const FloatMatrix> & v,
+    const nb::DRef<const Matrix> & v,
     const nb::DRef<const Eigen::MatrixXI> & f): vertices(v),faces(f)
   {
     if(v.cols()!=3 || f.cols()!=3 || v.rows()==0 || f.rows()==0 ||
@@ -39,11 +40,11 @@ struct PreparedMesh
   }
 
   auto classify(
-    const nb::DRef<const FloatMatrix> & points,
+    const nb::DRef<const Matrix> & points,
     const nb::DRef<const Eigen::VectorXI> & indices,
-    const nb::DRef<const FloatMatrix> & closest,
-    const float minimum_double_area,
-    const float epsilon) const
+    const nb::DRef<const Matrix> & closest,
+    const Scalar minimum_double_area,
+    const Scalar epsilon) const
   {
     if(points.cols()!=3 || closest.cols()!=3 || points.rows()==0 ||
        closest.rows()!=points.rows() || indices.size()!=points.rows() ||
@@ -53,14 +54,14 @@ struct PreparedMesh
     if(!std::isfinite(minimum_double_area) || minimum_double_area<0 ||
        !std::isfinite(epsilon) || epsilon<0)
       throw std::invalid_argument("Tolerances must be finite and nonnegative");
-    Eigen::VectorXf signs(points.rows());
-    FloatMatrix normals(points.rows(),3);
-    const nb::DRef<const FloatMatrix> vertex_ref(vertices);
+    Eigen::Matrix<Scalar,Eigen::Dynamic,1> signs(points.rows());
+    Matrix normals(points.rows(),3);
+    const nb::DRef<const Matrix> vertex_ref(vertices);
     const nb::DRef<const Eigen::MatrixXI> face_ref(faces);
     igl::parallel_for(points.rows(),[&](const int p)
     {
-      Eigen::RowVector3f q=points.row(p),c=closest.row(p),n;
-      float sign;
+      Eigen::Matrix<Scalar,1,3> q=points.row(p),c=closest.row(p),n;
+      Scalar sign;
       igl::pseudonormal_test_with_tolerances(
         vertex_ref,face_ref,face_normals,vertex_normals,edge_normals,edge_map,
         q,int(indices(p)),c,sign,n,minimum_double_area,epsilon);
@@ -73,9 +74,14 @@ struct PreparedMesh
 
 NB_MODULE(_tolerance_sweep,m)
 {
-  nb::class_<PreparedMesh>(m,"PreparedMesh")
-    .def(nb::init<const nb::DRef<const FloatMatrix> &,
+  nb::class_<PreparedMesh<float>>(m,"PreparedMesh")
+    .def(nb::init<const nb::DRef<const PreparedMesh<float>::Matrix> &,
       const nb::DRef<const Eigen::MatrixXI> &>(),"vertices"_a.noconvert(),"faces"_a)
-    .def("classify",&PreparedMesh::classify,"points"_a.noconvert(),"indices"_a,
+    .def("classify",&PreparedMesh<float>::classify,"points"_a.noconvert(),"indices"_a,
+      "closest"_a.noconvert(),"minimum_double_area"_a,"epsilon"_a);
+  nb::class_<PreparedMesh<double>>(m,"PreparedMeshDouble")
+    .def(nb::init<const nb::DRef<const PreparedMesh<double>::Matrix> &,
+      const nb::DRef<const Eigen::MatrixXI> &>(),"vertices"_a.noconvert(),"faces"_a)
+    .def("classify",&PreparedMesh<double>::classify,"points"_a.noconvert(),"indices"_a,
       "closest"_a.noconvert(),"minimum_double_area"_a,"epsilon"_a);
 }

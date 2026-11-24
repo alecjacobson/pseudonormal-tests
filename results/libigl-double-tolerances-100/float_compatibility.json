@@ -1,0 +1,33 @@
+{
+  "models": 100,
+  "points_per_setting": 1000000,
+  "settings": [
+    {
+      "setting_id": 0,
+      "minimum_double_area": 9.999999747378752e-05,
+      "epsilon": 9.999999960041972e-13
+    },
+    {
+      "setting_id": 1,
+      "minimum_double_area": 9.999999747378752e-05,
+      "epsilon": 0.003000000026077032
+    },
+    {
+      "setting_id": 2,
+      "minimum_double_area": 9.999999747378752e-05,
+      "epsilon": 0.009999999776482582
+    }
+  ],
+  "same_split_across_precisions": true,
+  "float_signs_and_validity_match_original_module": true,
+  "float_default_reproduction": {
+    "models": 100,
+    "points": 1000000,
+    "sign_changes": 0,
+    "normal_differing_bytes": 0,
+    "validity_changes": 0
+  },
+  "original_module_sha256": "92d5ec8167533accba7ec693993afcd22a7b7ff2dea19cb9fb12bbe62fe41ccf",
+  "dual_precision_module_sha256": "ab7c5ff274954f97d527fb255cf7b69a91b060eb8d704dd0425f644d668da58d",
+  "runner_sha256": "8aae8881128141f116f382fd4d7de6feec8b7ebc4318feb4af0798f3bab1dd7a"
+}

@@ -1,0 +1,1433 @@
+{
+  "settings": [
+    {
+      "setting_id": 0,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 1,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 2,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 3,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 4,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 5,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 6,
+      "minimum_double_area": 0.0,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 7,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 8,
+      "minimum_double_area": 0.0,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 9,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 10,
+      "minimum_double_area": 0.0,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 11,
+      "minimum_double_area": 0.0,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 12,
+      "minimum_double_area": 0.0,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 13,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 14,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 15,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 16,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 17,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 18,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 19,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 20,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 21,
+      "minimum_double_area": 0.0,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 22,
+      "minimum_double_area": 0.0,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 23,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 24,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 25,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 26,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 27,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 28,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 29,
+      "minimum_double_area": 1e-12,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 30,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 31,
+      "minimum_double_area": 1e-12,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 32,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 33,
+      "minimum_double_area": 1e-12,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 34,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 35,
+      "minimum_double_area": 1e-12,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 36,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 37,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 38,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 39,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 40,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 41,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 42,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 43,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 44,
+      "minimum_double_area": 1e-12,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 45,
+      "minimum_double_area": 1e-12,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 46,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 47,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 48,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 49,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 50,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 51,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 52,
+      "minimum_double_area": 1e-08,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 53,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 54,
+      "minimum_double_area": 1e-08,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 55,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 56,
+      "minimum_double_area": 1e-08,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 57,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 58,
+      "minimum_double_area": 1e-08,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 59,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 60,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 61,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 62,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 63,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 64,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 65,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 66,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 67,
+      "minimum_double_area": 1e-08,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 68,
+      "minimum_double_area": 1e-08,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 69,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 70,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 71,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 72,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 73,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 74,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 75,
+      "minimum_double_area": 1e-06,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 76,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 77,
+      "minimum_double_area": 1e-06,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 78,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 79,
+      "minimum_double_area": 1e-06,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 80,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 81,
+      "minimum_double_area": 1e-06,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 82,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 83,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 84,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 85,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 86,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 87,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 88,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 89,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 90,
+      "minimum_double_area": 1e-06,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 91,
+      "minimum_double_area": 1e-06,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 92,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 93,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 94,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 95,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 96,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 97,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 98,
+      "minimum_double_area": 0.0001,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 99,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 100,
+      "minimum_double_area": 0.0001,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 101,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 102,
+      "minimum_double_area": 0.0001,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 103,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 104,
+      "minimum_double_area": 0.0001,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 105,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 106,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 107,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 108,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 109,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 110,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 111,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 112,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 113,
+      "minimum_double_area": 0.0001,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 114,
+      "minimum_double_area": 0.0001,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 115,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 116,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 117,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 118,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 119,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 120,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 121,
+      "minimum_double_area": 0.01,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 122,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 123,
+      "minimum_double_area": 0.01,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 124,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 125,
+      "minimum_double_area": 0.01,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 126,
+      "minimum_double_area": 0.01,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 127,
+      "minimum_double_area": 0.01,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 128,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 129,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 130,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 131,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 132,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 133,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 134,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 135,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 136,
+      "minimum_double_area": 0.01,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 137,
+      "minimum_double_area": 0.01,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 138,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 139,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 140,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 141,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 142,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 143,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 144,
+      "minimum_double_area": 1.0,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 145,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 146,
+      "minimum_double_area": 1.0,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 147,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 148,
+      "minimum_double_area": 1.0,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 149,
+      "minimum_double_area": 1.0,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 150,
+      "minimum_double_area": 1.0,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 151,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 152,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 153,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 154,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 155,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 156,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 157,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 158,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 159,
+      "minimum_double_area": 1.0,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 160,
+      "minimum_double_area": 1.0,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 161,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 162,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 163,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 164,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 165,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 166,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 167,
+      "minimum_double_area": 100.0,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 168,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 169,
+      "minimum_double_area": 100.0,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 170,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 171,
+      "minimum_double_area": 100.0,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 172,
+      "minimum_double_area": 100.0,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 173,
+      "minimum_double_area": 100.0,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 174,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 175,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 176,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 177,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 178,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 179,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 180,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 181,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 182,
+      "minimum_double_area": 100.0,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 183,
+      "minimum_double_area": 100.0,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 184,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 185,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 186,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 187,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 188,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 189,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 190,
+      "minimum_double_area": 10000.0,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 191,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 192,
+      "minimum_double_area": 10000.0,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 193,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 194,
+      "minimum_double_area": 10000.0,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 195,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 196,
+      "minimum_double_area": 10000.0,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 197,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 198,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 199,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 200,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 201,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 202,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 203,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 204,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 205,
+      "minimum_double_area": 10000.0,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 206,
+      "minimum_double_area": 10000.0,
+      "epsilon": 1.0
+    },
+    {
+      "setting_id": 207,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.0
+    },
+    {
+      "setting_id": 208,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-14
+    },
+    {
+      "setting_id": 209,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-12
+    },
+    {
+      "setting_id": 210,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-10
+    },
+    {
+      "setting_id": 211,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-09
+    },
+    {
+      "setting_id": 212,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-08
+    },
+    {
+      "setting_id": 213,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 3e-08
+    },
+    {
+      "setting_id": 214,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-07
+    },
+    {
+      "setting_id": 215,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 3e-07
+    },
+    {
+      "setting_id": 216,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-06
+    },
+    {
+      "setting_id": 217,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 3e-06
+    },
+    {
+      "setting_id": 218,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1e-05
+    },
+    {
+      "setting_id": 219,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 3e-05
+    },
+    {
+      "setting_id": 220,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.0001
+    },
+    {
+      "setting_id": 221,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.0003
+    },
+    {
+      "setting_id": 222,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.001
+    },
+    {
+      "setting_id": 223,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.003
+    },
+    {
+      "setting_id": 224,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.01
+    },
+    {
+      "setting_id": 225,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.03
+    },
+    {
+      "setting_id": 226,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.1
+    },
+    {
+      "setting_id": 227,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.2
+    },
+    {
+      "setting_id": 228,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 0.3
+    },
+    {
+      "setting_id": 229,
+      "minimum_double_area": 100000000.0,
+      "epsilon": 1.0
+    }
+  ],
+  "default_setting_id": 94,
+  "reference": "results/initial-100",
+  "precision": "float64",
+  "baseline": "results/libigl-scalar-double-100",
+  "requested_areas": "0,1e-12,1e-8,1e-6,1e-4,1e-2,1,1e2,1e4,1e8",
+  "requested_epsilons": "0,1e-14,1e-12,1e-10,1e-9,1e-8,3e-8,1e-7,3e-7,1e-6,3e-6,1e-5,3e-5,1e-4,3e-4,1e-3,3e-3,1e-2,3e-2,1e-1,2e-1,3e-1,1",
+  "threads": 4,
+  "split_seed": 20261124,
+  "tuning_ids": [
+    38464,
+    38638,
+    40848,
+    42194,
+    43858,
+    44903,
+    47748,
+    48224,
+    49382,
+    50114,
+    50430,
+    53432,
+    58069,
+    61136,
+    67516,
+    69701,
+    71307,
+    75114,
+    80365,
+    81261,
+    82257,
+    82407,
+    91455,
+    104640,
+    124368,
+    133993,
+    136935,
+    137977,
+    167110,
+    196188,
+    196209,
+    225950,
+    289650,
+    296803,
+    375271,
+    472081,
+    472126,
+    611675,
+    697223,
+    697227,
+    777041,
+    914672,
+    940414,
+    985159,
+    1095206,
+    1129073,
+    1146196,
+    1395585,
+    1517909,
+    1536356
+  ],
+  "holdout_ids": [
+    37886,
+    40585,
+    43850,
+    43995,
+    44102,
+    47851,
+    49383,
+    59494,
+    65282,
+    65618,
+    65755,
+    76291,
+    76724,
+    79195,
+    81181,
+    81223,
+    87431,
+    106090,
+    106725,
+    108147,
+    110173,
+    112230,
+    113908,
+    129925,
+    151376,
+    196127,
+    205450,
+    214482,
+    225969,
+    441728,
+    442388,
+    464842,
+    471993,
+    472038,
+    482738,
+    500091,
+    567027,
+    593383,
+    1063854,
+    1080515,
+    1120766,
+    1146192,
+    1223673,
+    1223674,
+    1233195,
+    1484067,
+    1489599,
+    1494102,
+    1582419,
+    1621241
+  ],
+  "selection": "Minimize tuning-set counted disagreements, then invalid queries, then log-distance of parameters from defaults (area first). Holdout models do not select parameters.",
+  "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/tolerances-double/_tolerance_sweep.cpython-312-x86_64-linux-gnu.so",
+  "module_sha256": "ab7c5ff274954f97d527fb255cf7b69a91b060eb8d704dd0425f644d668da58d",
+  "runner_sha256": "8aae8881128141f116f382fd4d7de6feec8b7ebc4318feb4af0798f3bab1dd7a",
+  "libigl": {
+    "commit": "8e59c1897bb33a03d06a79b23c803e299cf890b0",
+    "diff": ""
+  },
+  "bindings": {
+    "commit": "51d6dee06139682c08163012b00b5945095c38f1",
+    "diff": ""
+  },
+  "generated_classifier": {
+    "source": "/home/horde/projects/libigl/include/igl/pseudonormal_test.cpp",
+    "source_sha256": "6593d9ccf60b07f0a63a3df984f5dc5a750860b505d2153c3a1efeb4c8403712",
+    "generated_sha256": "b39d01586461d145b026c5f407ca29ad5a181915fdc6ec364cb69ff6320dc164",
+    "replacements": {
+      "igl::pseudonormal_test(": "pseudonormal_test_with_tolerances(",
+      "Eigen::PlainObjectBase<Derivedn> & n)": "Eigen::PlainObjectBase<Derivedn> & n,\n  const Scalar minimum_double_area,\n  const Scalar epsilon)",
+      "  const Scalar MIN_DOUBLE_AREA = Scalar(1e-4);\n": "",
+      "  const Scalar epsilon = Scalar(1e-12);\n": "",
+      "if(area>MIN_DOUBLE_AREA)": "if(area>minimum_double_area)"
+    }
+  },
+  "cpp_wrapper_sha256": "e3653b21439bca9abfbd0b50e3d9dcb2c5b8f5b1e06ecd87f96bf175598627a9",
+  "reference_config": {
+    "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+    "dataset_repository": "Thingi10K/Thingi10K",
+    "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+    "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+    "metadata_rows": 9997,
+    "eligible_models": 4963,
+    "filter": {
+      "solid": 1,
+      "vertex_manifold": 1,
+      "edge_manifold": 1
+    },
+    "models": 100,
+    "points_per_model": 10000,
+    "seed": 20261123,
+    "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+    "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+    "relative_cutoff": 0.001,
+    "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+    "sign_p": "+1 if libigl signed_distance < 0, else -1",
+    "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+    "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+    "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+    "metadata_load_seconds": 0.053365965955890715,
+    "environment": {
+      "python": "3.12.3",
+      "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+      "cpu_model": "AMD EPYC 9B45",
+      "logical_cpus": 192,
+      "cpu_affinity_count": 192,
+      "cgroup_cpu_max": "400000 100000",
+      "igl_num_threads": "4",
+      "packages": {
+        "libigl": "2.6.3",
+        "numpy": "2.5.5",
+        "scipy": "1.18.1",
+        "huggingface-hub": "1.33.0"
+      },
+      "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+      "source_sha256": {
+        "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+        "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+        "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+      }
+    }
+  },
+  "baseline_config": {
+    "started_at_utc": "2026-11-23T22:02:10.209661+00:00",
+    "variant": "patched_double",
+    "dtype": "float64",
+    "quantize_inputs_to_float32_first": false,
+    "reference": "results/initial-100",
+    "reference_config": {
+      "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+      "dataset_repository": "Thingi10K/Thingi10K",
+      "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+      "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+      "metadata_rows": 9997,
+      "eligible_models": 4963,
+      "filter": {
+        "solid": 1,
+        "vertex_manifold": 1,
+        "edge_manifold": 1
+      },
+      "models": 100,
+      "points_per_model": 10000,
+      "seed": 20261123,
+      "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+      "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+      "relative_cutoff": 0.001,
+      "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+      "sign_p": "+1 if libigl signed_distance < 0, else -1",
+      "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+      "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+      "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+      "metadata_load_seconds": 0.053365965955890715,
+      "environment": {
+        "python": "3.12.3",
+        "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+        "cpu_model": "AMD EPYC 9B45",
+        "logical_cpus": 192,
+        "cpu_affinity_count": 192,
+        "cgroup_cpu_max": "400000 100000",
+        "igl_num_threads": "4",
+        "packages": {
+          "libigl": "2.6.3",
+          "numpy": "2.5.5",
+          "scipy": "1.18.1",
+          "huggingface-hub": "1.33.0"
+        },
+        "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+        "source_sha256": {
+          "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+          "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+          "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+        }
+      }
+    },
+    "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/patched/_precision_patched.cpython-312-x86_64-linux-gnu.so",
+    "module_sha256": "9a4064907c682ca2573b8a45c5b2505da93bf9d386fe89628b545ce8c696728c",
+    "runner_sha256": "c23cae7032d1f3263aa839a6248590bb1134468fd0be0474e92f0bca644420dd",
+    "cmake_cache_settings": [
+      "CMAKE_BUILD_TYPE:STRING=Release",
+      "CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++",
+      "CMAKE_CXX_FLAGS:STRING=",
+      "CMAKE_CXX_FLAGS_DEBUG:STRING=-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+      "FETCHCONTENT_SOURCE_DIR_CATCH2:PATH=",
+      "FETCHCONTENT_SOURCE_DIR_EIGEN:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/eigen-src",
+      "FETCHCONTENT_SOURCE_DIR_NANOBIND:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src",
+      "PRECISION_MODULE:STRING=_precision_patched",
+      "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1"
+    ],
+    "libigl": {
+      "commit": "0641c7029519a6ad4e66b3823b40055c91115f12",
+      "diff": ""
+    },
+    "bindings": {
+      "commit": "eac43e8fa1b29fb91645200287a17798774dce74",
+      "diff": ""
+    },
+    "threads": 4,
+    "module_load_seconds": 0.00038869993295520544,
+    "metadata_load_seconds": 0.0004856300074607134,
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "numpy": "2.5.5",
+    "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "query_timing": "One full batch per model, including internal AABB and normal setup",
+    "mask": "saved original double d > 0.001 * original bbd"
+  },
+  "cmake_cache": "# This is the CMakeCache file.\n# For build in directory: /home/horde/projects/pseudonormal-tests/.cache/precision/tolerances-double\n# It was generated by CMake: /usr/bin/cmake\n# You can edit this file to change values found and used by cmake.\n# If you do not want to change any of the values, simply exit the editor.\n# If you do want to change a value, simply edit, save, and exit the editor.\n# The syntax for the file is as follows:\n# KEY:TYPE=VALUE\n# KEY is the name of a variable in the cache.\n# TYPE is a hint to GUIs for the type of VALUE, DO NOT EDIT TYPE!.\n# VALUE is the current value for the KEY.\n\n########################\n# EXTERNAL cache entries\n########################\n\n//libigl Python bindings checkout to measure\nBINDINGS_SOURCE_DIR:PATH=/home/horde/projects/libigl-python-bindings\n\n//Path to a program.\nCMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line\n\n//Path to a program.\nCMAKE_AR:FILEPATH=/usr/bin/ar\n\n//Choose the type of build, options are: None Debug Release RelWithDebInfo\n// MinSizeRel ...\nCMAKE_BUILD_TYPE:STRING=Release\n\n//CXX compiler\nCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++\n\n//A wrapper around 'ar' adding the appropriate '--plugin' option\n// for the GCC compiler\nCMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-13\n\n//A wrapper around 'ranlib' adding the appropriate '--plugin' option\n// for the GCC compiler\nCMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-13\n\n//Flags used by the CXX compiler during all build types.\nCMAKE_CXX_FLAGS:STRING=\n\n//Flags used by the CXX compiler during DEBUG builds.\nCMAKE_CXX_FLAGS_DEBUG:STRING=-g\n\n//Flags used by the CXX compiler during MINSIZEREL builds.\nCMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG\n\n//Flags used by the CXX compiler during RELEASE builds.\nCMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG\n\n//Flags used by the CXX compiler during RELWITHDEBINFO builds.\nCMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG\n\n//Path to a program.\nCMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND\n\n//Flags used by the linker during all build types.\nCMAKE_EXE_LINKER_FLAGS:STRING=\n\n//Flags used by the linker during DEBUG builds.\nCMAKE_EXE_LINKER_FLAGS_DEBUG:STRING=\n\n//Flags used by the linker during MINSIZEREL builds.\nCMAKE_EXE_LINKER_FLAGS_MINSIZEREL:STRING=\n\n//Flags used by the linker during RELEASE builds.\nCMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=\n\n//Flags used by the linker during RELWITHDEBINFO builds.\nCMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=\n\n//Enable/Disable output of compile commands during generation.\nCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=\n\n//Value Computed by CMake.\nCMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/home/horde/projects/pseudonormal-tests/.cache/precision/tolerances-double/CMakeFiles/pkgRedirects\n\n//Install path prefix, prepended onto install directories.\nCMAKE_INSTALL_PREFIX:PATH=/usr/local\n\n//Path to a program.\nCMAKE_LINKER:FILEPATH=/usr/bin/ld\n\n//Program used to build from build.ninja files.\nCMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/ninja\n\n//Flags used by the linker during the creation of modules during\n// all build types.\nCMAKE_MODULE_LINKER_FLAGS:STRING=\n\n//Flags used by the linker during the creation of modules during\n// DEBUG builds.\nCMAKE_MODULE_LINKER_FLAGS_DEBUG:STRING=\n\n//Flags used by the linker during the creation of modules during\n// MINSIZEREL builds.\nCMAKE_MODULE_LINKER_FLAGS_MINSIZEREL:STRING=\n\n//Flags used by the linker during the creation of modules during\n// RELEASE builds.\nCMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=\n\n//Flags used by the linker during the creation of modules during\n// RELWITHDEBINFO builds.\nCMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=\n\n//Path to a program.\nCMAKE_NM:FILEPATH=/usr/bin/nm\n\n//Path to a program.\nCMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy\n\n//Path to a program.\nCMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump\n\n//Value Computed by CMake\nCMAKE_PROJECT_DESCRIPTION:STATIC=\n\n//Value Computed by CMake\nCMAKE_PROJECT_HOMEPAGE_URL:STATIC=\n\n//Value Computed by CMake\nCMAKE_PROJECT_NAME:STATIC=pseudonormal_precision\n\n//Value Computed by CMake\nCMAKE_PROJECT_VERSION:STATIC=2.7.0\n\n//Value Computed by CMake\nCMAKE_PROJECT_VERSION_MAJOR:STATIC=2\n\n//Value Computed by CMake\nCMAKE_PROJECT_VERSION_MINOR:STATIC=7\n\n//Value Computed by CMake\nCMAKE_PROJECT_VERSION_PATCH:STATIC=0\n\n//Value Computed by CMake\nCMAKE_PROJECT_VERSION_TWEAK:STATIC=\n\n//Path to a program.\nCMAKE_RANLIB:FILEPATH=/usr/bin/ranlib\n\n//Path to a program.\nCMAKE_READELF:FILEPATH=/usr/bin/readelf\n\n//Flags used by the linker during the creation of shared libraries\n// during all build types.\nCMAKE_SHARED_LINKER_FLAGS:STRING=\n\n//Flags used by the linker during the creation of shared libraries\n// during DEBUG builds.\nCMAKE_SHARED_LINKER_FLAGS_DEBUG:STRING=\n\n//Flags used by the linker during the creation of shared libraries\n// during MINSIZEREL builds.\nCMAKE_SHARED_LINKER_FLAGS_MINSIZEREL:STRING=\n\n//Flags used by the linker during the creation of shared libraries\n// during RELEASE builds.\nCMAKE_SHARED_LINKER_FLAGS_RELEASE:STRING=\n\n//Flags used by the linker during the creation of shared libraries\n// during RELWITHDEBINFO builds.\nCMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO:STRING=\n\n//If set, runtime paths are not added when installing shared libraries,\n// but are added when building.\nCMAKE_SKIP_INSTALL_RPATH:BOOL=NO\n\n//If set, runtime paths are not added when using shared libraries.\nCMAKE_SKIP_RPATH:BOOL=NO\n\n//Flags used by the linker during the creation of static libraries\n// during all build types.\nCMAKE_STATIC_LINKER_FLAGS:STRING=\n\n//Flags used by the linker during the creation of static libraries\n// during DEBUG builds.\nCMAKE_STATIC_LINKER_FLAGS_DEBUG:STRING=\n\n//Flags used by the linker during the creation of static libraries\n// during MINSIZEREL builds.\nCMAKE_STATIC_LINKER_FLAGS_MINSIZEREL:STRING=\n\n//Flags used by the linker during the creation of static libraries\n// during RELEASE builds.\nCMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=\n\n//Flags used by the linker during the creation of static libraries\n// during RELWITHDEBINFO builds.\nCMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=\n\n//Path to a program.\nCMAKE_STRIP:FILEPATH=/usr/bin/strip\n\n//Path to a program.\nCMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND\n\n//If this value is on, makefiles will be generated without the\n// .SILENT directive, and all commands will be echoed to the console\n// during the make.  This is useful for debugging only. With Visual\n// Studio IDE projects all commands are done without /nologo.\nCMAKE_VERBOSE_MAKEFILE:BOOL=FALSE\n\n//Directory under which to collect all populated content\nFETCHCONTENT_BASE_DIR:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/tolerances-double/_deps\n\n//Disables all attempts to download or update content and assumes\n// source dirs already exist\nFETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF\n\n//Enables QUIET option for all content population\nFETCHCONTENT_QUIET:BOOL=ON\n\n//When not empty, overrides where to find pre-populated content\n// for eigen\nFETCHCONTENT_SOURCE_DIR_EIGEN:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/eigen-src\n\n//When not empty, overrides where to find pre-populated content\n// for nanobind\nFETCHCONTENT_SOURCE_DIR_NANOBIND:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src\n\n//Enables UPDATE_DISCONNECTED behavior for all content population\nFETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF\n\n//libigl checkout to measure\nLIBIGL_SOURCE_DIR:PATH=/home/horde/projects/libigl\n\n//Create installation rules\nNB_CREATE_INSTALL_RULES:BOOL=OFF\n\n//Compile nanobind tests?\nNB_TEST:BOOL=OFF\n\n//Force the use of the CUDA/NVCC compiler for testing purposes\nNB_TEST_CUDA:BOOL=OFF\n\n//Build free-threaded extensions for the test suite?\nNB_TEST_FREE_THREADED:BOOL=ON\n\n//Build tests with the address sanitizer?\nNB_TEST_SANITIZERS_ASAN:BOOL=OFF\n\n//Build tests with the thread sanitizer?\nNB_TEST_SANITIZERS_TSAN:BOOL=OFF\n\n//Build tests with the address undefined behavior sanitizer?\nNB_TEST_SANITIZERS_UBSAN:BOOL=OFF\n\n//Build a shared nanobind library for the test suite?\nNB_TEST_SHARED_BUILD:BOOL=OFF\n\n//Test the stable ABI interface?\nNB_TEST_STABLE_ABI:BOOL=OFF\n\n//Use the nanobind dependencies shipped as a git submodule of this\n// repository\nNB_USE_SUBMODULE_DEPS:BOOL=ON\n\n//Build the affected upstream C++ tests\nPRECISION_BUILD_TESTS:BOOL=OFF\n\n//Build the runtime tolerance experiment\nPRECISION_BUILD_TOLERANCE_SWEEP:BOOL=ON\n\n//Import name of this build\nPRECISION_MODULE:STRING=_precision\n\n//No help, variable specified on the command line.\nPython_EXECUTABLE:UNINITIALIZED=/home/horde/projects/pseudonormal-tests/.venv/bin/python\n\n//Value Computed by CMake\nnanobind_BINARY_DIR:STATIC=/home/horde/projects/pseudonormal-tests/.cache/precision/tolerances-double/_deps/nanobind-build\n\n//Value Computed by CMake\nnanobind_IS_TOP_LEVEL:STATIC=OFF\n\n//Value Computed by CMake\nnanobind_SOURCE_DIR:STATIC=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src\n\n//Value Computed by CMake\npseudonormal_precision_BINARY_DIR:STATIC=/home/horde/projects/pseudonormal-tests/.cache/precision/tolerances-double\n\n//Value Computed by CMake\npseudonormal_precision_IS_TOP_LEVEL:STATIC=ON\n\n//Value Computed by CMake\npseudonormal_precision_SOURCE_DIR:STATIC=/home/horde/projects/pseudonormal-tests/native_precision\n\n\n########################\n# INTERNAL cache entries\n########################\n\n//ADVANCED property for variable: CMAKE_ADDR2LINE\nCMAKE_ADDR2LINE-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_AR\nCMAKE_AR-ADVANCED:INTERNAL=1\n//This is the directory where this CMakeCache.txt was created\nCMAKE_CACHEFILE_DIR:INTERNAL=/home/horde/projects/pseudonormal-tests/.cache/precision/tolerances-double\n//Major version of cmake used to create the current loaded cache\nCMAKE_CACHE_MAJOR_VERSION:INTERNAL=3\n//Minor version of cmake used to create the current loaded cache\nCMAKE_CACHE_MINOR_VERSION:INTERNAL=28\n//Patch version of cmake used to create the current loaded cache\nCMAKE_CACHE_PATCH_VERSION:INTERNAL=3\n//Path to CMake executable.\nCMAKE_COMMAND:INTERNAL=/usr/bin/cmake\n//Path to cpack program executable.\nCMAKE_CPACK_COMMAND:INTERNAL=/usr/bin/cpack\n//Path to ctest program executable.\nCMAKE_CTEST_COMMAND:INTERNAL=/usr/bin/ctest\n//ADVANCED property for variable: CMAKE_CXX_COMPILER\nCMAKE_CXX_COMPILER-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_CXX_COMPILER_AR\nCMAKE_CXX_COMPILER_AR-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_CXX_COMPILER_RANLIB\nCMAKE_CXX_COMPILER_RANLIB-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_CXX_FLAGS\nCMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_CXX_FLAGS_DEBUG\nCMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_CXX_FLAGS_MINSIZEREL\nCMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELEASE\nCMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO\nCMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_DLLTOOL\nCMAKE_DLLTOOL-ADVANCED:INTERNAL=1\n//Executable file format\nCMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF\n//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS\nCMAKE_EXE_LINKER_FLAGS-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_DEBUG\nCMAKE_EXE_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_MINSIZEREL\nCMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELEASE\nCMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO\nCMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS\nCMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1\n//Name of external makefile project generator.\nCMAKE_EXTRA_GENERATOR:INTERNAL=\n//Name of generator.\nCMAKE_GENERATOR:INTERNAL=Ninja\n//Generator instance identifier.\nCMAKE_GENERATOR_INSTANCE:INTERNAL=\n//Name of generator platform.\nCMAKE_GENERATOR_PLATFORM:INTERNAL=\n//Name of generator toolset.\nCMAKE_GENERATOR_TOOLSET:INTERNAL=\n//Source directory with the top level CMakeLists.txt file for this\n// project\nCMAKE_HOME_DIRECTORY:INTERNAL=/home/horde/projects/pseudonormal-tests/native_precision\n//Install .so files without execute permission.\nCMAKE_INSTALL_SO_NO_EXE:INTERNAL=1\n//ADVANCED property for variable: CMAKE_LINKER\nCMAKE_LINKER-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_MAKE_PROGRAM\nCMAKE_MAKE_PROGRAM-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS\nCMAKE_MODULE_LINKER_FLAGS-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_DEBUG\nCMAKE_MODULE_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL\nCMAKE_MODULE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELEASE\nCMAKE_MODULE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO\nCMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_NM\nCMAKE_NM-ADVANCED:INTERNAL=1\n//number of local generators\nCMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2\n//ADVANCED property for variable: CMAKE_OBJCOPY\nCMAKE_OBJCOPY-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_OBJDUMP\nCMAKE_OBJDUMP-ADVANCED:INTERNAL=1\n//Platform information initialized\nCMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_RANLIB\nCMAKE_RANLIB-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_READELF\nCMAKE_READELF-ADVANCED:INTERNAL=1\n//Path to CMake installation.\nCMAKE_ROOT:INTERNAL=/usr/share/cmake-3.28\n//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS\nCMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG\nCMAKE_SHARED_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL\nCMAKE_SHARED_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_RELEASE\nCMAKE_SHARED_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO\nCMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_SKIP_INSTALL_RPATH\nCMAKE_SKIP_INSTALL_RPATH-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_SKIP_RPATH\nCMAKE_SKIP_RPATH-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS\nCMAKE_STATIC_LINKER_FLAGS-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_DEBUG\nCMAKE_STATIC_LINKER_FLAGS_DEBUG-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL\nCMAKE_STATIC_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_RELEASE\nCMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO\nCMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_STRIP\nCMAKE_STRIP-ADVANCED:INTERNAL=1\n//ADVANCED property for variable: CMAKE_TAPI\nCMAKE_TAPI-ADVANCED:INTERNAL=1\n//uname command\nCMAKE_UNAME:INTERNAL=/usr/bin/uname\n//ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE\nCMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1\n//Details about finding Python\nFIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/home/horde/projects/pseudonormal-tests/.venv/bin/python][/usr/include/python3.12][cfound components: Interpreter Development.Module ][v3.12.3(3.12)]\nNB_ABI:INTERNAL=312\nNB_DIR:INTERNAL=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src\nNB_OPT:INTERNAL=$<OR:$<CONFIG:Release>,$<CONFIG:MinSizeRel>>\nNB_OPT_SIZE:INTERNAL=$<OR:$<CONFIG:Release>,$<CONFIG:MinSizeRel>,$<CONFIG:RelWithDebInfo>>\nNB_SUFFIX:INTERNAL=.cpython-312-x86_64-linux-gnu.so\nNB_SUFFIX_S:INTERNAL=.abi3.so\n//linker supports push/pop state\n_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE\n//Compiler reason failure\n_Python_Compiler_REASON_FAILURE:INTERNAL=\n_Python_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=95a6b3a905b31a053078ff046e537c6d\n//Development reason failure\n_Python_Development_REASON_FAILURE:INTERNAL=\n_Python_EXECUTABLE:INTERNAL=/home/horde/projects/pseudonormal-tests/.venv/bin/python\n//Path to a file.\n_Python_INCLUDE_DIR:INTERNAL=/usr/include/python3.12\n//Python Properties\n_Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;12;3;64;;cpython-312-x86_64-linux-gnu;abi3;/usr/lib/python3.12;/home/horde/projects/pseudonormal-tests/.venv/lib/python3.12;/home/horde/projects/pseudonormal-tests/.venv/lib/python3.12/site-packages;/home/horde/projects/pseudonormal-tests/.venv/lib/python3.12/site-packages\n_Python_INTERPRETER_SIGNATURE:INTERNAL=5c52ce547be3e3b10a9c5b1f5ed8d640\n//NumPy reason failure\n_Python_NumPy_REASON_FAILURE:INTERNAL=\n\n",
+  "coordinates": "Original scale and position; parameters are absolute values with original semantics",
+  "epsilon_units": "Dimensionless for barycentrics in the area branch; coordinate-distance units in the small-area branch",
+  "area_units": "Twice triangle area, in squared coordinate units",
+  "mask": "Saved original double d > 0.001 * original bbd",
+  "queries": "Classifier only, with cached patched-float64 closest features and once-per-model normal construction"
+}
