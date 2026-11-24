@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "libigl_commit": "a72d3b843889289d2a8fdab6756d10c1e4714597",
+  "cpp_tests": {
+    "cases": 13,
+    "assertions": 312,
+    "passed": true
+  },
+  "regression_before_tolerance_change": {
+    "cases": 2,
+    "failed": 2,
+    "assertions": 6,
+    "failed_assertions": 2
+  },
+  "python_precision_tests": {
+    "passed": 26,
+    "scope": "Focused signed-distance module compiled from the companion binding source; full core not rebuilt for this dependency update"
+  },
+  "double_promotion_audit": "Passed -Werror=double-promotion for native_precision/audit_float.cpp",
+  "runtime_generator": "Generated updated conditional-epsilon classifier and passed C++ syntax check",
+  "production_replay": {
+    "models": 104,
+    "points_per_precision": 1040000,
+    "matches_saved_tuned_signs_normal_bytes_validity": true,
+    "unsigned_distances_closest_points_indices_unchanged": true
+  },
+  "known_limitations": "Scale-dependent small-area feature classification; existing edge normalization failures remain; full-set rates refer to the prior frozen runtime-tolerance validation."
+}

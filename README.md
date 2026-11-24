@@ -628,3 +628,30 @@ Use a fresh output directory for each replay. The standalone
 subnormal and exact-zero cases; compiling with `-DEIGEN_FAST_MATH=0` resolves
 the former but leaves the latter. This experiment does not modify upstream
 libigl or its default behavior.
+
+## Tuned defaults in the upstream PR
+
+Libigl PR [2583](https://github.com/libigl/libigl/pull/2583) now incorporates
+the validated 3D epsilons: `0.003` for float and `1e-9` for double, retaining
+area threshold `1e-4`. The 2D overload and other scalar types retain `1e-12`.
+Normalization is unchanged. The earlier reports describe their pinned
+historical source revisions, including the previous defaults.
+
+[Production validation](results/libigl-tuned-defaults-104/FINDINGS.md) on the
+original 100 models plus all invalid-output models reproduces every tuned
+sign and normal byte on 1.04 million points per precision, with identical
+unsigned distances and nearest geometry. The original 100 models give three
+float disagreements (including one invalid normal) and zero double disagreements.
+
+Build a fresh precision module against the updated core commit using the
+`native_precision` CMake project, then run:
+
+```bash
+HF_HUB_OFFLINE=1 uv run --no-sync python validate_tuned_defaults.py \
+  --module .cache/precision/tuned-defaults/_precision_tuned*.so \
+  --output results/libigl-tuned-defaults-104
+```
+
+The runtime-classifier generator accepts both the original and new epsilon
+declarations, so future parameter experiments can continue to use a single
+compiled module. Existing baseline binaries remain cached unchanged.

@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "models": 104,
+  "wall_seconds": 51.115266909007914,
+  "pointwise_normal_bytes_sign_validity_and_nearest_geometry_match": true,
+  "groups": {
+    "all": {
+      "float32": {
+        "points": 1040000,
+        "disagreements": 365,
+        "finite_disagreements": 2,
+        "invalid_queries": 369,
+        "query_seconds": 25.414620211115107
+      },
+      "float64": {
+        "points": 1040000,
+        "disagreements": 277,
+        "finite_disagreements": 277,
+        "invalid_queries": 0,
+        "query_seconds": 24.440361376386136
+      }
+    },
+    "original_100": {
+      "float32": {
+        "points": 1000000,
+        "disagreements": 3,
+        "finite_disagreements": 2,
+        "invalid_queries": 1,
+        "query_seconds": 25.382121468079276
+      },
+      "float64": {
+        "points": 1000000,
+        "disagreements": 0,
+        "finite_disagreements": 0,
+        "invalid_queries": 0,
+        "query_seconds": 24.37576161150355
+      }
+    }
+  }
+}

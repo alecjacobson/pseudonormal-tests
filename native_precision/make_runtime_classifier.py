@@ -12,6 +12,10 @@ def generate(source, output):
     begin = text.index("template <")
     end = text.index("\ntemplate <", begin + 1)
     function = text[begin:end]
+    # Accept both the original constant and the precision-dependent defaults.
+    epsilon_begin = function.index("  const Scalar epsilon = ")
+    epsilon_end = function.index(";\n", epsilon_begin) + len(";\n")
+    epsilon_declaration = function[epsilon_begin:epsilon_end]
     replacements = {
         "igl::pseudonormal_test(": "pseudonormal_test_with_tolerances(",
         "Eigen::PlainObjectBase<Derivedn> & n)": (
@@ -20,7 +24,7 @@ def generate(source, output):
             "  const Scalar epsilon)"
         ),
         "  const Scalar MIN_DOUBLE_AREA = Scalar(1e-4);\n": "",
-        "  const Scalar epsilon = Scalar(1e-12);\n": "",
+        epsilon_declaration: "",
         "if(area>MIN_DOUBLE_AREA)": "if(area>minimum_double_area)",
     }
     for before, after in replacements.items():
