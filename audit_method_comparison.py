@@ -178,6 +178,14 @@ def audit(output):
         np.testing.assert_allclose(
             summary["methods"][method]["percent_away"], 100 * values["disagreements"] / away_total
         )
+    cached_recount = output / "cached_recount.json"
+    if cached_recount.exists():
+        cached = json.loads(cached_recount.read_text())
+        np.testing.assert_equal(cached["points"], points_total)
+        np.testing.assert_equal(cached["away"], away_total)
+        for method in LABELS:
+            for key in ("disagreements", "old_cutoff_disagreements"):
+                np.testing.assert_equal(cached["methods"][method][key], totals[method][key])
     if config["full_mask"]:
         feature_summary = json.loads((Path(config["feature_control"]) / "summary.json").read_text())
         warp_summary = json.loads((Path(config["warp_control"]) / "summary.json").read_text())

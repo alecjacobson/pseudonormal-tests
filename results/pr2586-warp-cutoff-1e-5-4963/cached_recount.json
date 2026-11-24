@@ -1,0 +1,1277 @@
+{
+  "source": "Recount of saved earlier query outputs; fresh-query run audited separately",
+  "points": 49630000,
+  "away": 49613294,
+  "methods": {
+    "igl_float": {
+      "disagreements": 158,
+      "old_cutoff_disagreements": 150,
+      "affected_models": 22
+    },
+    "igl_double": {
+      "disagreements": 62,
+      "old_cutoff_disagreements": 62,
+      "affected_models": 2
+    },
+    "warp_p": {
+      "disagreements": 12016,
+      "old_cutoff_disagreements": 11817,
+      "affected_models": 2359
+    },
+    "warp_w": {
+      "disagreements": 0,
+      "old_cutoff_disagreements": 0,
+      "affected_models": 0
+    },
+    "warp_parity": {
+      "disagreements": 0,
+      "old_cutoff_disagreements": 0,
+      "affected_models": 0
+    }
+  },
+  "new_cases": [
+    {
+      "file_id": "99468",
+      "point_index": 935,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004090484116002052
+    },
+    {
+      "file_id": "99468",
+      "point_index": 947,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008297110853818212
+    },
+    {
+      "file_id": "99468",
+      "point_index": 2124,
+      "method": "warp_p",
+      "d_over_bbd": 0.00040143033587105556
+    },
+    {
+      "file_id": "99468",
+      "point_index": 2653,
+      "method": "warp_p",
+      "d_over_bbd": 0.00043514042687190776
+    },
+    {
+      "file_id": "99468",
+      "point_index": 2914,
+      "method": "warp_p",
+      "d_over_bbd": 0.00039469214714580805
+    },
+    {
+      "file_id": "99468",
+      "point_index": 2958,
+      "method": "warp_p",
+      "d_over_bbd": 0.00028127365107871917
+    },
+    {
+      "file_id": "99468",
+      "point_index": 3577,
+      "method": "warp_p",
+      "d_over_bbd": 0.00040813957141860104
+    },
+    {
+      "file_id": "99468",
+      "point_index": 3680,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003131151634300409
+    },
+    {
+      "file_id": "99468",
+      "point_index": 3722,
+      "method": "warp_p",
+      "d_over_bbd": 0.000350444397669043
+    },
+    {
+      "file_id": "99468",
+      "point_index": 4116,
+      "method": "warp_p",
+      "d_over_bbd": 0.00035442339263919647
+    },
+    {
+      "file_id": "99468",
+      "point_index": 4694,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003303706688287947
+    },
+    {
+      "file_id": "99468",
+      "point_index": 5407,
+      "method": "warp_p",
+      "d_over_bbd": 0.000774947085109727
+    },
+    {
+      "file_id": "99468",
+      "point_index": 5419,
+      "method": "warp_p",
+      "d_over_bbd": 0.00039848055788887967
+    },
+    {
+      "file_id": "99468",
+      "point_index": 5511,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003615023507885689
+    },
+    {
+      "file_id": "99468",
+      "point_index": 5681,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004226231169743144
+    },
+    {
+      "file_id": "99468",
+      "point_index": 5699,
+      "method": "warp_p",
+      "d_over_bbd": 0.00040542689415692083
+    },
+    {
+      "file_id": "99468",
+      "point_index": 5908,
+      "method": "warp_p",
+      "d_over_bbd": 0.00037017024179690635
+    },
+    {
+      "file_id": "99468",
+      "point_index": 6008,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003774267400332589
+    },
+    {
+      "file_id": "99468",
+      "point_index": 6203,
+      "method": "warp_p",
+      "d_over_bbd": 0.00038370890051447627
+    },
+    {
+      "file_id": "99468",
+      "point_index": 6434,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003312049833668855
+    },
+    {
+      "file_id": "99468",
+      "point_index": 6709,
+      "method": "warp_p",
+      "d_over_bbd": 0.00031095076011957725
+    },
+    {
+      "file_id": "99468",
+      "point_index": 6868,
+      "method": "warp_p",
+      "d_over_bbd": 0.00036523764730507155
+    },
+    {
+      "file_id": "99468",
+      "point_index": 6924,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003403980290281771
+    },
+    {
+      "file_id": "99468",
+      "point_index": 6927,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003657474732002874
+    },
+    {
+      "file_id": "99468",
+      "point_index": 7491,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008268692441770503
+    },
+    {
+      "file_id": "99468",
+      "point_index": 7502,
+      "method": "warp_p",
+      "d_over_bbd": 0.00044185014055306965
+    },
+    {
+      "file_id": "99468",
+      "point_index": 7715,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003160445192457697
+    },
+    {
+      "file_id": "99468",
+      "point_index": 7981,
+      "method": "warp_p",
+      "d_over_bbd": 0.00034853635242422667
+    },
+    {
+      "file_id": "99468",
+      "point_index": 8237,
+      "method": "warp_p",
+      "d_over_bbd": 0.00034109076107358274
+    },
+    {
+      "file_id": "99468",
+      "point_index": 8409,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009827784360936778
+    },
+    {
+      "file_id": "99468",
+      "point_index": 8588,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009734941371129599
+    },
+    {
+      "file_id": "99468",
+      "point_index": 9331,
+      "method": "warp_p",
+      "d_over_bbd": 7.270842688664692e-05
+    },
+    {
+      "file_id": "99468",
+      "point_index": 9355,
+      "method": "warp_p",
+      "d_over_bbd": 0.000327430817088335
+    },
+    {
+      "file_id": "99468",
+      "point_index": 9412,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003206881535627998
+    },
+    {
+      "file_id": "99468",
+      "point_index": 9646,
+      "method": "warp_p",
+      "d_over_bbd": 0.00037995582220076094
+    },
+    {
+      "file_id": "99469",
+      "point_index": 297,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004309435796240687
+    },
+    {
+      "file_id": "99469",
+      "point_index": 1508,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004580269916349207
+    },
+    {
+      "file_id": "99469",
+      "point_index": 3562,
+      "method": "warp_p",
+      "d_over_bbd": 0.00041731380989694497
+    },
+    {
+      "file_id": "99469",
+      "point_index": 4496,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004161012397128625
+    },
+    {
+      "file_id": "99469",
+      "point_index": 4534,
+      "method": "warp_p",
+      "d_over_bbd": 0.00043631588245444236
+    },
+    {
+      "file_id": "99469",
+      "point_index": 4845,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004897309729114837
+    },
+    {
+      "file_id": "99469",
+      "point_index": 4989,
+      "method": "warp_p",
+      "d_over_bbd": 0.00045520644602294996
+    },
+    {
+      "file_id": "99469",
+      "point_index": 5321,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004652523260237721
+    },
+    {
+      "file_id": "99469",
+      "point_index": 5399,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004068730945895471
+    },
+    {
+      "file_id": "99469",
+      "point_index": 5975,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006612702918288027
+    },
+    {
+      "file_id": "99469",
+      "point_index": 6117,
+      "method": "warp_p",
+      "d_over_bbd": 0.00048104821611881553
+    },
+    {
+      "file_id": "99469",
+      "point_index": 6149,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008890607881843356
+    },
+    {
+      "file_id": "99469",
+      "point_index": 6686,
+      "method": "warp_p",
+      "d_over_bbd": 0.000424874267267393
+    },
+    {
+      "file_id": "99469",
+      "point_index": 6763,
+      "method": "warp_p",
+      "d_over_bbd": 0.00047332958986739894
+    },
+    {
+      "file_id": "99469",
+      "point_index": 7125,
+      "method": "warp_p",
+      "d_over_bbd": 0.00042571053390823814
+    },
+    {
+      "file_id": "99469",
+      "point_index": 7184,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004223529695491884
+    },
+    {
+      "file_id": "99469",
+      "point_index": 7456,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004591892795584399
+    },
+    {
+      "file_id": "99469",
+      "point_index": 7539,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004756782935072743
+    },
+    {
+      "file_id": "99469",
+      "point_index": 8564,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004037607494148103
+    },
+    {
+      "file_id": "99469",
+      "point_index": 8683,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004910400318131483
+    },
+    {
+      "file_id": "99469",
+      "point_index": 9397,
+      "method": "warp_p",
+      "d_over_bbd": 0.00043640247662554677
+    },
+    {
+      "file_id": "61431",
+      "point_index": 8427,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008507983902039583
+    },
+    {
+      "file_id": "129867",
+      "point_index": 1662,
+      "method": "warp_p",
+      "d_over_bbd": 0.000363796257230414
+    },
+    {
+      "file_id": "129867",
+      "point_index": 6567,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003668074663995268
+    },
+    {
+      "file_id": "472081",
+      "point_index": 6822,
+      "method": "warp_p",
+      "d_over_bbd": 1.1732010599266518e-05
+    },
+    {
+      "file_id": "91611",
+      "point_index": 1043,
+      "method": "warp_p",
+      "d_over_bbd": 3.64009903533089e-05
+    },
+    {
+      "file_id": "91611",
+      "point_index": 9071,
+      "method": "warp_p",
+      "d_over_bbd": 2.1402532964966044e-05
+    },
+    {
+      "file_id": "39642",
+      "point_index": 1494,
+      "method": "warp_p",
+      "d_over_bbd": 0.0005912463722154551
+    },
+    {
+      "file_id": "375260",
+      "point_index": 1552,
+      "method": "warp_p",
+      "d_over_bbd": 0.00043225704604806257
+    },
+    {
+      "file_id": "375260",
+      "point_index": 1797,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002443623267709701
+    },
+    {
+      "file_id": "472100",
+      "point_index": 5186,
+      "method": "warp_p",
+      "d_over_bbd": 1.3872011137217773e-05
+    },
+    {
+      "file_id": "105690",
+      "point_index": 4597,
+      "method": "warp_p",
+      "d_over_bbd": 0.00034417020459994016
+    },
+    {
+      "file_id": "48559",
+      "point_index": 9762,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008442873123504784
+    },
+    {
+      "file_id": "384087",
+      "point_index": 6474,
+      "method": "igl_float",
+      "d_over_bbd": 5.475531119696098e-05
+    },
+    {
+      "file_id": "384087",
+      "point_index": 6474,
+      "method": "warp_p",
+      "d_over_bbd": 5.475531119696098e-05
+    },
+    {
+      "file_id": "384087",
+      "point_index": 7147,
+      "method": "warp_p",
+      "d_over_bbd": 1.5967544468569454e-05
+    },
+    {
+      "file_id": "139765",
+      "point_index": 9150,
+      "method": "warp_p",
+      "d_over_bbd": 0.000622085040189592
+    },
+    {
+      "file_id": "1743322",
+      "point_index": 9279,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008933312947068274
+    },
+    {
+      "file_id": "162100",
+      "point_index": 424,
+      "method": "warp_p",
+      "d_over_bbd": 0.0005344669537078395
+    },
+    {
+      "file_id": "162336",
+      "point_index": 406,
+      "method": "warp_p",
+      "d_over_bbd": 0.00037494246982064524
+    },
+    {
+      "file_id": "162336",
+      "point_index": 1768,
+      "method": "warp_p",
+      "d_over_bbd": 0.0005927383915573649
+    },
+    {
+      "file_id": "162336",
+      "point_index": 1885,
+      "method": "warp_p",
+      "d_over_bbd": 0.00038106632147725416
+    },
+    {
+      "file_id": "162336",
+      "point_index": 3430,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002137280254559979
+    },
+    {
+      "file_id": "162336",
+      "point_index": 3859,
+      "method": "warp_p",
+      "d_over_bbd": 0.0005995720006504161
+    },
+    {
+      "file_id": "162336",
+      "point_index": 5167,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004978058035770488
+    },
+    {
+      "file_id": "162336",
+      "point_index": 6279,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007225835642581507
+    },
+    {
+      "file_id": "162336",
+      "point_index": 6568,
+      "method": "warp_p",
+      "d_over_bbd": 0.0001903597564452504
+    },
+    {
+      "file_id": "162336",
+      "point_index": 8052,
+      "method": "warp_p",
+      "d_over_bbd": 0.0005776234506761042
+    },
+    {
+      "file_id": "99467",
+      "point_index": 570,
+      "method": "igl_float",
+      "d_over_bbd": 0.00010150352341352081
+    },
+    {
+      "file_id": "99467",
+      "point_index": 5927,
+      "method": "igl_float",
+      "d_over_bbd": 0.0002651070610124243
+    },
+    {
+      "file_id": "99467",
+      "point_index": 35,
+      "method": "warp_p",
+      "d_over_bbd": 0.00026027421608345154
+    },
+    {
+      "file_id": "99467",
+      "point_index": 478,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002850261539324676
+    },
+    {
+      "file_id": "99467",
+      "point_index": 570,
+      "method": "warp_p",
+      "d_over_bbd": 0.00010150352341352081
+    },
+    {
+      "file_id": "99467",
+      "point_index": 790,
+      "method": "warp_p",
+      "d_over_bbd": 0.00033603001096653353
+    },
+    {
+      "file_id": "99467",
+      "point_index": 844,
+      "method": "warp_p",
+      "d_over_bbd": 0.00010866068946744545
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1087,
+      "method": "warp_p",
+      "d_over_bbd": 0.00011485048075169929
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1091,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003216945580177773
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1230,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003016453813124665
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1232,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003322547616238988
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1316,
+      "method": "warp_p",
+      "d_over_bbd": 0.00031338466236477495
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1520,
+      "method": "warp_p",
+      "d_over_bbd": 0.000742339413031404
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1595,
+      "method": "warp_p",
+      "d_over_bbd": 0.000379150259331765
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1768,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006450405938209069
+    },
+    {
+      "file_id": "99467",
+      "point_index": 1818,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003782350874969487
+    },
+    {
+      "file_id": "99467",
+      "point_index": 2209,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003615779544351115
+    },
+    {
+      "file_id": "99467",
+      "point_index": 2297,
+      "method": "warp_p",
+      "d_over_bbd": 0.000344139024338434
+    },
+    {
+      "file_id": "99467",
+      "point_index": 2359,
+      "method": "warp_p",
+      "d_over_bbd": 0.00032238154829512556
+    },
+    {
+      "file_id": "99467",
+      "point_index": 2731,
+      "method": "warp_p",
+      "d_over_bbd": 0.00036311379472884646
+    },
+    {
+      "file_id": "99467",
+      "point_index": 2813,
+      "method": "warp_p",
+      "d_over_bbd": 0.00027925825590416033
+    },
+    {
+      "file_id": "99467",
+      "point_index": 2979,
+      "method": "warp_p",
+      "d_over_bbd": 2.1068492134802168e-05
+    },
+    {
+      "file_id": "99467",
+      "point_index": 3154,
+      "method": "warp_p",
+      "d_over_bbd": 0.00029704659127952125
+    },
+    {
+      "file_id": "99467",
+      "point_index": 3618,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003562777266716157
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4036,
+      "method": "warp_p",
+      "d_over_bbd": 0.00030048866476883786
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4174,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002921222629817346
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4554,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003488866801337229
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4734,
+      "method": "warp_p",
+      "d_over_bbd": 0.00028407685671794395
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4807,
+      "method": "warp_p",
+      "d_over_bbd": 0.00034603406033474447
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4833,
+      "method": "warp_p",
+      "d_over_bbd": 0.00030555171697809
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4866,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002736636485712293
+    },
+    {
+      "file_id": "99467",
+      "point_index": 4905,
+      "method": "warp_p",
+      "d_over_bbd": 5.1592125870375974e-05
+    },
+    {
+      "file_id": "99467",
+      "point_index": 5335,
+      "method": "warp_p",
+      "d_over_bbd": 0.000327399162639253
+    },
+    {
+      "file_id": "99467",
+      "point_index": 5344,
+      "method": "warp_p",
+      "d_over_bbd": 0.00032520800402503113
+    },
+    {
+      "file_id": "99467",
+      "point_index": 5820,
+      "method": "warp_p",
+      "d_over_bbd": 0.00034691975153561147
+    },
+    {
+      "file_id": "99467",
+      "point_index": 5870,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003221062007182494
+    },
+    {
+      "file_id": "99467",
+      "point_index": 5913,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002649768759919513
+    },
+    {
+      "file_id": "99467",
+      "point_index": 5927,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002651070610124243
+    },
+    {
+      "file_id": "99467",
+      "point_index": 6031,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002803675893450492
+    },
+    {
+      "file_id": "99467",
+      "point_index": 6192,
+      "method": "warp_p",
+      "d_over_bbd": 0.00029743735339213034
+    },
+    {
+      "file_id": "99467",
+      "point_index": 6362,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006850782802440491
+    },
+    {
+      "file_id": "99467",
+      "point_index": 6572,
+      "method": "warp_p",
+      "d_over_bbd": 0.00037841819833645674
+    },
+    {
+      "file_id": "99467",
+      "point_index": 6608,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003613911853039554
+    },
+    {
+      "file_id": "99467",
+      "point_index": 6999,
+      "method": "warp_p",
+      "d_over_bbd": 0.00032551175981232927
+    },
+    {
+      "file_id": "99467",
+      "point_index": 7139,
+      "method": "warp_p",
+      "d_over_bbd": 0.00030068803072808253
+    },
+    {
+      "file_id": "99467",
+      "point_index": 7274,
+      "method": "warp_p",
+      "d_over_bbd": 0.00029681348175272077
+    },
+    {
+      "file_id": "99467",
+      "point_index": 7805,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003740124113467134
+    },
+    {
+      "file_id": "99467",
+      "point_index": 7977,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003057302569249961
+    },
+    {
+      "file_id": "99467",
+      "point_index": 8016,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008444973158416221
+    },
+    {
+      "file_id": "99467",
+      "point_index": 8123,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002925104375242123
+    },
+    {
+      "file_id": "99467",
+      "point_index": 8128,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003454559377388955
+    },
+    {
+      "file_id": "99467",
+      "point_index": 8172,
+      "method": "warp_p",
+      "d_over_bbd": 0.0003752812937270659
+    },
+    {
+      "file_id": "99467",
+      "point_index": 8799,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008014623971057147
+    },
+    {
+      "file_id": "99467",
+      "point_index": 8940,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008345285966583763
+    },
+    {
+      "file_id": "99467",
+      "point_index": 8954,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002743916764355013
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9081,
+      "method": "warp_p",
+      "d_over_bbd": 0.00021281203266545817
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9082,
+      "method": "warp_p",
+      "d_over_bbd": 0.00025806074740430214
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9144,
+      "method": "warp_p",
+      "d_over_bbd": 0.00034555906484007016
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9145,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007169380677278606
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9325,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008020340549684056
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9616,
+      "method": "warp_p",
+      "d_over_bbd": 0.00037121205102974114
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9857,
+      "method": "warp_p",
+      "d_over_bbd": 0.0002609147004909542
+    },
+    {
+      "file_id": "99467",
+      "point_index": 9905,
+      "method": "warp_p",
+      "d_over_bbd": 0.00035652406331405706
+    },
+    {
+      "file_id": "199818",
+      "point_index": 352,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009191779380967915
+    },
+    {
+      "file_id": "199818",
+      "point_index": 2482,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009473995096897708
+    },
+    {
+      "file_id": "199818",
+      "point_index": 5706,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009298167710310875
+    },
+    {
+      "file_id": "199818",
+      "point_index": 8756,
+      "method": "warp_p",
+      "d_over_bbd": 0.000937276556676845
+    },
+    {
+      "file_id": "225969",
+      "point_index": 2503,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009289843225014236
+    },
+    {
+      "file_id": "442387",
+      "point_index": 4540,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007587873616817388
+    },
+    {
+      "file_id": "39028",
+      "point_index": 1652,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006853885916959071
+    },
+    {
+      "file_id": "97489",
+      "point_index": 59,
+      "method": "igl_float",
+      "d_over_bbd": 3.693424721275988e-05
+    },
+    {
+      "file_id": "97489",
+      "point_index": 29,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006683991866064298
+    },
+    {
+      "file_id": "97489",
+      "point_index": 59,
+      "method": "warp_p",
+      "d_over_bbd": 3.693424721275988e-05
+    },
+    {
+      "file_id": "97489",
+      "point_index": 182,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007291258010297652
+    },
+    {
+      "file_id": "97489",
+      "point_index": 548,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006854573182017365
+    },
+    {
+      "file_id": "97489",
+      "point_index": 701,
+      "method": "warp_p",
+      "d_over_bbd": 0.000625435756878289
+    },
+    {
+      "file_id": "97489",
+      "point_index": 1151,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007246799867152873
+    },
+    {
+      "file_id": "97489",
+      "point_index": 1302,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007178988488689085
+    },
+    {
+      "file_id": "97489",
+      "point_index": 1423,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007070354365430311
+    },
+    {
+      "file_id": "97489",
+      "point_index": 2422,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008171180064451863
+    },
+    {
+      "file_id": "97489",
+      "point_index": 2786,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006551283554444894
+    },
+    {
+      "file_id": "97489",
+      "point_index": 4449,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006246761350773892
+    },
+    {
+      "file_id": "97489",
+      "point_index": 4777,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006667307596472645
+    },
+    {
+      "file_id": "97489",
+      "point_index": 5191,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006308565464783262
+    },
+    {
+      "file_id": "97489",
+      "point_index": 5403,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006379849511394967
+    },
+    {
+      "file_id": "97489",
+      "point_index": 5894,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006898055684920121
+    },
+    {
+      "file_id": "97489",
+      "point_index": 6200,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007301092245237284
+    },
+    {
+      "file_id": "97489",
+      "point_index": 6369,
+      "method": "warp_p",
+      "d_over_bbd": 0.000683505624622408
+    },
+    {
+      "file_id": "97489",
+      "point_index": 6476,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006739143505477556
+    },
+    {
+      "file_id": "97489",
+      "point_index": 6644,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007438796332931349
+    },
+    {
+      "file_id": "97489",
+      "point_index": 6650,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006668181619023275
+    },
+    {
+      "file_id": "97489",
+      "point_index": 6700,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006880564449433882
+    },
+    {
+      "file_id": "97489",
+      "point_index": 7259,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006632159776059321
+    },
+    {
+      "file_id": "97489",
+      "point_index": 7353,
+      "method": "warp_p",
+      "d_over_bbd": 0.0006802584199386079
+    },
+    {
+      "file_id": "97489",
+      "point_index": 9641,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007297552648313383
+    },
+    {
+      "file_id": "97489",
+      "point_index": 9767,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007334572325046776
+    },
+    {
+      "file_id": "409635",
+      "point_index": 2975,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007244941455943385
+    },
+    {
+      "file_id": "38645",
+      "point_index": 8137,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008002921022385032
+    },
+    {
+      "file_id": "38645",
+      "point_index": 8325,
+      "method": "warp_p",
+      "d_over_bbd": 0.0005649910242619418
+    },
+    {
+      "file_id": "38645",
+      "point_index": 9293,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009445007148814229
+    },
+    {
+      "file_id": "283342",
+      "point_index": 962,
+      "method": "warp_p",
+      "d_over_bbd": 0.000869967317982591
+    },
+    {
+      "file_id": "283342",
+      "point_index": 4843,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007499496499262216
+    },
+    {
+      "file_id": "283342",
+      "point_index": 6722,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008401070219155338
+    },
+    {
+      "file_id": "97503",
+      "point_index": 5522,
+      "method": "warp_p",
+      "d_over_bbd": 0.00011888316469672397
+    },
+    {
+      "file_id": "97503",
+      "point_index": 7356,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008111677914212978
+    },
+    {
+      "file_id": "57587",
+      "point_index": 3906,
+      "method": "warp_p",
+      "d_over_bbd": 1.0222987500100056e-05
+    },
+    {
+      "file_id": "130969",
+      "point_index": 594,
+      "method": "warp_p",
+      "d_over_bbd": 2.4221007873849458e-05
+    },
+    {
+      "file_id": "130969",
+      "point_index": 6481,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004715453064173015
+    },
+    {
+      "file_id": "130969",
+      "point_index": 6895,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004619488956622441
+    },
+    {
+      "file_id": "225953",
+      "point_index": 207,
+      "method": "warp_p",
+      "d_over_bbd": 0.00041182999907947177
+    },
+    {
+      "file_id": "39641",
+      "point_index": 4216,
+      "method": "warp_p",
+      "d_over_bbd": 0.00033665468244156754
+    },
+    {
+      "file_id": "129915",
+      "point_index": 2909,
+      "method": "warp_p",
+      "d_over_bbd": 2.2311592019703274e-05
+    },
+    {
+      "file_id": "674848",
+      "point_index": 7159,
+      "method": "warp_p",
+      "d_over_bbd": 0.0009901460230591786
+    },
+    {
+      "file_id": "44025",
+      "point_index": 3767,
+      "method": "warp_p",
+      "d_over_bbd": 0.0008405921521698766
+    },
+    {
+      "file_id": "49545",
+      "point_index": 7463,
+      "method": "igl_float",
+      "d_over_bbd": 1.5093405315976466e-05
+    },
+    {
+      "file_id": "49545",
+      "point_index": 7463,
+      "method": "warp_p",
+      "d_over_bbd": 1.5093405315976466e-05
+    },
+    {
+      "file_id": "130986",
+      "point_index": 3989,
+      "method": "warp_p",
+      "d_over_bbd": 0.00066328881860017
+    },
+    {
+      "file_id": "130986",
+      "point_index": 9733,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004636156131777027
+    },
+    {
+      "file_id": "135218",
+      "point_index": 4456,
+      "method": "igl_float",
+      "d_over_bbd": 0.0007208526198242142
+    },
+    {
+      "file_id": "135218",
+      "point_index": 6759,
+      "method": "igl_float",
+      "d_over_bbd": 0.0006026916929023301
+    },
+    {
+      "file_id": "135218",
+      "point_index": 7804,
+      "method": "igl_float",
+      "d_over_bbd": 0.0003601256829001334
+    },
+    {
+      "file_id": "135218",
+      "point_index": 4456,
+      "method": "warp_p",
+      "d_over_bbd": 0.0007208526198242142
+    },
+    {
+      "file_id": "135218",
+      "point_index": 6502,
+      "method": "warp_p",
+      "d_over_bbd": 0.00025174061509898723
+    },
+    {
+      "file_id": "135218",
+      "point_index": 8630,
+      "method": "warp_p",
+      "d_over_bbd": 0.0004390321733473995
+    }
+  ],
+  "seconds": 5.278302463004366
+}

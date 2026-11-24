@@ -1,0 +1,14 @@
+{
+  "native_module_built_fresh": true,
+  "python_precision_tests": 26,
+  "python_precision_tests_passed": true,
+  "strict_cutoff_boundary_fixture_passed": true,
+  "smoke_ids": [
+    "153100",
+    "91147",
+    "1452672",
+    "1652976"
+  ],
+  "smoke_all_historical_controls_match": true,
+  "smoke_independent_audit_passed": true
+}

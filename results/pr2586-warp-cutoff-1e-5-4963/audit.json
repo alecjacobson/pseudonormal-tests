@@ -1,0 +1,33 @@
+{
+  "all_counts_match": true,
+  "models": 4963,
+  "points": 49630000,
+  "num_away": 49613294,
+  "num_away_old": 48001158,
+  "newly_eligible_points": 1612136,
+  "unique_disagreement_points": 12220,
+  "unique_newly_included_disagreement_points": 201,
+  "distance_errors": {
+    "igl_double": {
+      "max_over_bbd": 0.0,
+      "mean_over_bbd": 0.0
+    },
+    "igl_float": {
+      "max_over_bbd": 0.000762837794576647,
+      "mean_over_bbd": 4.228586095194568e-08
+    },
+    "warp_p": {
+      "max_over_bbd": 0.000762837794576647,
+      "mean_over_bbd": 4.172859406346939e-08
+    },
+    "warp_w": {
+      "max_over_bbd": 0.000762837794576647,
+      "mean_over_bbd": 4.172486709439763e-08
+    },
+    "warp_parity": {
+      "max_over_bbd": 0.000762837794576647,
+      "mean_over_bbd": 4.172486709439763e-08
+    }
+  },
+  "seconds": 57.79255174100399
+}

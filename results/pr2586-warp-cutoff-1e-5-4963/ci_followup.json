@@ -1,0 +1,28 @@
+{
+  "tested_benchmark_core": "e810369e42090e66fc805370f9969771e93b431f",
+  "followup_core": "625e4341c085f338758a2bb529f1c335add89831",
+  "changes": [
+    "Explicit static instantiations for bounded MatrixXd 2D/3D and row-major float3D AABB queries",
+    "Rename near test variable to avoid the Windows macro",
+    "Add bounded-query regression coverage"
+  ],
+  "runtime_query_source_unchanged": true,
+  "cpp_tests": {
+    "cases": 22,
+    "assertions": 1186,
+    "passed": true,
+    "macro_check": "Compiled with -Dnear= to exercise the Windows identifier collision"
+  },
+  "static_link": {
+    "translation_units": 33,
+    "updated_source_passed": true,
+    "previous_source_failed_as_expected": true,
+    "missing_symbols_before": [
+      "`double igl::AABB<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 2>::squared_distance<Eigen::Matrix<int, -1, -1, 0, -1, -1> >(Eigen::MatrixBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> > const&, Eigen::MatrixBase<Eigen::Matrix<int, -1, -1, 0, -1, -1> > const&, Eigen::Matrix<double, 1, 2, 1, 1, 2> const&, double, double, int&, Eigen::PlainObjectBase<Eigen::Matrix<double, 1, 2, 1, 1, 2> >&) const'",
+      "`double igl::AABB<Eigen::Matrix<double, -1, -1, 0, -1, -1>, 3>::squared_distance<Eigen::Matrix<int, -1, -1, 0, -1, -1> >(Eigen::MatrixBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> > const&, Eigen::MatrixBase<Eigen::Matrix<int, -1, -1, 0, -1, -1> > const&, Eigen::Matrix<double, 1, 3, 1, 1, 3> const&, double, double, int&, Eigen::PlainObjectBase<Eigen::Matrix<double, 1, 3, 1, 1, 3> >&) const'",
+      "`float igl::AABB<Eigen::Matrix<float, -1, 3, 1, -1, 3>, 3>::squared_distance<Eigen::Matrix<int, -1, 3, 1, -1, 3> >(Eigen::MatrixBase<Eigen::Matrix<float, -1, 3, 1, -1, 3> > const&, Eigen::MatrixBase<Eigen::Matrix<int, -1, 3, 1, -1, 3> > const&, Eigen::Matrix<float, 1, 3, 1, 1, 3> const&, float, float, int&, Eigen::PlainObjectBase<Eigen::Matrix<float, 1, 3, 1, 1, 3> >&) const'"
+    ]
+  },
+  "original_ci_run": "https://github.com/libigl/libigl/actions/runs/45329277444",
+  "benchmark_note": "The fresh full comparison completed before compiling the follow-up. Its binary and original provenance remain unchanged. Only static instantiations and tests changed; header-only arithmetic is byte-identical."
+}

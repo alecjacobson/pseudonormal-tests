@@ -6,6 +6,29 @@
 #include <cmath>
 #include <iostream>
 #include <limits>
+template<typename Scalar,int Dim,int Columns,int Options> bool check_bounded()
+{
+  using Matrix = Eigen::Matrix<Scalar,Eigen::Dynamic,Columns,Options>;
+  using Faces = Eigen::Matrix<int,Eigen::Dynamic,Columns,Options>;
+  using Row = Eigen::Matrix<Scalar,1,Dim>;
+  Matrix v=Matrix::Zero(Dim,Dim);
+  Faces f(1,Dim);
+  for(int j=0;j<Dim;++j)
+  {
+    f(j)=j;
+    if(j>0) v(j,j-1)=1;
+  }
+  igl::AABB<Matrix,Dim> tree;
+  tree.init(v,f);
+  Row p=Row::Constant(Scalar(.25));
+  p(Dim-1)=1;
+  Row c;
+  int nearest=-1;
+  const Scalar squared_distance=tree.squared_distance(v,f,p,Scalar(0),Scalar(2),nearest,c);
+  Row expected=p;
+  expected(Dim-1)=0;
+  return squared_distance==Scalar(1) && nearest==0 && c==expected;
+}
 template<typename Scalar> bool check()
 {
   Eigen::Matrix<Scalar,Eigen::Dynamic,3> v(4,3),p(4,3),c,n;
@@ -30,5 +53,8 @@ template<typename Scalar> bool check()
 int main()
 {
   if(!check<float>() || !check<double>()) return 1;
+  if(!check_bounded<double,2,Eigen::Dynamic,Eigen::ColMajor>() ||
+     !check_bounded<double,3,Eigen::Dynamic,Eigen::ColMajor>() ||
+     !check_bounded<float,3,3,Eigen::RowMajor>()) return 1;
   std::cout<<"Static float and double signed-distance queries passed\n";
 }

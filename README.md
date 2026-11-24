@@ -5,7 +5,14 @@ Compare libigl and Warp mesh distances and signs on Thingi10K. Both the initial
 sampled uniformly in each model's axis-aligned bounding box. Warp reuses the exact
 saved libigl samples.
 
-The [full-set comparison](results/warp-main-full-4963/FINDINGS.md) covers
+The latest [PR comparison at cutoff `1e-5 * bbd`](results/pr2586-warp-cutoff-1e-5-4963/FINDINGS.md)
+recomputed every method on all 49.63 million points: **62 libigl double**, **158
+libigl float**, **12,016 Warp pseudonormal**, and **zero Warp winding/parity**
+disagreements. This adds eight float and 199 Warp pseudonormal disagreements
+relative to cutoff `1e-3 * bbd`. The fresh run took **34.47 minutes**, with no
+dataset download; the float count includes 85 invalid-normal cases.
+
+The original [full-set comparison](results/warp-main-full-4963/FINDINGS.md) covers
 **49,630,000 points**, including 48,001,158 with `igl_d > 0.001 * bbd`. It uses
 libigl winding as the reference and that same original distance mask for every
 method. Percentages below use all sampled points as the denominator:
@@ -33,6 +40,66 @@ The original [libigl subset findings](results/initial-100/FINDINGS.md) and
 [Warp subset comparison](results/warp-main-100/FINDINGS.md) remain available.
 The full run reproduced all original 100 models' samples, distances and signs
 exactly; see [full-set validation](results/warp-main-full-4963/full_set_validation.json).
+
+## PR comparison with a closer surface cutoff
+
+The [new full comparison](results/pr2586-warp-cutoff-1e-5-4963/FINDINGS.md)
+reruns libigl PR #2586 in float and double, libigl fast winding, and Warp's
+pseudonormal, winding, and parity methods. It uses the same 4,963 meshes and
+49.63 million seeded points, with **`d > 0.00001 * bbd`** as the disagreement
+cutoff. Both old and new cutoff counts are recorded, including invalid-normal
+counts and the points newly admitted by the smaller cutoff.
+
+| Method | Cutoff `1e-3 * bbd` | Cutoff `1e-5 * bbd` | New % of all samples |
+| --- | ---: | ---: | ---: |
+| libigl PR pseudonormal, double | 62 | 62 | 0.000124924% |
+| libigl PR pseudonormal, float | 150 | 158 | 0.000318356% |
+| Warp pseudonormal | 11,817 | 12,016 | 0.0242112% |
+| Warp winding | 0 | 0 | 0% |
+| Warp parity (1 ray) | 0 | 0 | 0% |
+
+The new mask includes 49,613,294 points, admitting 1,612,136 more points than
+the previous mask. Float's total contains 73 finite-output disagreements and
+85 invalid-normal disagreements. The eight new float disagreements are all
+finite-output cases. Warp's eight raw winding and ten raw parity disagreements
+remain within the smaller excluded band.
+
+All query methods are recomputed. Libigl uses the actual Python bindings built
+against core `e810369e42090e66fc805370f9969771e93b431f`, with binding sources at
+`d3b61ac35fbbe4e0e77af588306389418973dfdd`. Warp retains the pinned main revision
+and original settings. The common distance mask uses the saved original double
+distance, verified identical to the fresh PR result. The cutoff does not limit
+nearest-point searches; Warp still uses search radius `2 * bbd`.
+
+With the source checkouts at those revisions, reuse the dependency caches and
+build a fresh comparison extension:
+
+```bash
+cmake -S native_precision -B .cache/precision/pr2586-comparison -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/home/horde/projects/libigl \
+  -DBINDINGS_SOURCE_DIR=/home/horde/projects/libigl-python-bindings \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src" \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DPRECISION_INCLUDE_WINDING=ON -DPRECISION_MODULE=_precision_comparison
+cmake --build .cache/precision/pr2586-comparison --target _precision_comparison -j 4
+uv run --no-sync python native_precision/record_comparison_build.py \
+  --module .cache/precision/pr2586-comparison/_precision_comparison*.so \
+  --libigl-source /home/horde/projects/libigl \
+  --bindings-source /home/horde/projects/libigl-python-bindings
+HF_HUB_OFFLINE=1 uv run --no-sync python compare_methods.py \
+  --module .cache/precision/pr2586-comparison/_precision_comparison*.so \
+  --relative-cutoff 1e-5 --output results/my-closer-cutoff-run
+HF_HUB_OFFLINE=1 uv run --no-sync python audit_method_comparison.py \
+  results/my-closer-cutoff-run
+```
+
+Use a fresh output directory and retain the original baseline, closest-feature,
+and Warp point caches: the runner checks every query against those controls.
+`--file-ids` selects a small subset for a smoke test. The journal flushes after
+every model and CSV export happens once. The independent audit verifies every
+per-model and aggregate count and exports `newly_included_disagreements.csv`,
+keyed by model ID and original point index.
 
 ## Run
 
