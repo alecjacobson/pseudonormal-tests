@@ -1,0 +1,11 @@
+{
+  "unique_parameter_pairs": 230,
+  "shared_parameter_pairs": 30,
+  "shared_point_outputs_identical": true,
+  "same_compiled_module": true,
+  "initial_grid": "results/libigl-float-tolerances-100",
+  "upper_range_grid": "results/libigl-float-tolerances-upper-100",
+  "first_grid_wall_seconds": 35.560689075966366,
+  "upper_grid_wall_seconds": 18.080787915037945,
+  "initial_selection_retained": true
+}

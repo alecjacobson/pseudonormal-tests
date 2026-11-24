@@ -1,0 +1,22 @@
+{
+  "point_arrays_recounted": true,
+  "settings_audited": 180,
+  "models_audited": 100,
+  "metrics_audited": [
+    "counted_disagreements",
+    "invalid_queries",
+    "valid_counted_disagreements"
+  ],
+  "splits_audited": [
+    "all",
+    "tuning",
+    "holdout"
+  ],
+  "default_reproduction": {
+    "models": 100,
+    "points": 1000000,
+    "sign_changes": 0,
+    "normal_differing_bytes": 0,
+    "validity_changes": 0
+  }
+}

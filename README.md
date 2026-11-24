@@ -428,3 +428,63 @@ The new run's `build_record.json` records configure/build commands and times.
 The comparison's `validation.json` records an independent point-array audit,
 including the four changed signs and the shared invalid query. The original
 four-variant experiment and its cached outputs remain available unchanged.
+
+## Float tolerance sweep
+
+[The runtime tolerance sweep](results/libigl-float-tolerances-100/FINDINGS.md)
+evaluates 230 distinct `(minimum_double_area, epsilon)` pairs across two grids,
+using the same 100 meshes and 1,000,000 points. With the original area threshold
+`1e-4`, increasing epsilon from `1e-12` to `0.003` reduces disagreements from
+**762 to 3**. A fixed 50/50 model split selected this pair on the tuning half
+(505 → 0 disagreements); the holdout half improves from 257 to 3. One of the
+three remaining cases has the same pre-existing nonfinite normal.
+
+The best pair over all models is area `1e-6`, epsilon `0.01`, with two returned-sign
+disagreements (one with finite outputs). This is an exploratory result. Larger
+epsilon values eventually increase disagreement. Epsilon has different units
+in the two classification branches, so these results at original mesh scales
+do not establish scale-independent defaults.
+
+The experiment compiles once. A generator mechanically copies the existing 3D
+classifier body and replaces its constants with function arguments. The native
+wrapper computes mesh normals once per model and reuses cached closest faces
+and points. Every default sign and normal matches the saved float result
+byte-for-byte on all 1,000,000 points. The second grid uses the same binary;
+its 30 repeated parameter pairs reproduce every point's sign and validity flag.
+No upstream API or default tolerance is changed.
+
+```bash
+cmake -S native_precision -B .cache/precision/tolerances -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/path/to/patched/libigl \
+  -DBINDINGS_SOURCE_DIR=/path/to/patched/libigl-python-bindings \
+  -DPRECISION_BUILD_TOLERANCE_SWEEP=ON \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src"
+cmake --build .cache/precision/tolerances --target _tolerance_sweep -j 4
+uv run --no-sync python sweep_tolerances.py \
+  --module .cache/precision/tolerances/_tolerance_sweep*.so \
+  --libigl-source /path/to/patched/libigl \
+  --bindings-source /path/to/patched/libigl-python-bindings \
+  --output results/libigl-float-tolerances-100
+uv run --no-sync python sweep_tolerances.py \
+  --module .cache/precision/tolerances/_tolerance_sweep*.so \
+  --libigl-source /path/to/patched/libigl \
+  --bindings-source /path/to/patched/libigl-python-bindings \
+  --epsilons 1e-12,3e-3,1e-2,3e-2,1e-1,2e-1,3e-1,1 \
+  --output results/libigl-float-tolerances-upper-100
+# Plotting is optional; install it without syncing away an existing Warp setup.
+uv pip install --python .venv/bin/python 'matplotlib>=3.10,<4'
+uv run --no-sync python summarize_tolerances.py results/libigl-float-tolerances-upper-100
+uv run --no-sync python summarize_tolerances.py results/libigl-float-tolerances-100 \
+  --upper-results results/libigl-float-tolerances-upper-100
+```
+
+Use libigl commit `8e59c1897bb33a03d06a79b23c803e299cf890b0` and bindings commit
+`51d6dee06139682c08163012b00b5945095c38f1`. The native generator changes only the
+temporary generated function, leaving these source checkouts clean. Run
+directories contain exact configurations, per-model grids, timings, validation,
+PDF/PNG heatmaps and the selected diagnostic cases. All point signs and validity
+flags for every setting remain cached locally. The two sweeps take approximately
+54 seconds combined on this machine, including compressed output.

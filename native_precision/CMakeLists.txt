@@ -15,6 +15,7 @@ FetchContent_GetProperties(eigen)
 if(NOT eigen_POPULATED)
   FetchContent_Populate(eigen)
 endif()
+
 set(LIBIGL_SOURCE_DIR "" CACHE PATH "libigl checkout to measure")
 set(BINDINGS_SOURCE_DIR "" CACHE PATH "libigl Python bindings checkout to measure")
 set(PRECISION_MODULE "_precision" CACHE STRING "Import name of this build")
@@ -49,4 +50,24 @@ if(PRECISION_BUILD_TESTS)
   target_include_directories(test_precision SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
   target_compile_definitions(test_precision PRIVATE LIBIGL_DATA_DIR="${LIBIGL_SOURCE_DIR}/tests/data")
   target_link_libraries(test_precision PRIVATE Catch2::Catch2)
+endif()
+
+option(PRECISION_BUILD_TOLERANCE_SWEEP "Build the runtime tolerance experiment" OFF)
+if(PRECISION_BUILD_TOLERANCE_SWEEP)
+  execute_process(
+    COMMAND "${Python_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/make_runtime_classifier.py"
+      "${LIBIGL_SOURCE_DIR}/include/igl/pseudonormal_test.cpp"
+      "${CMAKE_CURRENT_BINARY_DIR}/pseudonormal_runtime.h"
+    RESULT_VARIABLE classifier_generation_result)
+  if(NOT classifier_generation_result EQUAL 0)
+    message(FATAL_ERROR "Could not generate the runtime pseudonormal classifier")
+  endif()
+  nanobind_add_module(_tolerance_sweep tolerance_sweep.cpp)
+  target_include_directories(_tolerance_sweep PRIVATE
+    "${LIBIGL_SOURCE_DIR}/include" "${BINDINGS_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_BINARY_DIR}")
+  target_include_directories(_tolerance_sweep SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(_tolerance_sweep PRIVATE -ffp-contract=off)
+  endif()
 endif()
