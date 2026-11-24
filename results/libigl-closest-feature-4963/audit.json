@@ -1,0 +1,96 @@
+{
+  "models": 4963,
+  "all_metrics_recounted": true,
+  "totals": {
+    "float32": {
+      "points": 49630000,
+      "away_points": 48001158,
+      "raw_disagreements": 186,
+      "counted_disagreements": 150,
+      "valid_counted_disagreements": 65,
+      "invalid_queries": 90,
+      "invalid_queries_away": 90,
+      "new_vs_default": 4,
+      "resolved_vs_default": 915,
+      "new_invalid_queries": 0,
+      "resolved_invalid_queries": 279,
+      "affected_models": 18,
+      "models_with_invalid_queries": 3,
+      "baseline_disagreements": 1061,
+      "sign_changes": 942,
+      "invalid_barycentrics": 0,
+      "end_to_end_models": 117,
+      "models": 4963
+    },
+    "float64": {
+      "points": 49630000,
+      "away_points": 48001158,
+      "raw_disagreements": 73,
+      "counted_disagreements": 62,
+      "valid_counted_disagreements": 62,
+      "invalid_queries": 0,
+      "invalid_queries_away": 0,
+      "new_vs_default": 0,
+      "resolved_vs_default": 379,
+      "new_invalid_queries": 0,
+      "resolved_invalid_queries": 0,
+      "affected_models": 2,
+      "models_with_invalid_queries": 0,
+      "baseline_disagreements": 441,
+      "sign_changes": 379,
+      "invalid_barycentrics": 0,
+      "end_to_end_models": 117,
+      "models": 4963
+    }
+  },
+  "all_point_transitions": {
+    "float32": {
+      "old_disagreements": 1120,
+      "new_disagreements": 186,
+      "introduced": 4,
+      "resolved": 938,
+      "introduced_within_cutoff": 0,
+      "resolved_within_cutoff": 23
+    },
+    "float64": {
+      "old_disagreements": 452,
+      "new_disagreements": 73,
+      "introduced": 0,
+      "resolved": 379,
+      "introduced_within_cutoff": 0,
+      "resolved_within_cutoff": 0
+    }
+  },
+  "introduced_models": {
+    "float32": [
+      "91147"
+    ],
+    "float64": []
+  },
+  "remaining_models": {
+    "float32": [
+      "44025",
+      "48132",
+      "59769",
+      "61431",
+      "62593",
+      "69260",
+      "91147",
+      "110213",
+      "135218",
+      "153100",
+      "187282",
+      "360073",
+      "472050",
+      "1233195",
+      "1452677",
+      "1452679",
+      "1652975",
+      "1652976"
+    ],
+    "float64": [
+      "1452672",
+      "1652976"
+    ]
+  }
+}

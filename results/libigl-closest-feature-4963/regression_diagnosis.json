@@ -1,0 +1,465 @@
+{
+  "normal_decimal_digits": 80,
+  "runner_sha256": "d495ba04d7cf002bafe2c03f21ce327a8e5381b5bb5a26b0c5cf733e2ace4ff3",
+  "float_trace_sha256": "b309080ff068f03d2f125c1b2f6392b9c09989f46c324f38aa448ee452666f5c",
+  "double_trace_sha256": "f0ff5cc0f4ebd77a822887d90d579028d3654172fbb49f152109f6b398d7b5da",
+  "feature_encoding": "[0, face_index], [1, edge_index], [2, vertex_index]",
+  "cases": [
+    {
+      "file_id": "91147",
+      "sample_index": 470,
+      "precision": "float32",
+      "winding_sign": -1,
+      "rounded_mesh_direct_winding": 8.627806753101988e-21,
+      "closest_face": 70,
+      "face_vertices": [
+        12,
+        8,
+        6
+      ],
+      "rounded_triangle": [
+        [
+          -8.754549026489258,
+          1.419083833694458,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          7.419083595275879,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          -4.780916213989258,
+          11.655326843261719
+        ]
+      ],
+      "triangle_exactly_degenerate": true,
+      "old_feature": [
+        1,
+        42
+      ],
+      "new_feature": [
+        1,
+        58
+      ],
+      "old_normal": [
+        -0.5086376667022705,
+        0.0,
+        0.8609805703163147
+      ],
+      "new_normal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "new_barycentric": [
+        0.3313162922859192,
+        0.6686837077140808,
+        0.0
+      ],
+      "local_exact_features": [
+        [
+          1,
+          42
+        ],
+        [
+          1,
+          58
+        ]
+      ],
+      "global_exact_features": [
+        {
+          "feature": [
+            1,
+            42
+          ],
+          "distance_squared_exact": "3502559773809/1099511627776",
+          "closest_exact": [
+            "-4589905/524288",
+            "5695011/1048576",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            -0.5086376667022705,
+            0.0,
+            0.8609805703163147
+          ],
+          "precise_normal": [
+            -0.5086376958328033,
+            0.0,
+            0.8609806585387948
+          ],
+          "stored_sign": -1,
+          "precise_sign": -1
+        },
+        {
+          "feature": [
+            1,
+            58
+          ],
+          "distance_squared_exact": "3502559773809/1099511627776",
+          "closest_exact": [
+            "-4589905/524288",
+            "5695011/1048576",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "precise_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_sign": 1,
+          "precise_sign": 1
+        }
+      ]
+    },
+    {
+      "file_id": "91147",
+      "sample_index": 3717,
+      "precision": "float32",
+      "winding_sign": -1,
+      "rounded_mesh_direct_winding": 0.0,
+      "closest_face": 70,
+      "face_vertices": [
+        12,
+        8,
+        6
+      ],
+      "rounded_triangle": [
+        [
+          -8.754549026489258,
+          1.419083833694458,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          7.419083595275879,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          -4.780916213989258,
+          11.655326843261719
+        ]
+      ],
+      "triangle_exactly_degenerate": true,
+      "old_feature": [
+        1,
+        42
+      ],
+      "new_feature": [
+        1,
+        58
+      ],
+      "old_normal": [
+        -0.5086376667022705,
+        0.0,
+        0.8609805703163147
+      ],
+      "new_normal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "new_barycentric": [
+        0.34439682960510254,
+        0.6556031703948975,
+        0.0
+      ],
+      "local_exact_features": [
+        [
+          1,
+          42
+        ],
+        [
+          1,
+          58
+        ]
+      ],
+      "global_exact_features": [
+        {
+          "feature": [
+            1,
+            42
+          ],
+          "distance_squared_exact": "1301299539781/549755813888",
+          "closest_exact": [
+            "-4589905/524288",
+            "1403179/262144",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            -0.5086376667022705,
+            0.0,
+            0.8609805703163147
+          ],
+          "precise_normal": [
+            -0.5086376958328033,
+            0.0,
+            0.8609806585387948
+          ],
+          "stored_sign": -1,
+          "precise_sign": -1
+        },
+        {
+          "feature": [
+            1,
+            58
+          ],
+          "distance_squared_exact": "1301299539781/549755813888",
+          "closest_exact": [
+            "-4589905/524288",
+            "1403179/262144",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "precise_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_sign": 1,
+          "precise_sign": 1
+        }
+      ]
+    },
+    {
+      "file_id": "91147",
+      "sample_index": 7295,
+      "precision": "float32",
+      "winding_sign": -1,
+      "rounded_mesh_direct_winding": -1.7255613506203976e-20,
+      "closest_face": 70,
+      "face_vertices": [
+        12,
+        8,
+        6
+      ],
+      "rounded_triangle": [
+        [
+          -8.754549026489258,
+          1.419083833694458,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          7.419083595275879,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          -4.780916213989258,
+          11.655326843261719
+        ]
+      ],
+      "triangle_exactly_degenerate": true,
+      "old_feature": [
+        1,
+        42
+      ],
+      "new_feature": [
+        1,
+        58
+      ],
+      "old_normal": [
+        -0.5086376667022705,
+        0.0,
+        0.8609805703163147
+      ],
+      "new_normal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "new_barycentric": [
+        0.5309493541717529,
+        0.46905067563056946,
+        0.0
+      ],
+      "local_exact_features": [
+        [
+          1,
+          42
+        ],
+        [
+          1,
+          58
+        ]
+      ],
+      "global_exact_features": [
+        {
+          "feature": [
+            1,
+            42
+          ],
+          "distance_squared_exact": "7154355680533/1099511627776",
+          "closest_exact": [
+            "-4589905/524288",
+            "4439029/1048576",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            -0.5086376667022705,
+            0.0,
+            0.8609805703163147
+          ],
+          "precise_normal": [
+            -0.5086376958328033,
+            0.0,
+            0.8609806585387948
+          ],
+          "stored_sign": -1,
+          "precise_sign": -1
+        },
+        {
+          "feature": [
+            1,
+            58
+          ],
+          "distance_squared_exact": "7154355680533/1099511627776",
+          "closest_exact": [
+            "-4589905/524288",
+            "4439029/1048576",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "precise_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_sign": 1,
+          "precise_sign": 1
+        }
+      ]
+    },
+    {
+      "file_id": "91147",
+      "sample_index": 8348,
+      "precision": "float32",
+      "winding_sign": -1,
+      "rounded_mesh_direct_winding": -2.5883420259305962e-20,
+      "closest_face": 70,
+      "face_vertices": [
+        12,
+        8,
+        6
+      ],
+      "rounded_triangle": [
+        [
+          -8.754549026489258,
+          1.419083833694458,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          7.419083595275879,
+          11.655326843261719
+        ],
+        [
+          -8.754549026489258,
+          -4.780916213989258,
+          11.655326843261719
+        ]
+      ],
+      "triangle_exactly_degenerate": true,
+      "old_feature": [
+        1,
+        42
+      ],
+      "new_feature": [
+        1,
+        58
+      ],
+      "old_normal": [
+        -0.5086376667022705,
+        0.0,
+        0.8609805703163147
+      ],
+      "new_normal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "new_barycentric": [
+        0.43391501903533936,
+        0.5660849809646606,
+        0.0
+      ],
+      "local_exact_features": [
+        [
+          1,
+          42
+        ],
+        [
+          1,
+          58
+        ]
+      ],
+      "global_exact_features": [
+        {
+          "feature": [
+            1,
+            42
+          ],
+          "distance_squared_exact": "4007232639085/1099511627776",
+          "closest_exact": [
+            "-4589905/524288",
+            "1262379/262144",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            -0.5086376667022705,
+            0.0,
+            0.8609805703163147
+          ],
+          "precise_normal": [
+            -0.5086376958328033,
+            0.0,
+            0.8609806585387948
+          ],
+          "stored_sign": -1,
+          "precise_sign": -1
+        },
+        {
+          "feature": [
+            1,
+            58
+          ],
+          "distance_squared_exact": "4007232639085/1099511627776",
+          "closest_exact": [
+            "-4589905/524288",
+            "1262379/262144",
+            "1527687/131072"
+          ],
+          "stored_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "precise_normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "stored_sign": 1,
+          "precise_sign": 1
+        }
+      ]
+    }
+  ]
+}

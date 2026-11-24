@@ -25,7 +25,8 @@ if(NOT EXISTS "${LIBIGL_SOURCE_DIR}/include/igl/signed_distance.h" OR
 endif()
 nanobind_add_module(${PRECISION_MODULE}
   module.cpp "${BINDINGS_SOURCE_DIR}/src/signed_distance.cpp")
-target_compile_definitions(${PRECISION_MODULE} PRIVATE PRECISION_MODULE=${PRECISION_MODULE})
+target_compile_definitions(${PRECISION_MODULE} PRIVATE
+  PRECISION_MODULE=${PRECISION_MODULE} NB_DOMAIN=${PRECISION_MODULE})
 target_include_directories(${PRECISION_MODULE} PRIVATE
   "${LIBIGL_SOURCE_DIR}/include" "${BINDINGS_SOURCE_DIR}/include")
 target_include_directories(${PRECISION_MODULE} SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
@@ -56,7 +57,8 @@ option(PRECISION_BUILD_TOLERANCE_SWEEP "Build the runtime tolerance experiment" 
 option(PRECISION_BUILD_NORMALIZATION_PROBE "Build the normal normalization experiment" OFF)
 option(PRECISION_BUILD_MIXED_NORMALS "Build the double-normal float-classifier experiment" OFF)
 option(PRECISION_BUILD_DOUBLE_DIAGNOSTICS "Build the double failure diagnostic interface" OFF)
-if(PRECISION_BUILD_TOLERANCE_SWEEP OR PRECISION_BUILD_NORMALIZATION_PROBE OR PRECISION_BUILD_MIXED_NORMALS OR PRECISION_BUILD_DOUBLE_DIAGNOSTICS)
+option(PRECISION_BUILD_FEATURE_SELECTION "Build the closest-feature classifier replay" OFF)
+if(PRECISION_BUILD_TOLERANCE_SWEEP OR PRECISION_BUILD_NORMALIZATION_PROBE OR PRECISION_BUILD_MIXED_NORMALS OR PRECISION_BUILD_DOUBLE_DIAGNOSTICS OR PRECISION_BUILD_FEATURE_SELECTION)
   execute_process(
     COMMAND "${Python_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/make_runtime_classifier.py"
       "${LIBIGL_SOURCE_DIR}/include/igl/pseudonormal_test.cpp"
@@ -96,7 +98,10 @@ endif()
 if(PRECISION_BUILD_DOUBLE_DIAGNOSTICS)
   nanobind_add_module(_double_diagnostics double_diagnostics.cpp)
 endif()
-foreach(experiment_target _tolerance_sweep _normalization_probe _mixed_normals inspect_triangle _double_diagnostics)
+if(PRECISION_BUILD_FEATURE_SELECTION)
+  nanobind_add_module(_feature_selection feature_selection.cpp)
+endif()
+foreach(experiment_target _tolerance_sweep _normalization_probe _mixed_normals inspect_triangle _double_diagnostics _feature_selection)
   if(NOT TARGET ${experiment_target})
     continue()
   endif()

@@ -1,0 +1,54 @@
+[
+  {
+    "file_id": "91147",
+    "sample_index": 470,
+    "precision": "float32",
+    "away": true,
+    "old_sign": -1,
+    "new_sign": 1,
+    "winding_sign": -1,
+    "old_valid": true,
+    "new_valid": true,
+    "introduced": true,
+    "resolved": false
+  },
+  {
+    "file_id": "91147",
+    "sample_index": 3717,
+    "precision": "float32",
+    "away": true,
+    "old_sign": -1,
+    "new_sign": 1,
+    "winding_sign": -1,
+    "old_valid": true,
+    "new_valid": true,
+    "introduced": true,
+    "resolved": false
+  },
+  {
+    "file_id": "91147",
+    "sample_index": 7295,
+    "precision": "float32",
+    "away": true,
+    "old_sign": -1,
+    "new_sign": 1,
+    "winding_sign": -1,
+    "old_valid": true,
+    "new_valid": true,
+    "introduced": true,
+    "resolved": false
+  },
+  {
+    "file_id": "91147",
+    "sample_index": 8348,
+    "precision": "float32",
+    "away": true,
+    "old_sign": -1,
+    "new_sign": 1,
+    "winding_sign": -1,
+    "old_valid": true,
+    "new_valid": true,
+    "introduced": true,
+    "resolved": false
+  }
+]

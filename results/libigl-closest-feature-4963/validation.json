@@ -1,0 +1,83 @@
+{
+  "core_commit": "4a4a31137ab5e4d8973a284e1708fa911367242c",
+  "base_commit": "a72d3b843889289d2a8fdab6756d10c1e4714597",
+  "patch_sha256": "919d1049a60098751645b612018ca39a54e3f5f98ffcf6fdf38d68c958adfc24",
+  "cpp_tests": {
+    "cases": 19,
+    "assertions": 1166,
+    "passed": true
+  },
+  "regression_before_fix": {
+    "test": "signed_distance: retain closest edge on a thin triangle",
+    "failed_as_expected": true,
+    "failed_cases": [
+      "float",
+      "double"
+    ],
+    "source_commit": "a72d3b843889289d2a8fdab6756d10c1e4714597"
+  },
+  "static_build": {
+    "passed": true,
+    "precisions": [
+      "float",
+      "double"
+    ],
+    "translation_units": [
+      "AABB",
+      "barycenter",
+      "colon",
+      "default_num_threads",
+      "doublearea",
+      "edge_lengths",
+      "exterior_edges",
+      "fast_winding_number",
+      "internal_angles",
+      "list_to_matrix",
+      "matrix_to_list",
+      "max_size",
+      "median",
+      "min_size",
+      "oriented_facets",
+      "per_edge_normals",
+      "per_face_normals",
+      "per_vertex_normals",
+      "point_simplex_squared_distance",
+      "pseudonormal_test",
+      "remove_duplicate_vertices",
+      "round",
+      "signed_angle",
+      "signed_distance",
+      "slice",
+      "solid_angle",
+      "sort",
+      "sortrows",
+      "squared_edge_lengths",
+      "triangle_fan",
+      "unique_rows",
+      "unique_simplices",
+      "winding_number"
+    ],
+    "source": "native_precision/static_query.cpp",
+    "compile_flags": "-std=c++17 -O1 -DNDEBUG -DIGL_STATIC_LIBRARY -ffunction-sections -fdata-sections",
+    "link_flags": "-Wl,--gc-sections -pthread",
+    "scope": "Targeted archive, not a full-library build"
+  },
+  "arithmetic_sources_match_benchmark_after_removing_static_instantiations": {
+    "AABB.h": true,
+    "AABB.cpp": true,
+    "pseudonormal_test.h": true,
+    "pseudonormal_test.cpp": true,
+    "signed_distance.cpp": true,
+    "point_simplex_squared_distance.cpp": true
+  },
+  "revision_note": "The final core commit adds static-library instantiations and API documentation after the benchmark modules were built. Removing only those instantiation additions reproduces every recorded arithmetic-source hash exactly.",
+  "final_source_hashes": {
+    "AABB.h": "313e5952f1be3e76714885525295298479cb32c1d383793ffc2ba8dbbe3ec388",
+    "AABB.cpp": "5589c13ebc6ad1224177545a38c428a802b07929c5f5a859df40bad3b3580ebc",
+    "pseudonormal_test.h": "e1b0aef3c9293dc8d973dee35ec3fcfdaec61d740a8cf0fb7fffbddb0b6587fc",
+    "pseudonormal_test.cpp": "1d2ed09aa16f9e591bdec0072758129df346eafbc95c5e6539b018fcf93c5002",
+    "signed_distance.cpp": "16ae103207dc0d3dabe09f824bbba9731104d6f0973ca4381af22c1532fb59e6",
+    "point_simplex_squared_distance.cpp": "6e63c709091bf4e0b540b42ff9f82862e09605c0fe076a7169634f1dcfe4513b",
+    "signed_distance.h": "56dc53fb962cdd6a8555df4fb99f494e5ec3b4569d5b8dea24fe607581424c14"
+  }
+}

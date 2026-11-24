@@ -750,3 +750,58 @@ The audit compares 80/120-digit signs and features and exports rational
 witnesses of strict crossings in `1452672`; it is not a complete intersection
 detector. Per-point evidence, per-model timings, source hashes, and a diagnosis
 figure are saved in the result directory.
+
+## Carrying the closest feature into normal selection
+
+The closest-feature experiment changes the 3D production signed-distance path
+to preserve the barycentrics returned by the nearest-triangle query. AABB
+traversal retains the winning barycentrics alongside its face and closest
+point. A new `pseudonormal_test` overload chooses the face, edge, or vertex
+normal from their exact zero coordinates, with no feature epsilon. Existing
+query overloads and standalone tolerance-based classification remain available.
+
+The core change lives on libigl branch `fix/pseudonormal-closest-feature`, based
+on the scalar/tolerance branch. Build against that checkout using the existing
+dependency caches:
+
+```bash
+cmake -S native_precision -B .cache/precision/closest-feature -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/home/horde/projects/libigl \
+  -DBINDINGS_SOURCE_DIR=/home/horde/projects/libigl-python-bindings \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src" \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DFETCHCONTENT_SOURCE_DIR_CATCH2="$PWD/.cache/precision/patched/_deps/catch2-src" \
+  -DPRECISION_BUILD_FEATURE_SELECTION=ON -DPRECISION_BUILD_TESTS=ON \
+  -DPRECISION_MODULE=_precision_feature
+cmake --build .cache/precision/closest-feature \
+  --target _feature_selection _precision_feature test_precision -j 4
+.cache/precision/closest-feature/test_precision
+HF_HUB_OFFLINE=1 uv run --no-sync python validate_feature_selection.py \
+  --module .cache/precision/closest-feature/_feature_selection*.so \
+  --production-module .cache/precision/closest-feature/_precision_feature*.so \
+  --original-module .cache/precision/tuned-defaults/_precision_tuned*.so \
+  --output results/libigl-closest-feature-4963
+uv run --no-sync python audit_feature_selection.py results/libigl-closest-feature-4963
+HF_HUB_OFFLINE=1 uv run --no-sync python diagnose_feature_regressions.py \
+  results/libigl-closest-feature-4963 \
+  --float-trace .cache/precision/mixed-normals/_mixed_normals*.so \
+  --double-trace .cache/precision/double-diagnostics/_double_diagnostics*.so
+```
+
+Use a fresh output directory; `--file-ids` permits a smaller replay. The runner
+checks every cached point in both precisions, including previously correct
+queries, and requires unchanged closest-point bytes and unsigned distances.
+Old signs and normal bytes must reproduce the tuned baseline exactly. On the
+original 100 models plus all 17 double-failure models, it additionally compares
+both complete signed-distance implementations against the cached geometry and
+the replayed signs/normals. Separate nanobind domains let the old and new
+production modules coexist in one process.
+
+The independent auditor recounts the saved per-point arrays, exports newly
+introduced and remaining disagreements, and reports transitions both with and
+without the original distance cutoff. Exact rational diagnostics distinguish
+nearest-feature ties on rounded geometry from normal-construction errors.
+The [full findings](results/libigl-closest-feature-4963/FINDINGS.md) include
+regressions as well as improvements. No new winding queries or dataset
+downloads are needed for the main validation.
