@@ -294,6 +294,15 @@ single-precision query has a nonfinite normal and is explicitly flagged; 761
 counted disagreements have finite outputs. Rounding the inputs to float32 and
 then computing in double gives 9 disagreements (0.0009%).
 
+[The original C++ float comparison](results/libigl-mixed-comparison-100/FINDINGS.md)
+adds the pre-PR implementation with its existing mix of float and double
+arithmetic: **764 disagreements (0.0764%)**, versus **762 (0.0762%)** after the
+scalar patch. Only four signs change, all on model `42194`: three disagreements
+are resolved and one is introduced. Unsigned distances are bitwise identical and
+closest-face indices match everywhere. Both float paths have the same one
+nonfinite-normal query. Thus the large difference from double was already
+present in the original C++ float path.
+
 The upstream changes are [libigl PR #2583](https://github.com/libigl/libigl/pull/2583)
 and [Python bindings PR #321](https://github.com/libigl/libigl-python-bindings/pull/321).
 They preserve the existing tolerance values and classifier.
@@ -384,3 +393,38 @@ c++ -std=c++17 -DIGL_STATIC_LIBRARY \
   -Wl,--gc-sections -pthread -o /path/to/test_static_query
 /path/to/test_static_query
 ```
+
+To reproduce the old mixed-precision float variant, use the untouched libigl
+source at `b41f1944a703653ae0da81e6588650ba14c270ea` with the float-capable wrapper
+at bindings commit `51d6dee06139682c08163012b00b5945095c38f1`. The wrapper's
+`src/signed_distance.cpp` is byte-identical to the wrapper used in the patched
+float experiment (`eac43e8`). The harness selects libigl through
+`LIBIGL_SOURCE_DIR`; it does not use the binding repository's libigl dependency
+pin. This exposes the existing C++ float instantiation without changing its
+internal arithmetic.
+
+```bash
+cmake -S native_precision -B .cache/precision/mixed -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/path/to/original/libigl \
+  -DBINDINGS_SOURCE_DIR=/path/to/patched/libigl-python-bindings \
+  -DPRECISION_MODULE=_precision_mixed \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src"
+cmake --build .cache/precision/mixed -j 4
+uv run --no-sync python precision_benchmark.py \
+  --variant original_single_mixed \
+  --module .cache/precision/mixed/_precision_mixed*.so \
+  --libigl-source /path/to/original/libigl \
+  --bindings-source /path/to/patched/libigl-python-bindings \
+  --output results/libigl-original-mixed-100
+uv run --no-sync python summarize_precision.py \
+  --mixed results/libigl-original-mixed-100 \
+  --output results/libigl-mixed-comparison-100
+```
+
+The new run's `build_record.json` records configure/build commands and times.
+The comparison's `validation.json` records an independent point-array audit,
+including the four changed signs and the shared invalid query. The original
+four-variant experiment and its cached outputs remain available unchanged.

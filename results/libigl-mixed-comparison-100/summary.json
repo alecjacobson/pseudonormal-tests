@@ -1,0 +1,598 @@
+{
+  "variants": {
+    "original_double": {
+      "points": 1000000,
+      "away_points": 966656,
+      "raw_disagreements": 7,
+      "counted_disagreements": 7,
+      "valid_counted_disagreements": 7,
+      "invalid_queries": 0,
+      "invalid_queries_away": 0,
+      "affected_models": 4,
+      "new_vs_original": 0,
+      "resolved_vs_original": 0,
+      "percent_all": 0.0007,
+      "percent_away": 0.0007241459216101695,
+      "distance_error_max_bbd": 0.0,
+      "distance_error_p99_bbd": 0.0,
+      "distance_error_median_bbd": 0.0,
+      "query_seconds": 21.446028626756743,
+      "mesh_load_and_hash_seconds": 0.09303917293436825
+    },
+    "patched_double": {
+      "points": 1000000,
+      "away_points": 966656,
+      "raw_disagreements": 7,
+      "counted_disagreements": 7,
+      "valid_counted_disagreements": 7,
+      "invalid_queries": 0,
+      "invalid_queries_away": 0,
+      "affected_models": 4,
+      "new_vs_original": 0,
+      "resolved_vs_original": 0,
+      "percent_all": 0.0007,
+      "percent_away": 0.0007241459216101695,
+      "distance_error_max_bbd": 0.0,
+      "distance_error_p99_bbd": 0.0,
+      "distance_error_median_bbd": 0.0,
+      "query_seconds": 21.33437935623806,
+      "mesh_load_and_hash_seconds": 0.0891434159129858
+    },
+    "patched_single": {
+      "points": 1000000,
+      "away_points": 966656,
+      "raw_disagreements": 773,
+      "counted_disagreements": 762,
+      "valid_counted_disagreements": 761,
+      "invalid_queries": 1,
+      "invalid_queries_away": 1,
+      "affected_models": 45,
+      "new_vs_original": 760,
+      "resolved_vs_original": 5,
+      "percent_all": 0.0762,
+      "percent_away": 0.0788284560381356,
+      "distance_error_max_bbd": 0.00037577326566971245,
+      "distance_error_p99_bbd": 2.1424775355017241e-07,
+      "distance_error_median_bbd": 4.193603924969252e-09,
+      "query_seconds": 21.398206668440253,
+      "mesh_load_and_hash_seconds": 0.09877798880916089
+    },
+    "quantized_double": {
+      "points": 1000000,
+      "away_points": 966656,
+      "raw_disagreements": 9,
+      "counted_disagreements": 9,
+      "valid_counted_disagreements": 9,
+      "invalid_queries": 0,
+      "invalid_queries_away": 0,
+      "affected_models": 5,
+      "new_vs_original": 6,
+      "resolved_vs_original": 4,
+      "percent_all": 0.0009,
+      "percent_away": 0.0009310447563559322,
+      "distance_error_max_bbd": 1.0926884241083735e-06,
+      "distance_error_p99_bbd": 9.37103646775693e-08,
+      "distance_error_median_bbd": 3.1098453664684395e-09,
+      "query_seconds": 21.169612898491323,
+      "mesh_load_and_hash_seconds": 0.09019149595405906
+    },
+    "original_single_mixed": {
+      "points": 1000000,
+      "away_points": 966656,
+      "raw_disagreements": 775,
+      "counted_disagreements": 764,
+      "valid_counted_disagreements": 763,
+      "invalid_queries": 1,
+      "invalid_queries_away": 1,
+      "affected_models": 45,
+      "new_vs_original": 762,
+      "resolved_vs_original": 5,
+      "percent_all": 0.0764,
+      "percent_away": 0.07903535487288135,
+      "distance_error_max_bbd": 0.00037577326566971245,
+      "distance_error_p99_bbd": 2.1424775355017241e-07,
+      "distance_error_median_bbd": 4.193603924969252e-09,
+      "query_seconds": 21.228907058248296,
+      "mesh_load_and_hash_seconds": 0.08907193806953728
+    }
+  },
+  "double_exactness": {
+    "original_vs_wheel": {
+      "signed_distance": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "closest_face_index": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "closest_point": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "pseudonormal": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "sign_p": {
+        "different_values": 0,
+        "different_bytes": 0
+      }
+    },
+    "patched_double_vs_original": {
+      "signed_distance": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "closest_face_index": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "closest_point": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "pseudonormal": {
+        "different_values": 0,
+        "different_bytes": 0
+      },
+      "sign_p": {
+        "different_values": 0,
+        "different_bytes": 0
+      }
+    }
+  },
+  "single_minus_double_percentage_points": 0.0755,
+  "single_to_double_ratio": 108.85714285714286,
+  "reference": "results/initial-100",
+  "configurations": {
+    "original_double": {
+      "started_at_utc": "2026-11-23T21:47:47.608074+00:00",
+      "variant": "original_double",
+      "dtype": "float64",
+      "quantize_inputs_to_float32_first": false,
+      "reference": "results/initial-100",
+      "reference_config": {
+        "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+        "dataset_repository": "Thingi10K/Thingi10K",
+        "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+        "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+        "metadata_rows": 9997,
+        "eligible_models": 4963,
+        "filter": {
+          "solid": 1,
+          "vertex_manifold": 1,
+          "edge_manifold": 1
+        },
+        "models": 100,
+        "points_per_model": 10000,
+        "seed": 20261123,
+        "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+        "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+        "relative_cutoff": 0.001,
+        "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+        "sign_p": "+1 if libigl signed_distance < 0, else -1",
+        "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+        "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+        "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+        "metadata_load_seconds": 0.053365965955890715,
+        "environment": {
+          "python": "3.12.3",
+          "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+          "cpu_model": "AMD EPYC 9B45",
+          "logical_cpus": 192,
+          "cpu_affinity_count": 192,
+          "cgroup_cpu_max": "400000 100000",
+          "igl_num_threads": "4",
+          "packages": {
+            "libigl": "2.6.3",
+            "numpy": "2.5.5",
+            "scipy": "1.18.1",
+            "huggingface-hub": "1.33.0"
+          },
+          "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+          "source_sha256": {
+            "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+            "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+            "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+          }
+        }
+      },
+      "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/original/_precision_original.cpython-312-x86_64-linux-gnu.so",
+      "module_sha256": "12e738c85687267c0cbad0c6fc287bcdeacf665d23da1d1a901649dee6f5d401",
+      "libigl": {
+        "commit": "b41f1944a703653ae0da81e6588650ba14c270ea",
+        "diff": ""
+      },
+      "bindings": {
+        "commit": "6893d1b18f7fa4f5abf374f54d5e6b0c53c7d716",
+        "diff": ""
+      },
+      "threads": 4,
+      "module_load_seconds": 0.00030073896050453186,
+      "metadata_load_seconds": 0.00046047999057918787,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "numpy": "2.5.5",
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "query_timing": "One full batch per model, including internal AABB and normal setup",
+      "mask": "saved original double d > 0.001 * original bbd"
+    },
+    "patched_double": {
+      "started_at_utc": "2026-11-23T22:02:10.209661+00:00",
+      "variant": "patched_double",
+      "dtype": "float64",
+      "quantize_inputs_to_float32_first": false,
+      "reference": "results/initial-100",
+      "reference_config": {
+        "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+        "dataset_repository": "Thingi10K/Thingi10K",
+        "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+        "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+        "metadata_rows": 9997,
+        "eligible_models": 4963,
+        "filter": {
+          "solid": 1,
+          "vertex_manifold": 1,
+          "edge_manifold": 1
+        },
+        "models": 100,
+        "points_per_model": 10000,
+        "seed": 20261123,
+        "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+        "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+        "relative_cutoff": 0.001,
+        "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+        "sign_p": "+1 if libigl signed_distance < 0, else -1",
+        "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+        "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+        "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+        "metadata_load_seconds": 0.053365965955890715,
+        "environment": {
+          "python": "3.12.3",
+          "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+          "cpu_model": "AMD EPYC 9B45",
+          "logical_cpus": 192,
+          "cpu_affinity_count": 192,
+          "cgroup_cpu_max": "400000 100000",
+          "igl_num_threads": "4",
+          "packages": {
+            "libigl": "2.6.3",
+            "numpy": "2.5.5",
+            "scipy": "1.18.1",
+            "huggingface-hub": "1.33.0"
+          },
+          "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+          "source_sha256": {
+            "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+            "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+            "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+          }
+        }
+      },
+      "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/patched/_precision_patched.cpython-312-x86_64-linux-gnu.so",
+      "module_sha256": "9a4064907c682ca2573b8a45c5b2505da93bf9d386fe89628b545ce8c696728c",
+      "runner_sha256": "c23cae7032d1f3263aa839a6248590bb1134468fd0be0474e92f0bca644420dd",
+      "cmake_cache_settings": [
+        "CMAKE_BUILD_TYPE:STRING=Release",
+        "CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++",
+        "CMAKE_CXX_FLAGS:STRING=",
+        "CMAKE_CXX_FLAGS_DEBUG:STRING=-g",
+        "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+        "FETCHCONTENT_SOURCE_DIR_CATCH2:PATH=",
+        "FETCHCONTENT_SOURCE_DIR_EIGEN:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/eigen-src",
+        "FETCHCONTENT_SOURCE_DIR_NANOBIND:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src",
+        "PRECISION_MODULE:STRING=_precision_patched",
+        "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1"
+      ],
+      "libigl": {
+        "commit": "0641c7029519a6ad4e66b3823b40055c91115f12",
+        "diff": ""
+      },
+      "bindings": {
+        "commit": "eac43e8fa1b29fb91645200287a17798774dce74",
+        "diff": ""
+      },
+      "threads": 4,
+      "module_load_seconds": 0.00038869993295520544,
+      "metadata_load_seconds": 0.0004856300074607134,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "numpy": "2.5.5",
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "query_timing": "One full batch per model, including internal AABB and normal setup",
+      "mask": "saved original double d > 0.001 * original bbd"
+    },
+    "patched_single": {
+      "started_at_utc": "2026-11-23T22:02:33.487090+00:00",
+      "variant": "patched_single",
+      "dtype": "float32",
+      "quantize_inputs_to_float32_first": false,
+      "reference": "results/initial-100",
+      "reference_config": {
+        "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+        "dataset_repository": "Thingi10K/Thingi10K",
+        "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+        "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+        "metadata_rows": 9997,
+        "eligible_models": 4963,
+        "filter": {
+          "solid": 1,
+          "vertex_manifold": 1,
+          "edge_manifold": 1
+        },
+        "models": 100,
+        "points_per_model": 10000,
+        "seed": 20261123,
+        "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+        "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+        "relative_cutoff": 0.001,
+        "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+        "sign_p": "+1 if libigl signed_distance < 0, else -1",
+        "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+        "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+        "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+        "metadata_load_seconds": 0.053365965955890715,
+        "environment": {
+          "python": "3.12.3",
+          "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+          "cpu_model": "AMD EPYC 9B45",
+          "logical_cpus": 192,
+          "cpu_affinity_count": 192,
+          "cgroup_cpu_max": "400000 100000",
+          "igl_num_threads": "4",
+          "packages": {
+            "libigl": "2.6.3",
+            "numpy": "2.5.5",
+            "scipy": "1.18.1",
+            "huggingface-hub": "1.33.0"
+          },
+          "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+          "source_sha256": {
+            "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+            "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+            "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+          }
+        }
+      },
+      "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/patched/_precision_patched.cpython-312-x86_64-linux-gnu.so",
+      "module_sha256": "9a4064907c682ca2573b8a45c5b2505da93bf9d386fe89628b545ce8c696728c",
+      "runner_sha256": "c23cae7032d1f3263aa839a6248590bb1134468fd0be0474e92f0bca644420dd",
+      "cmake_cache_settings": [
+        "CMAKE_BUILD_TYPE:STRING=Release",
+        "CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++",
+        "CMAKE_CXX_FLAGS:STRING=",
+        "CMAKE_CXX_FLAGS_DEBUG:STRING=-g",
+        "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+        "FETCHCONTENT_SOURCE_DIR_CATCH2:PATH=",
+        "FETCHCONTENT_SOURCE_DIR_EIGEN:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/eigen-src",
+        "FETCHCONTENT_SOURCE_DIR_NANOBIND:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src",
+        "PRECISION_MODULE:STRING=_precision_patched",
+        "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1"
+      ],
+      "libigl": {
+        "commit": "0641c7029519a6ad4e66b3823b40055c91115f12",
+        "diff": ""
+      },
+      "bindings": {
+        "commit": "eac43e8fa1b29fb91645200287a17798774dce74",
+        "diff": ""
+      },
+      "threads": 4,
+      "module_load_seconds": 0.00036268006078898907,
+      "metadata_load_seconds": 0.0004722099984064698,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "numpy": "2.5.5",
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "query_timing": "One full batch per model, including internal AABB and normal setup",
+      "mask": "saved original double d > 0.001 * original bbd"
+    },
+    "quantized_double": {
+      "started_at_utc": "2026-11-23T22:02:56.508020+00:00",
+      "variant": "quantized_double",
+      "dtype": "float64",
+      "quantize_inputs_to_float32_first": true,
+      "reference": "results/initial-100",
+      "reference_config": {
+        "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+        "dataset_repository": "Thingi10K/Thingi10K",
+        "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+        "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+        "metadata_rows": 9997,
+        "eligible_models": 4963,
+        "filter": {
+          "solid": 1,
+          "vertex_manifold": 1,
+          "edge_manifold": 1
+        },
+        "models": 100,
+        "points_per_model": 10000,
+        "seed": 20261123,
+        "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+        "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+        "relative_cutoff": 0.001,
+        "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+        "sign_p": "+1 if libigl signed_distance < 0, else -1",
+        "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+        "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+        "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+        "metadata_load_seconds": 0.053365965955890715,
+        "environment": {
+          "python": "3.12.3",
+          "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+          "cpu_model": "AMD EPYC 9B45",
+          "logical_cpus": 192,
+          "cpu_affinity_count": 192,
+          "cgroup_cpu_max": "400000 100000",
+          "igl_num_threads": "4",
+          "packages": {
+            "libigl": "2.6.3",
+            "numpy": "2.5.5",
+            "scipy": "1.18.1",
+            "huggingface-hub": "1.33.0"
+          },
+          "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+          "source_sha256": {
+            "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+            "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+            "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+          }
+        }
+      },
+      "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/patched/_precision_patched.cpython-312-x86_64-linux-gnu.so",
+      "module_sha256": "9a4064907c682ca2573b8a45c5b2505da93bf9d386fe89628b545ce8c696728c",
+      "runner_sha256": "c23cae7032d1f3263aa839a6248590bb1134468fd0be0474e92f0bca644420dd",
+      "cmake_cache_settings": [
+        "CMAKE_BUILD_TYPE:STRING=Release",
+        "CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++",
+        "CMAKE_CXX_FLAGS:STRING=",
+        "CMAKE_CXX_FLAGS_DEBUG:STRING=-g",
+        "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+        "FETCHCONTENT_SOURCE_DIR_CATCH2:PATH=",
+        "FETCHCONTENT_SOURCE_DIR_EIGEN:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/eigen-src",
+        "FETCHCONTENT_SOURCE_DIR_NANOBIND:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src",
+        "PRECISION_MODULE:STRING=_precision_patched",
+        "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1"
+      ],
+      "libigl": {
+        "commit": "0641c7029519a6ad4e66b3823b40055c91115f12",
+        "diff": ""
+      },
+      "bindings": {
+        "commit": "eac43e8fa1b29fb91645200287a17798774dce74",
+        "diff": ""
+      },
+      "threads": 4,
+      "module_load_seconds": 0.00041807000525295734,
+      "metadata_load_seconds": 0.00046929006930440664,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "numpy": "2.5.5",
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "query_timing": "One full batch per model, including internal AABB and normal setup",
+      "mask": "saved original double d > 0.001 * original bbd"
+    },
+    "original_single_mixed": {
+      "started_at_utc": "2026-11-24T01:38:04.468807+00:00",
+      "variant": "original_single_mixed",
+      "dtype": "float32",
+      "quantize_inputs_to_float32_first": false,
+      "reference": "results/initial-100",
+      "reference_config": {
+        "started_at_utc": "2026-11-23T20:14:18.733677+00:00",
+        "dataset_repository": "Thingi10K/Thingi10K",
+        "dataset_revision": "2d5d3b2f3cd3711028ad75b12788c13b25559ec6",
+        "metadata_sha256": "b12c8d2289125a0d3af3f344a4c5dcfa2114d67a951312505e94210d1cfdbc2f",
+        "metadata_rows": 9997,
+        "eligible_models": 4963,
+        "filter": {
+          "solid": 1,
+          "vertex_manifold": 1,
+          "edge_manifold": 1
+        },
+        "models": 100,
+        "points_per_model": 10000,
+        "seed": 20261123,
+        "model_selection": "PCG64 choice without replacement; eligible IDs sorted numerically",
+        "point_sampling": "PCG64 SeedSequence([seed, file_id]); uniform original axis-aligned bbox",
+        "relative_cutoff": 0.001,
+        "distance_cutoff": "d > relative_cutoff * norm(bbox_max - bbox_min)",
+        "sign_p": "+1 if libigl signed_distance < 0, else -1",
+        "sign_w": "2 * numpy.rint(fast_winding_number) - 1; ties to even; no clipping",
+        "primary_percent": "100 * count(sign_p != sign_w AND d > cutoff) / num_points",
+        "timing_scope": "One full batch call per method per model, including internal setup; no warmup",
+        "metadata_load_seconds": 0.053365965955890715,
+        "environment": {
+          "python": "3.12.3",
+          "platform": "Linux-6.8.0-1060-gke-x86_64-with-glibc2.39",
+          "cpu_model": "AMD EPYC 9B45",
+          "logical_cpus": 192,
+          "cpu_affinity_count": 192,
+          "cgroup_cpu_max": "400000 100000",
+          "igl_num_threads": "4",
+          "packages": {
+            "libigl": "2.6.3",
+            "numpy": "2.5.5",
+            "scipy": "1.18.1",
+            "huggingface-hub": "1.33.0"
+          },
+          "git_commit": "b87588e20023fa6583855aef982ebda065d1e3e9",
+          "source_sha256": {
+            "benchmark.py": "d803c08a9948d98ce2737e802444efb9ebfc7530ce35790edcdc682c163bbc36",
+            "dataset_cache.py": "d188c17c2727345afc1e21b558a72c3dd7676f76b9741ca6dfbed8652eac8467",
+            "uv.lock": "ae3b0f16eada6028904ad4188a97cc8a25db04af4c2cbeef715bd16d9de9d4b4"
+          }
+        }
+      },
+      "module": "/home/horde/projects/pseudonormal-tests/.cache/precision/mixed/_precision_mixed.cpython-312-x86_64-linux-gnu.so",
+      "module_sha256": "47bae7595f9fb21d97cdc7e3b31e5da259ea568cc9d5c00ec88f6c1b484a23e5",
+      "runner_sha256": "63e961c450cba99c45c0857d2674cf04addf96671a95796f3b3c68dbcbcf197f",
+      "cmake_cache_settings": [
+        "CMAKE_BUILD_TYPE:STRING=Release",
+        "CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++",
+        "CMAKE_CXX_FLAGS:STRING=",
+        "CMAKE_CXX_FLAGS_DEBUG:STRING=-g",
+        "CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG",
+        "FETCHCONTENT_SOURCE_DIR_EIGEN:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/eigen-src",
+        "FETCHCONTENT_SOURCE_DIR_NANOBIND:PATH=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src",
+        "PRECISION_MODULE:STRING=_precision_mixed",
+        "CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1",
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1"
+      ],
+      "libigl": {
+        "commit": "b41f1944a703653ae0da81e6588650ba14c270ea",
+        "diff": ""
+      },
+      "bindings": {
+        "commit": "51d6dee06139682c08163012b00b5945095c38f1",
+        "diff": ""
+      },
+      "threads": 4,
+      "module_load_seconds": 0.00039993005339056253,
+      "metadata_load_seconds": 0.000492508988827467,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "numpy": "2.5.5",
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "query_timing": "One full batch per model, including internal AABB and normal setup",
+      "mask": "saved original double d > 0.001 * original bbd"
+    }
+  },
+  "metric": "Returned sign disagrees with frozen original winding sign AND original d > 0.001 * bbd; denominator all samples",
+  "invalid_query_policy": "Preserve outputs and returned signs, explicitly count nonfinite-query outputs, and also report disagreements with finite outputs only",
+  "patched_single_vs_original_mixed": {
+    "shared_counted_disagreements": 761,
+    "new_counted_disagreements": 1,
+    "resolved_counted_disagreements": 3,
+    "sign_changes_raw": 4,
+    "sign_changes_away": 4,
+    "shared_invalid_queries": 1,
+    "new_invalid_queries": 0,
+    "resolved_invalid_queries": 0,
+    "closest_face_changes": 0,
+    "percentage_points": -0.00019999999999999185,
+    "disagreement_ratio": 0.9973821989528796,
+    "distance_delta_max_bbd": 0.0,
+    "distance_delta_p99_bbd": 0.0,
+    "distance_delta_median_bbd": 0.0
+  }
+}

@@ -18,6 +18,7 @@ from dataset_cache import DEFAULT_CACHE, REVISION, prepare_dataset, write_json
 
 VARIANTS = {
     "original_double": (np.float64, False),
+    "original_single_mixed": (np.float32, False),
     "patched_double": (np.float64, False),
     "patched_single": (np.float32, False),
     "quantized_double": (np.float64, True),

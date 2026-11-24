@@ -1,0 +1,68 @@
+{
+  "models": 100,
+  "points": 1000000,
+  "counts_independently_recomputed": {
+    "old": 764,
+    "new": 762,
+    "shared": 761,
+    "introduced": 1,
+    "resolved": 3
+  },
+  "sign_changes": [
+    {
+      "file_id": "42194",
+      "sample_index": 11,
+      "d_over_bbd": 0.03476198506014267,
+      "old_sign": 1,
+      "new_sign": -1,
+      "reference_sign": -1,
+      "old_valid": true,
+      "new_valid": true
+    },
+    {
+      "file_id": "42194",
+      "sample_index": 2736,
+      "d_over_bbd": 0.04230700430223489,
+      "old_sign": -1,
+      "new_sign": 1,
+      "reference_sign": -1,
+      "old_valid": true,
+      "new_valid": true
+    },
+    {
+      "file_id": "42194",
+      "sample_index": 3956,
+      "d_over_bbd": 0.020169882031590522,
+      "old_sign": 1,
+      "new_sign": -1,
+      "reference_sign": -1,
+      "old_valid": true,
+      "new_valid": true
+    },
+    {
+      "file_id": "42194",
+      "sample_index": 7703,
+      "d_over_bbd": 0.006960485456794415,
+      "old_sign": 1,
+      "new_sign": -1,
+      "reference_sign": -1,
+      "old_valid": true,
+      "new_valid": true
+    }
+  ],
+  "invalid_queries": [
+    {
+      "file_id": "1233195",
+      "sample_index": 1521,
+      "old_valid": false,
+      "new_valid": false
+    }
+  ],
+  "float32_outputs_verified": true,
+  "unsigned_distance_differing_bytes": 0,
+  "closest_face_changes": 0,
+  "wrapper_identical_between_float_runs": true,
+  "wrapper_sha256": "8b9a5313722084f2a3d5acfd63a6bae4395fdb1a0b5c3ac44baee70b28e6bcaf",
+  "original_cpp_source_unmodified": true,
+  "lint_passed": true
+}

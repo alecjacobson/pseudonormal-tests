@@ -1,0 +1,35 @@
+[
+  {
+    "stage": "configure",
+    "command": [
+      "cmake",
+      "-S",
+      "native_precision",
+      "-B",
+      "/home/horde/projects/pseudonormal-tests/.cache/precision/mixed",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DPython_EXECUTABLE=/home/horde/projects/pseudonormal-tests/.venv/bin/python",
+      "-DLIBIGL_SOURCE_DIR=/home/horde/projects/libigl-original",
+      "-DBINDINGS_SOURCE_DIR=/home/horde/projects/libigl-python-bindings",
+      "-DPRECISION_MODULE=_precision_mixed",
+      "-DFETCHCONTENT_SOURCE_DIR_NANOBIND=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/nanobind-src",
+      "-DFETCHCONTENT_SOURCE_DIR_EIGEN=/home/horde/projects/pseudonormal-tests/.cache/precision/original/_deps/eigen-src"
+    ],
+    "seconds": 0.2437270920490846,
+    "returncode": 0
+  },
+  {
+    "stage": "build",
+    "command": [
+      "cmake",
+      "--build",
+      "/home/horde/projects/pseudonormal-tests/.cache/precision/mixed",
+      "-j",
+      "4"
+    ],
+    "seconds": 11.630328885046765,
+    "returncode": 0
+  }
+]

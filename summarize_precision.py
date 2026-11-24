@@ -22,6 +22,8 @@ def run(args):
         "patched_single": args.single,
         "quantized_double": args.quantized,
     }
+    if args.mixed is not None:
+        variants["original_single_mixed"] = args.mixed
     with (args.reference / "per_model.csv").open(newline="") as stream:
         reference_rows = list(csv.DictReader(stream))
     intended_ids = {row["file_id"] for row in reference_rows}
@@ -56,6 +58,18 @@ def run(args):
         for name in variants
     }
     distance_errors = {name: [] for name in variants}
+    float_comparison = {
+        "shared_counted_disagreements": 0,
+        "new_counted_disagreements": 0,
+        "resolved_counted_disagreements": 0,
+        "sign_changes_raw": 0,
+        "sign_changes_away": 0,
+        "shared_invalid_queries": 0,
+        "new_invalid_queries": 0,
+        "resolved_invalid_queries": 0,
+        "closest_face_changes": 0,
+    }
+    float_distance_deltas = []
     for source in reference_rows:
         file_id = source["file_id"]
         bbd = float(source["bbd"])
@@ -119,6 +133,31 @@ def run(args):
             distance_errors[name].append(
                 np.abs(np.abs(arrays["signed_distance"].astype(np.float64)) - reference["d"]) / bbd
             )
+        if args.mixed is not None:
+            old = outputs["original_single_mixed"]
+            new = outputs["patched_single"]
+            old_disagree = (old["sign_p"] != reference["sign_w"]) & away
+            new_disagree = (new["sign_p"] != reference["sign_w"]) & away
+            changes = {
+                "shared_counted_disagreements": int((old_disagree & new_disagree).sum()),
+                "new_counted_disagreements": int((~old_disagree & new_disagree).sum()),
+                "resolved_counted_disagreements": int((old_disagree & ~new_disagree).sum()),
+                "sign_changes_raw": int((old["sign_p"] != new["sign_p"]).sum()),
+                "sign_changes_away": int(((old["sign_p"] != new["sign_p"]) & away).sum()),
+                "shared_invalid_queries": int((~old["valid_query"] & ~new["valid_query"]).sum()),
+                "new_invalid_queries": int((old["valid_query"] & ~new["valid_query"]).sum()),
+                "resolved_invalid_queries": int((~old["valid_query"] & new["valid_query"]).sum()),
+                "closest_face_changes": int((old["closest_face_index"] != new["closest_face_index"]).sum()),
+            }
+            for key, value in changes.items():
+                float_comparison[key] += value
+                model[f"patched_single_vs_original_mixed_{key}"] = value
+            float_distance_deltas.append(
+                np.abs(
+                    np.abs(new["signed_distance"].astype(np.float64))
+                    - np.abs(old["signed_distance"].astype(np.float64))
+                ) / bbd
+            )
         model_rows.append(model)
         for sample in np.flatnonzero(diagnostic):
             case = {
@@ -165,6 +204,20 @@ def run(args):
         "metric": "Returned sign disagrees with frozen original winding sign AND original d > 0.001 * bbd; denominator all samples",
         "invalid_query_policy": "Preserve outputs and returned signs, explicitly count nonfinite-query outputs, and also report disagreements with finite outputs only",
     }
+    if args.mixed is not None:
+        mixed = totals["original_single_mixed"]
+        deltas = np.concatenate(float_distance_deltas)
+        float_comparison.update(
+            percentage_points=single["percent_all"] - mixed["percent_all"],
+            disagreement_ratio=(
+                single["counted_disagreements"] / mixed["counted_disagreements"]
+                if mixed["counted_disagreements"] else None
+            ),
+            distance_delta_max_bbd=float(np.max(deltas)),
+            distance_delta_p99_bbd=float(np.quantile(deltas, 0.99)),
+            distance_delta_median_bbd=float(np.median(deltas)),
+        )
+        summary["patched_single_vs_original_mixed"] = float_comparison
     write_json(args.output / "summary.json", summary)
     write_csv(args.output / "per_model.csv", model_rows)
     write_csv(args.output / "changed_cases.csv", cases)
@@ -193,6 +246,50 @@ def run(args):
         lines.append(
             f"- `{label}`: **{count} differing bytes** across every signed distance, closest-face index, closest point, pseudonormal, and sign."
         )
+    if args.mixed is not None:
+        comparison = summary["patched_single_vs_original_mixed"]
+        lines += [
+            "",
+            "## Original C++ float versus patched float",
+            "",
+            "`original_single_mixed` uses the untouched pre-PR C++ source with float32 inputs and float outputs. "
+            "The new Python float overload is used only to expose that existing C++ instantiation. "
+            "Its `signed_distance.cpp` wrapper is identical to the wrapper used for the patched-float run. "
+            "The original hardcoded double intermediates and math calls remain intact. "
+            "This differs from the old Python behavior, which converted float32 inputs to double.",
+            "",
+            f"Changing from the old mixed arithmetic to the patched float arithmetic changes the rate by "
+            f"**{comparison['percentage_points']:.7g} percentage points**. "
+            f"There are **{comparison['shared_counted_disagreements']} shared disagreements**, "
+            f"**{comparison['new_counted_disagreements']} newly introduced**, and "
+            f"**{comparison['resolved_counted_disagreements']} resolved** beyond the fixed cutoff. "
+            f"Signs change at {comparison['sign_changes_raw']} points overall, "
+            f"including {comparison['sign_changes_away']} beyond the cutoff.",
+            "",
+            f"Nonfinite query outputs: {mixed['invalid_queries']} before and {single['invalid_queries']} after; "
+            f"{comparison['shared_invalid_queries']} shared, {comparison['new_invalid_queries']} introduced, "
+            f"{comparison['resolved_invalid_queries']} resolved. "
+            f"The old mixed-precision result has {mixed['valid_counted_disagreements']} counted disagreements "
+            "with finite outputs.",
+            "",
+            f"Closest-face indices change for {comparison['closest_face_changes']} points. "
+            f"The maximum unsigned-distance difference between the two float variants is "
+            f"{comparison['distance_delta_max_bbd']:.6g} × original `bbd` "
+            f"(p99 {comparison['distance_delta_p99_bbd']:.6g}; median {comparison['distance_delta_median_bbd']:.6g}). "
+            "Per-model changes and diagnostic point identities are retained in the CSV files.",
+        ]
+        lines += [
+            "",
+            "| Model | Sample index | Original d / bbd | Old mixed sign | Patched float sign | Winding reference |",
+            "| --- | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        for case in cases:
+            if case["original_single_mixed_sign_p"] != case["patched_single_sign_p"]:
+                lines.append(
+                    f"| {case['file_id']} | {case['sample_index']} | {case['d_over_bbd']:.7g} | "
+                    f"{case['original_single_mixed_sign_p']:+d} | {case['patched_single_sign_p']:+d} | "
+                    f"{case['reference_sign_w']:+d} |"
+                )
     if single["invalid_queries"]:
         invalid = [row for row in cases if not row["patched_single_valid"]]
         lines += [
@@ -267,5 +364,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--quantized", type=Path, default=Path("results/libigl-quantized-double-100")
     )
+    parser.add_argument("--mixed", type=Path, help="Original C++ float run with mixed internal arithmetic")
     parser.add_argument("--output", type=Path, default=Path("results/libigl-scalar-100"))
     run(parser.parse_args())
