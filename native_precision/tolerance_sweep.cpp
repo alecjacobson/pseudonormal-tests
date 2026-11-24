@@ -72,6 +72,7 @@ struct PreparedMesh
   }
 };
 
+#ifndef TOLERANCE_SWEEP_NO_MODULE
 NB_MODULE(_tolerance_sweep,m)
 {
   nb::class_<PreparedMesh<float>>(m,"PreparedMesh")
@@ -85,3 +86,4 @@ NB_MODULE(_tolerance_sweep,m)
     .def("classify",&PreparedMesh<double>::classify,"points"_a.noconvert(),"indices"_a,
       "closest"_a.noconvert(),"minimum_double_area"_a,"epsilon"_a);
 }
+#endif

@@ -591,3 +591,40 @@ optional `--runtime-study` and `--precision-study` paths select their provenance
 records. The auditor checks full-mask coverage, recounts all four variants
 from cached point arrays, verifies the original 100-model results, and exports
 per-model comparisons, remaining diagnostic cases, and a PDF/PNG figure.
+
+## Diagnosing nonfinite pseudonormals
+
+[The normalization probe](results/libigl-normalization-probe-104/FINDINGS.md)
+traces all 369 nonfinite tuned-float queries to final **edge** normalization:
+368 select exactly zero accumulated edge normals; one selects a tiny nonzero
+normal whose subnormal squared length Eigen's default SIMD square root flushes
+to zero. Omitting vertex normalization alone changes none of these cases.
+
+On the original 100 models plus all affected models (104 total), omitting final
+edge normalization changes tuned float disagreements from 365 to 8 and removes
+nonfinite outputs, with every previously finite sign unchanged. However, 368
+returned normals are now exactly zero: they take the outside branch by tie
+breaking, so this is not a complete classification fix. Double's 277 subset
+disagreements stay unchanged. Unit face normals and their weighting remain.
+
+Build the isolated probe using the existing dependency caches:
+
+```bash
+cmake -S native_precision -B .cache/precision/normalization \
+  -DCMAKE_BUILD_TYPE=Release -DPython_EXECUTABLE="$PWD/.venv/bin/python" \
+  -DLIBIGL_SOURCE_DIR=/home/horde/projects/libigl \
+  -DBINDINGS_SOURCE_DIR=/home/horde/projects/libigl-python-bindings \
+  -DFETCHCONTENT_SOURCE_DIR_EIGEN="$PWD/.cache/precision/original/_deps/eigen-src" \
+  -DFETCHCONTENT_SOURCE_DIR_NANOBIND="$PWD/.cache/precision/original/_deps/nanobind-src" \
+  -DPRECISION_BUILD_NORMALIZATION_PROBE=ON
+cmake --build .cache/precision/normalization --target _normalization_probe -j 4
+HF_HUB_OFFLINE=1 uv run --no-sync python probe_normalization.py \
+  --module .cache/precision/normalization/_normalization_probe*.so \
+  --output results/libigl-normalization-probe-104
+```
+
+Use a fresh output directory for each replay. The standalone
+`native_precision/normalization_reproducer.cpp` additionally isolates the
+subnormal and exact-zero cases; compiling with `-DEIGEN_FAST_MATH=0` resolves
+the former but leaves the latter. This experiment does not modify upstream
+libigl or its default behavior.

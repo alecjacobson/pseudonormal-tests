@@ -53,7 +53,8 @@ if(PRECISION_BUILD_TESTS)
 endif()
 
 option(PRECISION_BUILD_TOLERANCE_SWEEP "Build the runtime tolerance experiment" OFF)
-if(PRECISION_BUILD_TOLERANCE_SWEEP)
+option(PRECISION_BUILD_NORMALIZATION_PROBE "Build the normal normalization experiment" OFF)
+if(PRECISION_BUILD_TOLERANCE_SWEEP OR PRECISION_BUILD_NORMALIZATION_PROBE)
   execute_process(
     COMMAND "${Python_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/make_runtime_classifier.py"
       "${LIBIGL_SOURCE_DIR}/include/igl/pseudonormal_test.cpp"
@@ -62,12 +63,29 @@ if(PRECISION_BUILD_TOLERANCE_SWEEP)
   if(NOT classifier_generation_result EQUAL 0)
     message(FATAL_ERROR "Could not generate the runtime pseudonormal classifier")
   endif()
+endif()
+if(PRECISION_BUILD_TOLERANCE_SWEEP)
   nanobind_add_module(_tolerance_sweep tolerance_sweep.cpp)
-  target_include_directories(_tolerance_sweep PRIVATE
+endif()
+if(PRECISION_BUILD_NORMALIZATION_PROBE)
+  execute_process(
+    COMMAND "${Python_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/make_unnormalized_normals.py"
+      "${LIBIGL_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/unnormalized_normals.h"
+    RESULT_VARIABLE normals_generation_result)
+  if(NOT normals_generation_result EQUAL 0)
+    message(FATAL_ERROR "Could not generate unnormalized normal accumulators")
+  endif()
+  nanobind_add_module(_normalization_probe normalization_probe.cpp)
+endif()
+foreach(experiment_target _tolerance_sweep _normalization_probe)
+  if(NOT TARGET ${experiment_target})
+    continue()
+  endif()
+  target_include_directories(${experiment_target} PRIVATE
     "${LIBIGL_SOURCE_DIR}/include" "${BINDINGS_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_BINARY_DIR}")
-  target_include_directories(_tolerance_sweep SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
+  target_include_directories(${experiment_target} SYSTEM PRIVATE "${eigen_SOURCE_DIR}")
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(_tolerance_sweep PRIVATE -ffp-contract=off)
+    target_compile_options(${experiment_target} PRIVATE -ffp-contract=off)
   endif()
-endif()
+endforeach()
